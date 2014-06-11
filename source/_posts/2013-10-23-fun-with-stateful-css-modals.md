@@ -1,5 +1,5 @@
 ---
-title: Fun with Stateful CSS&#58; Modals
+title: Fun with Stateful CSS: Modals
 category: blog
 layout: post
 ---

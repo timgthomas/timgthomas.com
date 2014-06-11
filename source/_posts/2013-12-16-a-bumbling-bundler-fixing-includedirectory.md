@@ -1,5 +1,5 @@
 ---
-title: A Bumbling Bundler&#58; Fixing IncludeDirectory()
+title: A Bumbling Bundler: Fixing IncludeDirectory()
 category: blog
 layout: post
 ---

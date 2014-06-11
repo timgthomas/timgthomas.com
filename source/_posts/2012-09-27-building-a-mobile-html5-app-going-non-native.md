@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part I&#58; A Business Case
+title: Building a Non-Native Mobile HTML5 App, Part I: A Business Case
 category: blog
 layout: post
 ---

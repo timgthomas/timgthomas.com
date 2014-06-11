@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part III&#58; Hooking Things Together
+title: Building a Non-Native Mobile HTML5 App, Part III: Hooking Things Together
 category: blog
 layout: post
 ---

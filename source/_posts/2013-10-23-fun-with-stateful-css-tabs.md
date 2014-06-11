@@ -1,5 +1,5 @@
 ---
-title: Fun with Stateful CSS&#58; Tabs
+title: Fun with Stateful CSS: Tabs
 category: blog
 layout: post
 ---

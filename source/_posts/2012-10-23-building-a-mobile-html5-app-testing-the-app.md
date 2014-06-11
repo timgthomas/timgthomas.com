@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part V&#58; Testing the App
+title: Building a Non-Native Mobile HTML5 App, Part V: Testing the App
 category: blog
 layout: post
 ---

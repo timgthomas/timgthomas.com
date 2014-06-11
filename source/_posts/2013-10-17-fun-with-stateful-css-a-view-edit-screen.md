@@ -1,5 +1,5 @@
 ---
-title: Fun with Stateful CSS&#58; A View/Edit Screen
+title: Fun with Stateful CSS: A View/Edit Screen
 category: blog
 layout: post
 ---

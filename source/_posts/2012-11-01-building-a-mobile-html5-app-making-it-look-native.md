@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part VI&#58; Making It Look Native
+title: Building a Non-Native Mobile HTML5 App, Part VI: Making It Look Native
 category: blog
 layout: post
 ---
