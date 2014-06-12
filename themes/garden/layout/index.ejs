@@ -1,3 +1,6 @@
+home: true
+---
+
 <section class="g-row s-blog" role="main">
   <article class="g-left">
     <% var firstpost = page.posts.first(); %>
@@ -15,7 +18,6 @@
 
   <aside class="g-right sticky">
     <header><h1>More Posts</h1></header>
-    <%= Object.keys(site.posts.sort) %>
     <ol class="list-icons list-banded" start="2">
       <% site.posts.sort('date', -1).limit(5).each(function(post, i) { %>
         <% if (i === 0) return; %>

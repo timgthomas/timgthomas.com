@@ -1,0 +1,16 @@
+<section class="g-row" role="main">
+   <header>
+      <h1>Blog Archives</h1>
+   </header>
+   <ol class="list-icons">
+      <% site.posts.sort('date', -1).each(function(post, i){ %>
+         <li>
+            <a href="/<%= post.path %>">
+               <i class="icon icon-bookmark-empty"></i>
+               <span class="title title-full"><%= post.title %></span>
+               <small class="subtitle"><%= date(post.date, config.date_format) %></small>
+            </a>
+         </li>
+      <% }); %>
+   </ol>
+</section>
