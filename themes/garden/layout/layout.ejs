@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Tim G. Thomas</title>
+   <!-- <title>Tim G. Thomas{% if page.title %}: {% endif %}{{ page.title }}</title> -->
+   <link rel="author" href="/humans.txt">
+   <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+   <link rel="icon" type="image/x-icon" href="/favicon.png">
+   <link rel="stylesheet" href="/public/css/normalize.css">
+   <link rel="stylesheet" href="/public/css/font-awesome.css">
+   <link rel="stylesheet" href="/public/css/base.css">
+   <link rel="stylesheet" href="/public/css/print.css" media="print">
+</head>
+
+<body class="blog">
+   <header role="banner">
+      <div class="container">
+         <h1 class="name"><a href="/#" rel="home">Tim <em>G.</em> Thomas</a></h1>
+         <nav id="navigation">
+            <ul>
+               <li><a href="http://feeds.feedburner.com/timgthomas"><i class="icon icon-rss"></i></a></li>
+               <li><a href="http://github.com/timgthomas"><i class="icon icon-github"></i></a></li>
+               <li><a href="http://twitter.com/timgthomas"><i class="icon icon-twitter"></i></a></li>
+            </ul>
+         </nav>
+      </div>
+   </header>
+   <section role="main" class="container">
+      <%- partial('_partial/introduction') %>
+   </section>
+   <div class="container">
+      <%- body %>
+   </div>
+   <footer>
+      <p>&copy; Tim G. Thomas</p>
+   </footer>
+   <script src="/public/js/lib/jquery-1.8.1.min.js"></script>
+   <!-- {% if page.home %}
+      <script async>
+         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+         var disqus_shortname = 'timgthomas'; // required: replace example with your forum shortname
+
+         /* * * DON'T EDIT BELOW THIS LINE * * */
+         (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+         }());
+      </script>
+   {% endif %} -->
+   <script src="/public/js/global.js"></script>
+   <!-- Google Analytics -->
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49175000-1', 'timgthomas.com');
+      ga('send', 'pageview');
+   </script>
+   <!-- Mixpanel -->
+   <script>
+      (function(c,a){window.mixpanel=a;var b,d,h,e;b=c.createElement("script");
+      b.type="text/javascript";b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+
+      '//cdn.mxpnl.com/libs/mixpanel-2.1.min.js';d=c.getElementsByTagName("script")[0];
+      d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){
+      var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(
+      Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?g=a[f]=[]:
+      f="mixpanel";g.people=g.people||[];h=['disable','track','track_pageview','track_links',
+      'track_forms','register','register_once','unregister','identify','name_tag',
+      'set_config','people.identify','people.set','people.increment'];for(e=0;e<h.length;e++)d(g,h[e]);
+      a._i.push([b,c,f])};a.__SV=1.1;})(document,window.mixpanel||[]);
+      mixpanel.init('6ff17759b2a649dd46179a0acf2aaca5');
+      mixpanel.track('page viewed', { 'page name' : document.title, 'url' : window.location.pathname });
+   </script>
+</body>
+
+</html>
