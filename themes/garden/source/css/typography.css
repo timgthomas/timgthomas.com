@@ -1,0 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Habibi);
+body {
+  font-family: 'Habibi'; }
+
+h1, h2 {
+  font-family: 'Josefin Slab'; }
+
+h1 {
+  font-weight: 700; }
+
+h2 {
+  font-weight: 600; }
