@@ -6,6 +6,7 @@
     "hexo-renderer-ejs": "*",
     "hexo-renderer-stylus": "*",
     "hexo-renderer-marked": "*",
-    "hexo-renderer-less": "~0.1.0"
+    "hexo-renderer-less": "~0.1.0",
+    "express": "~4.4.3"
   }
 }
