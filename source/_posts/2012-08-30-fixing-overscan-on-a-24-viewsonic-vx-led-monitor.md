@@ -23,4 +23,4 @@ Though I've used this method on a VX2453mh specifically, I imagine it applies to
 [2]: http://en.wikipedia.org/wiki/Overscan
 [3]: /2012/04/correct-hdmi-display-scaling-in-windows-on-a-radeon-equipped-macbook-pro/
 
-[a]: /public/images/blog/2012-08-30-01.jpg
+[a]: /css/images/blog/2012-08-30-01.jpg

@@ -26,5 +26,5 @@ It's worth noting that Visual Studio's behavior is slightly different. Setting t
 colors of these two options to "Automatic" maintains the original green and yellow
 colors instead of making them mimic the background color, as in Management Studio.
 
-[a]: /public/images/blog/2011-12-30-01.png
-[b]: /public/images/blog/2011-12-30-02.png
+[a]: /css/images/blog/2011-12-30-01.png
+[b]: /css/images/blog/2011-12-30-02.png

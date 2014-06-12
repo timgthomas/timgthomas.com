@@ -35,8 +35,8 @@ Have a conical gradient you're proud of? Share it in the comments!
 [3]: http://vector.tutsplus.com/tutorials/tools-tips/quick-tip-create-a-conical-gradient-with-adobe-illustrator-in-two-minutes/
 [4]: http://www.adobe.com/feature/creativesuite/designandweb/cs6/gradients-on-strokes-in-illustrator.modaldisplay.2._s_content_s_dotcom_s_en_s_products_s_creativesuite_s_design-web-premium_s_features.html
 
-[a]: /public/images/blog/2012-05-08-01.png
-[b]: /public/images/blog/2012-05-08-02.png
-[c]: /public/images/blog/2012-05-08-03.png
-[d]: /public/images/blog/2012-05-08-04.png
-[e]: /public/images/blog/2012-05-08-05.png
+[a]: /css/images/blog/2012-05-08-01.png
+[b]: /css/images/blog/2012-05-08-02.png
+[c]: /css/images/blog/2012-05-08-03.png
+[d]: /css/images/blog/2012-05-08-04.png
+[e]: /css/images/blog/2012-05-08-05.png

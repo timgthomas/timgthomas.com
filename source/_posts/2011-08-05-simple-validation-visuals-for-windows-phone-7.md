@@ -69,5 +69,5 @@ Happy validating!
 [2]: http://stackoverflow.com/questions/4706619/windows-phone-7-borderbrush-can-only-be-set-once
 [3]: http://msdn.microsoft.com/en-us/library/ff769552%28v=VS.92%29.aspx
 
-[a]: /public/images/blog/2011-08-05-01.png
-[b]: /public/images/blog/2011-08-05-02.png
+[a]: /css/images/blog/2011-08-05-01.png
+[b]: /css/images/blog/2011-08-05-02.png
