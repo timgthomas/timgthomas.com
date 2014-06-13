@@ -3,22 +3,27 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: Hexo
+title: Tim G. Thomas
 subtitle:
 description:
-author: John Doe
+author: Tim G. Thomas
 email:
 language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://timgthomas.com
 root: /
 permalink: :year/:month/:title/
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
+
+feed:
+  type: rss2
+  path: feed
+  limit: 20
 
 # Directory
 source_dir: source
