@@ -5,8 +5,7 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Tim G. Thomas</title>
-   <!-- <title>Tim G. Thomas{% if page.title %}: {% endif %}{{ page.title }}</title> -->
+   <title><%= page.title || 'Tim G. Thomas' %></title>
    <link rel="author" href="/humans.txt">
    <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
    <link rel="icon" type="image/x-icon" href="/favicon.png">
