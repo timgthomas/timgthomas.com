@@ -40,11 +40,11 @@ In our current project, [Jimmy Bogard][1] and I decided to switch to a model of 
 
 This is a *whole lot* cleaner to look at. For us, the Solution Explorer was practically useless as we'd need to scroll through dozens and dozens of files only related by role within the system. In this new structure, all files are related by function, and some consistent naming (in our case, by the name of the view) ensures they're sorted together. Here's how it works.
 
-# Stuff that "just works"
+## Stuff that "just works"
 
 Most of our files work with this pattern automatically. [StructureMap][2] does an impeccable job of finding dependencies regardless of where they're located, and many other files (commands and queries, à la Matt Hinze's [Short Bus][3]) are referenced directly.
 
-# Views
+## Views
 
 The first work we'll need to do is for the views. We really only want to tell MVC to look for views in a different place than normal, which can be accomplished easily with an extension of the default `RazorViewEngine`:
 
@@ -66,7 +66,7 @@ The first work we'll need to do is for the views. We really only want to tell MV
       }
     }
 
-**Note:** If you're a [ReSharper][4] user, it won't find the views unless you explicitly assign the array of view locations to each property. The project still builds otherwise, but your controllers will have errors next to every call to `View()` and `PartialView()`. See [this gist by Jimmy][5] for more details.
+_Note: If you're a [ReSharper][4] user, it won't find the views unless you explicitly assign the array of view locations to each property. The project still builds otherwise, but your controllers will have errors next to every call to `View()` and `PartialView()`. See [this gist by Jimmy][5] for more details._
 
 Next, tell MVC to use this—and only this—view engine:
 

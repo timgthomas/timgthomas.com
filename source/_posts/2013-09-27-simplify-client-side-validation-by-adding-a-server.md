@@ -12,9 +12,9 @@ The approach on which we decided for the project I'm currently on leverages the 
 
 Here's the gist: when we detect that a form is about to be submitted, intercept the request with JavaScript, serialize the form, and send it up to the server. The server performs its validation normally, and either allows the request through, or responds with a serialized object describing exactly why the validation failed.
 
-UPDATE: I've built a [simple example application][4] ([source code][5]) demonstrating this technique.
+_UPDATE: I've built a [simple example application][4] ([source code][5]) demonstrating this technique._
 
-# Keep the client code clean
+## Keep the client code clean
 
 Say we're building a sign-up form. We'll need a "user name" field that we want to make sure unique within the system. Our HTML probably looks something like this:
 
@@ -55,7 +55,7 @@ Instead of a simple "yes/no" validation response, we have a rich model represent
       });
     });
 
-# Add the server component
+## Add the server component
 
 In this project, built on ASP.NET MVC, we use the [Fluent Validation library][0] for validating data sent up from the client, though this approach hardly requires .NET. To get started, we'll need a model class to store this form's data:
 
@@ -109,7 +109,7 @@ In short, this filter serializes the `ModelState` object and sends it down to th
 
 You'll need to attach this filter to your MVC application—if that's your server-side framework of choice. We're using it as a [global action filter][3].
 
-# Happy validating!
+## Happy validating!
 
 Now that we've built a client that's aware of potential form errors reported in a certain structure, and instructed the server to send down a meaningful model on invalid form submissions, all that's left is to sit back and enjoy never having to write a client-side form validator again!
 

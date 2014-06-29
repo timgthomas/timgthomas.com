@@ -3,7 +3,7 @@ main
   max-width 40.0rem
   margin-top 110px
 
-  h1, h2
+  h1, h2, h3
     font-weight 300
     text-align center
     text-transform uppercase
@@ -15,8 +15,8 @@ main
     margin-bottom 0.6rem
     padding 0 1.8rem
 
-  h2, p, ol, ul, dl, pre, blockquote, iframe
-    color rgba(black, 0.67)
+  h2, h3, p, ol, ul, dl, pre, blockquote, iframe
+    color mix(black, alabaster, 65%)
     font-size 1.1rem
     line-height 1.618
     margin-bottom 0.6rem
@@ -26,12 +26,26 @@ main
     letter-spacing 0.075rem
     margin 1.2rem 0
 
+  h3
+    text-align left
+
   p
     text-align justify
     text-rendering optimizeLegibility
 
   ol, ul
     margin-left 2.4rem
+
+  dl
+    font-size 0.9rem
+    margin-bottom 1.2rem
+
+  dd, blockquote, blockquote p
+    color mix(black, alabaster, 45%)
+    font-size 0.9rem
+    font-style italic
+    margin-bottom 0.6rem
+    margin-left 0.6rem
 
   pre, blockquote
     border-left 0.2rem solid darken(alabaster, 10%)

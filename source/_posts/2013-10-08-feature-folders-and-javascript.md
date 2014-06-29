@@ -6,7 +6,7 @@ layout: post
 
 [In my last post][0], we looked at how to organize C# files in an ASP.NET MVC project into "feature folders" that contain all the files needed for a vertical slice of an application (view models, commands/queries, and views). Today, we'll see how we can accomplish the same thing with JavaScript files, and maybe optimize how JavaScript works in an MVC app while we're at it.
 
-# RequireJS and ASP.NET MVC
+## RequireJS and ASP.NET MVC
 
 As a system designed primarily for data entry, this project isn't a single-page application (SPA) so much as it is a collection of SPAs: one per feature. We still have a lot of complex client-side logic, though, that we need to keep maintained. We've been using [RequireJS][1], a JavaScript module loader, to great effect so far, which helps us organize our client code into reusable modules and load only the ones we need for a given page.
 
@@ -36,7 +36,7 @@ Unfortunately, this resulted in dozens and dozens of JavaScript files, unrelated
 
 Changing the URL rendered by our child action, above, was the easy part. It took a *bit* more work to update the Require modules themselves. Let's see how it's done.
 
-# Changing Require's modules
+## Changing Require's modules
 
 RequireJS assumes that the directory within which a JavaScript file lives should be the starting point for locating dependencies. Since our dependencies reside in a single folder (like most projects', I imagine), we need to start by telling Require where to look:
 
@@ -59,7 +59,7 @@ If your Require modules have any path-based dependencies (e.g. they're reference
 
 I'll admit: this change is both annoying and very difficult to get *just right*, but we only have two or three instances of this in the entire project, so I'll leave its resolution as an exercise to the reader (though I'd be very appreciative if you commented your solution below :).
 
-# "Featured" Scripts
+## "Featured" Scripts
 
 That's all it takes to relocate your RequireJS scripts! Our MVC child action tells our views where to find the reorganized modules, and adding a simple `baseUrl` path to the Require configuration ensures most of our dependencies are loaded without incident.
 
