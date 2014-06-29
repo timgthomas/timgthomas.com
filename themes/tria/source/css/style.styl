@@ -1,0 +1,113 @@
+@import 'nib'
+
+alabaster = rgb(241, 242, 237)
+aqua      = rgb( 53, 171, 165)
+orange    = rgb(248, 142,  41)
+purple    = rgb(182,  81, 154)
+
+*
+  border 0
+  box-sizing border-box
+  margin 0
+  padding 0
+
+body
+  background-color alabaster
+  color rgba(black, 0.67)
+  font-family 'Fira Sans'
+  font-size 62.5%
+  font-weight 300
+
+header, main
+  max-width 60.0rem // ~960px
+  margin 0 auto
+
+a
+  color aqua
+
+/* Header */
+
+header
+  background url('../images/banner.png') top center no-repeat
+  background-size 45.0rem 100px
+
+  position fixed
+  left 50%
+  transform translateX(-50%)
+  top 0
+  height 100px
+  max-width 50.0rem
+  width 100%
+
+  h1
+    float left
+    margin-top 0.7rem
+    display block
+    height 64px
+    line-height 64px
+    margin-top 13px
+    color mix(black, alabaster)
+    font-size 1.1rem
+    font-weight 300
+    text-transform uppercase
+
+    &:after
+      content ''
+      display block
+      height 66px
+      width 58px
+
+      background url('../images/logo.png') no-repeat
+      background-size 58px 66px
+
+      position absolute
+      top 13px
+      left 50%
+      margin-left -29px
+
+  a
+    color currentColor
+    text-decoration none
+
+  nav
+    float right
+
+    ul
+      height 16px
+      margin-top 37px
+      overflow hidden
+
+    li
+      display block
+      float left
+      height 16px
+      margin-left 0.5rem
+
+    a
+      display inline-block
+      height 16px
+      width 16px
+
+      background-color rgba(black, 0.2)
+      transition background-color 0.2s
+
+    .nav-feed, .nav-github, .nav-twitter
+      background-image url('../images/icons-inverted.png')
+      background-size 48px 16px
+
+    .nav-feed
+      background-position 0 0
+      &:hover
+        background-color orange // #faae44
+
+    .nav-github
+      background-position -16px 0
+      &:hover
+        background-color purple // #cb83b7
+
+    .nav-twitter
+      background-position -32px 0
+      &:hover
+        background-color aqua // #59c3bf
+
+@import '_content'

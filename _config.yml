@@ -42,7 +42,7 @@ render_drafts: false
 post_asset_folder: false
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   tab_replace:
 
 # Category & Tag
@@ -85,7 +85,7 @@ disqus_shortname:
 # Extensions
 ## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
 ## Themes: https://github.com/tommy351/hexo/wiki/Themes
-theme: garden # landscape
+theme: tria
 exclude_generator:
 
 # Deployment

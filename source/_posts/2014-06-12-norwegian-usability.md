@@ -9,7 +9,7 @@ In the past year, I've had to request something like three or four additional ro
 
 In addition to the great at-the-door experience, the light switches just inside the room won't even turn on unless a room key is inserted, providing both insurance that you don't leave any lights on when you leave, and a convenient place to store your room key while you're inside.
 
-<p style="text-align:center"><img src="/css/images/blog/2014-06-10-00.jpg" alt="Light switches with a hotel room key card slot. Photo by @housecor." style="max-width:300px"><small style="font-size:0.7rem">Photo by @<a href="https://twitter.com/housecor" style="font-size:0.7rem">housecor</a>.</small></p>
+<figure><img src="/css/images/blog/2014-06-10-00.jpg" alt="Light switches with a hotel room key card slot. Photo by @housecor." style="max-width:300px"><figcaption>Photo by <a href="https://twitter.com/housecor">@housecor</a>.</figcaption></figure>
 
 ## Light Switches
 

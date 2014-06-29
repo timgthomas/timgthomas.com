@@ -26,13 +26,15 @@ Logically, we'd want to include both of the "account" controllers. This can be e
 
 This approach is fine for smaller apps with only a few of these "[feature][3]" subfolders, but quickly becomes unmanageable with a more complex system:
 
-    bundles.Add(new ScriptBundle("~/bundles/app")
-      .IncludeDirectory("~/app/controllers/account", "*.js")
-      .IncludeDirectory("~/app/controllers/authors", "*.js")
-      .IncludeDirectory("~/app/controllers/books", "*.js")
-      // ...
-      .IncludeDirectory("~/app/controllers/search", "*.js")
-    );
+``` csharp
+bundles.Add(new ScriptBundle("~/bundles/app")
+  .IncludeDirectory("~/app/controllers/account", "*.js")
+  .IncludeDirectory("~/app/controllers/authors", "*.js")
+  .IncludeDirectory("~/app/controllers/books", "*.js")
+  // ...
+  .IncludeDirectory("~/app/controllers/search", "*.js")
+);
+```
 
 One option, and the one we'll discuss here, is to bundle all of the files in all of the folders under `~/app/controllers` together. If you poke around the `Bundle` class's methods, you may notice that the `IncludeDirectory()` method has a `searchSubdirectories` parameter on an overload that sounds like it would do exactly that.
 
