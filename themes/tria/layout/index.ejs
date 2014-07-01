@@ -1,4 +1,15 @@
-<% var firstpost = page.posts.first(); %>
+<main>
+  <% var firstpost = page.posts.first(); %>
+  <h1><%= firstpost.title %></h1>
+  <%- firstpost.content %>
+</main>
 
-<h1><%= firstpost.title %></h1>
-<%- firstpost.content %>
+<footer>
+  <h1>More Posts</h1>
+  <dl>
+    <% page.posts.skip(1).limit(3).each(function(post) { %>
+      <dt><a href="<%- url_for(post.path) %>"><%= post.title %></a></dt>
+      <dd><%= date(post.date, config.date_format) %></dd>
+    <% }); %>
+  </dl>
+</footer>
