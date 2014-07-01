@@ -70,6 +70,10 @@ main, footer
     font-family 'Fira Mono'
     font-size 0.9rem
 
+  pre
+    width calc(100% - 2.4rem)
+    word-wrap break-word
+
   img, iframe
     display block
     max-width 30.0rem
@@ -79,6 +83,10 @@ main, footer
   img
     border-radius 0.5rem
     box-shadow 0 0.2rem darken(alabaster, 10%)
+
+    &.inline
+      border-radius 0
+      box-shadow none
 
   iframe
     min-height 15.0rem
