@@ -4,8 +4,10 @@ main
   background-repeat no-repeat
   background-size 32px
   margin-bottom 1.8rem
-  margin-top 110px
   padding-bottom calc(0.6rem + 32px)
+
+  &:first-of-type
+    margin-top calc(110px + 0.6rem)
 
 main, footer
   display block
@@ -19,8 +21,8 @@ main, footer
   h1
     font-size 1.5rem
     letter-spacing 0.1rem
-    line-height: 1.236
-    margin-bottom 0.6rem
+    line-height: 1.618
+    margin-bottom 1.2rem
     padding 0 1.8rem
 
   h2, h3, p, ol, ul, dl, pre, blockquote, iframe
@@ -79,6 +81,10 @@ main, footer
     max-width 30.0rem
     margin-left auto
     margin-right auto
+
+  // Disqus <iframe> shouldn't follow the same rules.
+  iframe#dsq-2
+    max-width 40.0rem
 
   img
     border-radius 0.5rem

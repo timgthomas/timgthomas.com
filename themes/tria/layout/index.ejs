@@ -11,12 +11,4 @@
   </nav>
 </main>
 
-<footer>
-  <h1>More Posts</h1>
-  <dl>
-    <% page.posts.skip(2).limit(3).each(function(post) { %>
-      <dt><a href="<%- url_for(post.path) %>"><%= post.title %></a></dt>
-      <dd><%= date(post.date, config.date_format) %></dd>
-    <% }); %>
-  </dl>
-</footer>
+<%- partial('_partial/comments', { post: page }) %>
