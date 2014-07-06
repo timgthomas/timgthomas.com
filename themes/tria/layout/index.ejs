@@ -2,12 +2,19 @@
   <% var firstpost = page.posts.first(); %>
   <h1><%= firstpost.title %></h1>
   <%- firstpost.content %>
+  <nav>
+    <span class="post-nav-prev"></span>
+    <span class="post-nav-next">
+      <% var nextpost = page.posts.skip(1).limit(1).first() %>
+      <a href="<%- url_for(nextpost.path) %>"><%= nextpost.title %></a>
+    </span>
+  </nav>
 </main>
 
 <footer>
   <h1>More Posts</h1>
   <dl>
-    <% page.posts.skip(1).limit(3).each(function(post) { %>
+    <% page.posts.skip(2).limit(3).each(function(post) { %>
       <dt><a href="<%- url_for(post.path) %>"><%= post.title %></a></dt>
       <dd><%= date(post.date, config.date_format) %></dd>
     <% }); %>

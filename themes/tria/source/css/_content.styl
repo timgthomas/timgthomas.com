@@ -100,3 +100,37 @@ footer
   font-size 0.8rem
   text-align center
   margin-bottom 0.6rem
+
+main nav
+  display table
+  table-layout fixed
+  margin 1.2rem 0
+  width 100%
+
+  .post-nav-prev,
+  .post-nav-next
+    display table-cell
+    font-size 0.9rem
+    vertical-align middle
+
+    a
+      background-repeat no-repeat
+      background-size 16px
+      display inline-block
+
+  .post-nav-prev
+    padding-right 4.8rem
+
+    a
+      background-image url('../images/prev.png')
+      background-position left center
+      padding-left 24px
+
+  .post-nav-next
+    padding-left 4.8rem
+    text-align right
+
+    a
+      background-image url('../images/next.png')
+      background-position right center
+      padding-right 24px
