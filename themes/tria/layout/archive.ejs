@@ -1,0 +1,20 @@
+<main>
+  <h1>Blog Archives</h1>
+  <% var last; %>
+  <% page.posts.each(function(post) { %>
+    <% var year = post.date.year(); %>
+    <% if (last != year) { %>
+      <% if (last != null) { %>
+        </dl>
+      <% } %>
+      <% last = year; %>
+      <h2><%= year %></h2>
+      <dl>
+    <% } %>
+    <dt><a href="<%- url_for(post.path) %>"><%= post.title %></a></dt>
+    <dd><%= date(post.date, config.date_format) %></dd>
+  <% }); %>
+  <% if (page.posts.length) { %>
+  </dl>
+  <% } %>
+</main>
