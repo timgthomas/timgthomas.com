@@ -14,8 +14,7 @@ layout: post
 
 <p>Apparently, AMD--the manufacturer of the video card my Mac contains--thinks everyone is using HDMI cables with CRT screens, and defaults to a generous amount of <a href="http://en.wikipedia.org/wiki/Underscan">underscanning</a>. Consequently, everything displayed on this monitor is "squished", making crisp text look blurry. Googling for this problem turned up a <a href="http://en.community.dell.com/support-forums/peripherals/f/3529/t/19445467.aspx">sorta-but-not-quite-helpful blog post</a> from Dell:</p>
 
-<blockquote>
-  * Open the ATI Catalyst Control Center<br />
+<blockquote>* Open the ATI Catalyst Control Center<br />
   * Under DTV (HDMI) 3 Scaling Options or at the bottom left hand corner there is a smaller monitor where you open the configure option<br />
   * Select 0% Overscan<br />
   * Click Apply
@@ -27,17 +26,13 @@ layout: post
 
 <p>Rats. Seems my video card (from all appearances, a standard Radeon 6750M) isn't supported by AMD's drivers. Having encountered this particular pain on nVidia-equipped laptops of yore, I hit some forums to look for alternatives. A succinct poster by the name of "superericla" <a href="http://forums.macrumors.com/showpost.php?p=13292436&amp;postcount=3">provides some links to Catalyst drivers</a> that aren't preceeded by a "verification of proper hardware" step:</p>
 
-<ul>
-<li><a href="http://www2.ati.com/DRIVERS/mobile/11-6_mobility_vista_win7_64_dd_ccc_ocl.exe">AMD Catalyst drivers for Mobility Radeon</a> (&#92;*.exe, 86.8 MB)</li>
-</ul>
+* <a href="http://www2.ati.com/DRIVERS/mobile/11-6_mobility_vista_win7_64_dd_ccc_ocl.exe">AMD Catalyst drivers for Mobility Radeon</a> (&#92;*.exe, 86.8 MB)</li>
 
-<p>Installing these drivers was a painless, but confusing, process. In short: be patient. Much time was devoted to staring at a blank screen after launching the installer hoping something would happen, then staring again after the installation completed waiting for the control panel to appear. After the application finally obliged me, the process for disabling the annoying default underscan was quite simple:</p>
+Installing these drivers was a painless, but confusing, process. In short: be patient. Much time was devoted to staring at a blank screen after launching the installer hoping something would happen, then staring again after the installation completed waiting for the control panel to appear. After the application finally obliged me, the process for disabling the annoying default underscan was quite simple:
 
-<ol>
-<li>Choose the "Desktops and Displays" category.</li>
-<li>Scroll to "My Digital Flat-Panels" and click "Scaling Options (Digital Flat-Panel)".</li>
-<li>Drag the slider to 0%. On my setup, the un-scaling happened in real-time.</li>
-<li>Enjoy your new screen real-estate and non-blurred content!</li>
-</ol>
+1. Choose the "Desktops and Displays" category.
+1. Scroll to "My Digital Flat-Panels" and click "Scaling Options (Digital Flat-Panel)".
+1. Drag the slider to 0%. On my setup, the un-scaling happened in real-time.
+1. Enjoy your new screen real-estate and non-blurred content!
 
 <p>Overall, I'm pleased how easy it was to overcome this particular problem. What experiences have you had? Found an alternate solution or better drivers? Decided to use a DVI adapter instead? Let me know in the comments!</p>

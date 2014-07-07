@@ -6,27 +6,7 @@ layout: post
 
 ## Posts in This Series
 
-<dl>
-
-   <dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt>
-   <dd>Why our client chose to build a Web app over a native one.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt>
-   <dd>How we chose our tools and technologies, and what we picked.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt>
-   <dd>Wire up a client and server with JavaScript and .NET.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt>
-   <dd>Store data locally and synchronize it with a server.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt>
-   <dd>Develop and test for a mobile device.</dd>
-
-   <dt>Part VI: Making It Look Native</dt>
-   <dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd>
-
-</dl>
+<dl><dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt>Part VI: Making It Look Native</dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
 
 In this series so far, we've mostly discussed building a back-end for our [non-native][0], [offline-enabled][1] mobile HTML5 app. Today, however, we'll see how to make the app *look* a little more native.
 
@@ -92,7 +72,7 @@ Native iOS apps show some sort of opening screen while they're loading, so Apple
 
 One "gotcha" with this is that the landscape screen needs to be the same resolution as the portrait one...the *exact* same. This means that if your portrait image is 320×480 in size, your landscape image *also* needs to be 320×480, requiring a 90-degree rotation:
 
-![The required iOS device splash screen layout][c]
+<img src="/css/images/blog/2012-11-01-03.png" alt="The required iOS device splash screen layout" class="inline">
 
 ## Wrapping-up
 
@@ -113,4 +93,3 @@ As time progresses, and more and more Web sites are designed to not only work on
 
 [a]: /css/images/blog/2012-11-01-01.png
 [b]: /css/images/blog/2012-11-01-02.png
-[c]: /css/images/blog/2012-11-01-03.png

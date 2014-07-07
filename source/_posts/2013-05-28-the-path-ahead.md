@@ -6,15 +6,7 @@ layout: post
 
 ## Posts in This Series
 
-<dl>
-
-   <dt><a href="/2013/05/a-completely-unnecessary-redesign/">Part I: A Completely Unnecessary Redesign</a></dt>
-   <dd>...in which the redesign of this site is announced.</dd>
-
-   <dt>Part II: The Path Ahead</dt>
-   <dd>...in which the redesign process is outlined.</dd>
-
-</dl>
+<dl><dt><a href="/2013/05/a-completely-unnecessary-redesign/">Part I: A Completely Unnecessary Redesign</a></dt><dd>...in which the redesign of this site is announced.</dd><dt>Part II: The Path Ahead</dt><dd>...in which the redesign process is outlined.</dd></dl>
 
 In [the last post in this series][0], we embarked on a complete redesign (both from a usability perspective and a design one) of this, my personal web site and blog. Today, we'll take a look at our roadmap for doing so. Though it's tempting to simply "jump in" and start sketching a redesign, it's important to have a good foundation to keep us focused on what matters, so we'll begin there.
 

@@ -6,15 +6,7 @@ layout: post
 
 ## Posts in This Series
 
-<dl>
-
-   <dt>Part I: A Completely Unnecessary Redesign</dt>
-   <dd>...in which the redesign of this site is announced.</dd>
-
-   <dt><a href="/2013/05/the-path-ahead/">Part II: The Path Ahead</a></dt>
-   <dd>...in which the redesign process is outlined.</dd>
-
-</dl>
+<dl><dt>Part I: A Completely Unnecessary Redesign</dt><dd>...in which the redesign of this site is announced.</dd><dt><a href="/2013/05/the-path-ahead/">Part II: The Path Ahead</a></dt><dd>...in which the redesign process is outlined.</dd></dl>
 
 Personal sites are often designers' "forever projects": ones that are in a perpetual state of being in need of "just one more" feature or tweak. This one is no different, having gone through five iterations in the past several years. If I were to be completely honest with myself, I could easily consider it "done": the design, while not spectacular, caters well to my intended audience, I have the ability to easily add and edit content with a low-friction workflow, and the site affords users the ability to see my recent online activity and get in touch if they so desire.
 

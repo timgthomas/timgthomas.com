@@ -1,6 +1,6 @@
 {
   "name": "hexo-site",
-  "version": "2.6.3",
+  "version": "2.7.1",
   "private": true,
   "dependencies": {
     "hexo-renderer-ejs": "*",
@@ -8,6 +8,7 @@
     "hexo-renderer-marked": "*",
     "hexo-renderer-less": "~0.1.0",
     "express": "~4.4.3",
-    "hexo-generator-feed": "~0.1.1"
+    "hexo-generator-feed": "~0.1.1",
+    "hexo-livereload": "~0.1.0"
   }
 }

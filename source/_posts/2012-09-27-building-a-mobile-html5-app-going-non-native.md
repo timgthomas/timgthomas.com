@@ -6,27 +6,7 @@ layout: post
 
 ## Posts in This Series
 
-<dl>
-
-   <dt>Part I: A Business Case</dt>
-   <dd>Why our client chose to build a Web app over a native one.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt>
-   <dd>How we chose our tools and technologies, and what we picked.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt>
-   <dd>Wire up a client and server with JavaScript and .NET.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt>
-   <dd>Store data locally and synchronize it with a server.</dd>
-
-   <dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt>
-   <dd>Develop and test for a mobile device.</dd>
-
-   <dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt>
-   <dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd>
-
-</dl>
+<dl><dt>Part I: A Business Case</dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
 
 ## Introduction
 
