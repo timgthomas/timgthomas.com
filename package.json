@@ -2,6 +2,9 @@
   "name": "hexo-site",
   "version": "2.7.1",
   "private": true,
+  "scripts": {
+    "start": "hexo server"
+  },
   "dependencies": {
     "hexo-renderer-ejs": "*",
     "hexo-renderer-stylus": "*",
