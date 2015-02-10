@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack
+title: "Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack"
 category: blog
 layout: post
 ---

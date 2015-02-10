@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part III: Hooking Things Together
+title: "Building a Non-Native Mobile HTML5 App, Part III: Hooking Things Together"
 category: blog
 layout: post
 ---
@@ -35,7 +35,7 @@ If you're already familiar with ASP.NET MVC, feel free to continue reading. If y
 To begin, let's get our server up-and-running. After creating a new MVC project (for this example, we'll use the name "Bookstore"), create a new controller called `BooksController`. If there's anything in there by default except an empty C# class, remove it.
 
     using System.Web.Mvc;
-    
+
     namespace Bookstore.Controllers
     {
        public class BooksController : Controller
@@ -59,7 +59,7 @@ With this in mind, let's add our action method with some dummy data, using an an
              new { title = "The Hobbit", author = "J.R.R. Tolkien" },
              new { title = "Stardust", author = "Neil Gaiman" }
           };
-    
+
        return Json(books, JsonRequestBehavior.AllowGet);
     }
 
@@ -76,7 +76,7 @@ Things are working well so far! Let's now add the JavaScript- and jQuery-based c
     var request = $.ajax({
        url: 'http://localhost:8080/books'
     });
-    
+
     request.success(function(data) {
        console.log(data);
     });

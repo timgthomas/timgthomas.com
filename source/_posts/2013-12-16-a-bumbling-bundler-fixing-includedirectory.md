@@ -1,5 +1,5 @@
 ---
-title: A Bumbling Bundler: Fixing IncludeDirectory()
+title: "A Bumbling Bundler: Fixing IncludeDirectory()"
 category: blog
 layout: post
 ---
@@ -15,7 +15,7 @@ Let's say we have a directory structure like this (in this example, files for an
         - account
             create.js
             login.js
-        + 
+        +
       + routes
 
 Logically, we'd want to include both of the "account" controllers. This can be easily done with a call to `IncludeDirectory()`, specifying the full (relative) path and a search filter:

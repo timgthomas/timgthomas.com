@@ -1,5 +1,5 @@
 ---
-title: Building a Non-Native Mobile HTML5 App, Part IV: Making It Work Offline
+title: "Building a Non-Native Mobile HTML5 App, Part IV: Making It Work Offline"
 category: blog
 layout: post
 ---

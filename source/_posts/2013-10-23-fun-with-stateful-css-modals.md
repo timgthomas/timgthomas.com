@@ -1,5 +1,5 @@
 ---
-title: Fun with Stateful CSS: Modals
+title: "Fun with Stateful CSS: Modals"
 category: blog
 layout: post
 ---
@@ -39,4 +39,4 @@ My team uses this approach on our current project. Though we use JavaScript to p
 
 [0]: /2013/10/fun-with-stateful-css-a-view-edit-screen/
 [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors
-[2]: http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ 
+[2]: http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/

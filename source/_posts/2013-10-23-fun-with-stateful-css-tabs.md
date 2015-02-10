@@ -1,5 +1,5 @@
 ---
-title: Fun with Stateful CSS: Tabs
+title: "Fun with Stateful CSS: Tabs"
 category: blog
 layout: post
 ---
@@ -11,7 +11,7 @@ As you may have come to expect, the HTML is fairly straightforward, though a tad
       <input type="radio" id="panel-1" name="panels" checked>
       <input type="radio" id="panel-2" name="panels">
       <input type="radio" id="panel-3" name="panels">
-      
+
       <ol class="tabs">
         <li><label class="button" for="panel-1">One</label></li>
         <li><label class="button" for="panel-2">Two</label></li>
@@ -30,14 +30,14 @@ Instead of a single "yes/no" checkbox, we now have three radio buttons to repres
       .panel-3 {
         display: none;
       }
-      
+
       /* Show a panel when its associated radio button is selected */
       #panel-1:checked ~ .panel-1,
       #panel-2:checked ~ .panel-2,
       #panel-3:checked ~ .panel-3 {
         display: block;
       }
-      
+
       /* Also hide all of the radio buttons */
       input[type=radio] {
         display: none;
