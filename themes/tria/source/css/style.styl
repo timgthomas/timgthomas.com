@@ -1,7 +1,8 @@
 @import 'nib'
 
 alabaster = rgb(241, 242, 237)
-shadow    = mix(black, alabaster, 15%)
+shade     = mix(black, alabaster, 15%)
+shadow    = mix(black, alabaster)
 aqua      = rgb( 53, 171, 165)
 dark-aqua = rgb(  0, 135, 127)
 orange    = rgb(248, 142,  41)
@@ -53,7 +54,7 @@ header
     height 64px
     line-height 64px
     margin-top 13px
-    color mix(black, alabaster)
+    color shadow
     font-size 1.1rem
     font-weight 300
     text-transform uppercase
@@ -87,6 +88,8 @@ header
       height 16px
       margin-top 37px
       overflow hidden
+      &:hover a
+        color shade
 
     li
       display block
@@ -99,47 +102,54 @@ header
       height 16px
       width 16px
 
-      background-color shadow
-      transition background-color 0.2s
+      color shadow
+      font-family 'Icons'
+      font-size 16px
+      transition color 200ms
 
-    .nav-feed, .nav-github, .nav-twitter
-      background-image url('../images/icons-inverted.png')
-      background-size 48px 16px
+      &:before
+        -webkit-font-smoothing antialiased
+        -moz-osx-font-smoothing grayscale
 
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 192dppx)
-      .nav-feed, .nav-github, .nav-twitter
-        background-image url('../images/icons-inverted@2x.png')
+    .nav-archives
+      &:before
+        content '\e91f'
+      &:hover
+        color shadow
 
     .nav-feed
-      background-position 0 0
+      &:before
+        content '\ea94'
       &:hover
-        background-color orange // #faae44
+        color orange // #faae44
 
     .nav-github
-      background-position -16px 0
+      &:before
+        content '\eab4'
       &:hover
-        background-color purple // #cb83b7
+        color purple // #cb83b7
 
     .nav-twitter
-      background-position -32px 0
+      &:before
+        content '\ea91'
       &:hover
-        background-color aqua // #59c3bf
+        color aqua // #59c3bf
 
 @import '_content'
 @import '_code'
 
 @keyframes hues
   0%
-    color shadow
+    color shade
   16.5%
     color aqua
   33%
-    color shadow
+    color shade
   50%
     color orange
   67%
-    color shadow
+    color shade
   83.2%
     color purple
   100%
-    color shadow
+    color shade
