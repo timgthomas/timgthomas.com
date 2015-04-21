@@ -1,35 +1,15 @@
-// [role='main']
-//   background-image url('../images/section.png')
-//   background-position bottom center
-//   background-repeat no-repeat
-//   background-size 32px
-//   margin-bottom 1.8rem
-//   padding-bottom calc(0.6rem + 32px)
-//
-//   &:first-of-type
-//     margin-top calc(110px + 0.6rem)
-
 [role='main'], footer
-  // display block
-  // max-width 40.0rem
 
   h2, h3
     font-weight 300
     text-align center
     text-transform uppercase
 
-  // h1
-  //   font-size 1.5rem
-  //   letter-spacing 0.1rem
-  //   line-height: 1.618
-  //   margin-bottom 1.2rem
-  //   padding 0 1.8rem
-
-  h2, h3 //, p, ol, ul, dl, pre, blockquote, iframe
+  h2, h3, ol, ul, dl, pre, blockquote, iframe
     color mix(black, alabaster, 65%)
     font-size 1.8rem
     line-height 1.618
-    margin-bottom 0.6rem
+    margin-bottom 16px
 
   pre
     margin-bottom 1.2rem
@@ -48,19 +28,22 @@
     text-rendering optimizeLegibility
 
   ol, ul
-    margin-left 2.4rem
+    margin-left 3.6rem
 
   dl
     font-size 0.9rem
-    margin-bottom 1.2rem
+    margin-bottom 1.8rem
 
   dd, blockquote, blockquote p, figcaption
     color mix(black, alabaster, 45%)
-    font-size 0.9rem
-    font-style italic
-    margin-bottom 0.6rem
-    margin-left 0.6rem
-    margin-right 0.6rem
+    font-size 1.2rem
+    font-style oblique
+    margin-bottom 1.2rem
+    margin-left 1.2rem
+    margin-right 1.2rem
+
+  dt, dd
+    font-size 1.4rem
 
   figcaption
     font-size 0.7rem
@@ -74,15 +57,14 @@
 
   pre, code
     font-family 'Fira Mono'
-    font-size 0.9rem
+    font-size 1.4rem
 
   pre
     width calc(100% - 2.4rem)
-    word-wrap break-word
 
   img, iframe
     display block
-    max-width 30.0rem
+    max-width 480px
     margin 1.2rem auto
 
   // Disqus <iframe> shouldn't follow the same rules.
@@ -114,6 +96,8 @@ footer
 
 [role='main'] nav
 
+  overflow hidden
+
   .post-nav-prev,
   .post-nav-next
     display block
@@ -142,18 +126,18 @@ footer
 @media screen and (min-width: 550px)
 
   [role='main'] nav
-    display table
-    table-layout fixed
     margin 1.2rem 0
     width 100%
 
     .post-nav-prev,
     .post-nav-next
-      display table-cell
       vertical-align middle
 
+      &, a
+        min-width 265px
+        width 40%
+
       a
-        max-width 250px
         display inline-block
 
     .post-nav-prev
