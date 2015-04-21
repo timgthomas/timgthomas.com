@@ -1,5 +1,13 @@
+// import 'nib'
+
 alabaster = rgb(241, 242, 237)
 blackrock = rgb( 49,  46,  63)
+
+shadow    = mix(black, alabaster)
+aqua      = rgb( 53, 171, 165)
+dark-aqua = rgb(  0, 135, 127)
+orange    = rgb(248, 142,  41)
+purple    = rgb(182,  81, 154)
 
 *
   box-sizing inherit
@@ -15,7 +23,6 @@ html
   box-sizing border-box
   font-size 62.5%
   line-height 1
-  // -webkit-font-smoothing antialiased
 
 body
   padding-top 72px
@@ -47,6 +54,7 @@ body
     background-position left center
     background-size 38px 44px
 
+    color gray
     font-size 2.4rem
     font-weight 300
     line-height 68px
@@ -64,11 +72,13 @@ body
       background-size 52px 18px
 
     a
-      color inherit
+      color currentColor
       text-decoration none
 
   em
-    font-style normal
+    color currentColor
+    font-style inherit
+    animation hues 30s infinite linear
 
 aside
   box-sizing border-box
@@ -197,161 +207,27 @@ aside
   background-color rgba(alabaster, 90%)
   box-shadow 0 -4px rgba(black, 15%)
 
-// =========================================
-
-// @import 'nib'
-//
-// alabaster = rgb(241, 242, 237)
-// shade     = mix(black, alabaster, 15%)
-// shadow    = mix(black, alabaster)
-aqua      = rgb( 53, 171, 165)
-dark-aqua = rgb(  0, 135, 127)
-// orange    = rgb(248, 142,  41)
-// purple    = rgb(182,  81, 154)
-//
-// @import '_fonts'
-//
-// *
-//   border 0
-//   box-sizing border-box
-//   margin 0
-//   padding 0
-//
-// body
-//   background-color alabaster
-//   color rgba(black, 0.67)
-//   font-family 'Fira Sans'
-//   font-size 62.5%
-//   font-weight 300
-//
-// header, main, footer
-//   max-width 60.0rem // ~960px
-//   margin 0 auto
-//
 a
   color aqua
   transition color 0.2s
   &:hover
     color dark-aqua
-//
-// /* Header */
-//
-// header
-//   background url('../images/banner.png') top center no-repeat
-//   background-size 45.0rem 100px
-//
-//   position fixed
-//   left 50%
-//   transform translateX(-50%)
-//   top 0
-//   height 100px
-//   max-width 50.0rem
-//   width 100%
-//
-//   h1
-//     float left
-//     margin-top 0.7rem
-//     display block
-//     height 64px
-//     line-height 64px
-//     margin-top 13px
-//     color shadow
-//     font-size 1.1rem
-//     font-weight 300
-//     text-transform uppercase
-//
-//     em
-//       font-style normal
-//       animation hues 30s infinite linear
-//
-//     &:after
-//       content ''
-//       display block
-//       height 66px
-//       width 58px
-//
-//       background url('../images/logo.png') no-repeat
-//       background-size 58px 66px
-//
-//       position absolute
-//       top 13px
-//       left 50%
-//       margin-left -29px
-//
-//   a, a:hover
-//     color currentColor
-//     text-decoration none
-//
-//   nav
-//     float right
-//
-//     ul
-//       height 16px
-//       margin-top 37px
-//       overflow hidden
-//       &:hover a
-//         color shade
-//
-//     li
-//       display block
-//       float left
-//       height 16px
-//       margin-left 0.5rem
-//
-//     a
-//       display inline-block
-//       height 16px
-//       width 16px
-//
-//       color shadow
-//       font-family 'Icons'
-//       font-size 16px
-//       line-height 16px
-//       transition color 200ms
-//
-//       &:before
-//         -webkit-font-smoothing antialiased
-//         -moz-osx-font-smoothing grayscale
-//
-//     .nav-archives
-//       &:before
-//         content '\e91f'
-//       &:hover
-//         color shadow
-//
-//     .nav-feed
-//       &:before
-//         content '\ea94'
-//       &:hover
-//         color orange // #faae44
-//
-//     .nav-github
-//       &:before
-//         content '\eab4'
-//       &:hover
-//         color purple // #cb83b7
-//
-//     .nav-twitter
-//       &:before
-//         content '\ea91'
-//       &:hover
-//         color aqua // #59c3bf
-//
+
 @import '_content'
 @import '_code'
-//
-// @keyframes hues
-//   0%
-//     color shade
-//   16.5%
-//     color aqua
-//   33%
-//     color shade
-//   50%
-//     color orange
-//   67%
-//     color shade
-//   83.2%
-//     color purple
-//   100%
-//     color shade
+
+@keyframes hues
+  0%
+    color shade
+  16.5%
+    color aqua
+  33%
+    color shade
+  50%
+    color orange
+  67%
+    color shade
+  83.2%
+    color purple
+  100%
+    color shade
