@@ -1,0 +1,351 @@
+alabaster = rgb(241, 242, 237)
+blackrock = rgb( 49,  46,  63)
+
+*
+  box-sizing inherit
+  margin 0
+  padding 0
+
+  line-height inherit
+
+  -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+  -webkit-tap-highlight-color transparent
+
+html
+  box-sizing border-box
+  font-size 62.5%
+  line-height 1
+  // -webkit-font-smoothing antialiased
+
+body
+  padding-top 72px
+  background-color alabaster
+  font-family 'Fira Sans'
+  font-weight 200
+
+[role='banner']
+  padding 0 16px
+  position fixed
+  top 0
+  width 100%
+  z-index 1
+
+  background-color alabaster
+  box-shadow 0 4px rgba(black, 15%)
+
+  h1
+    box-sizing border-box
+    margin 0 auto
+    // margin-left 16px
+    padding-left 52px
+    padding-top 4px
+    position relative
+    max-width 720px
+
+    background-image url('../images/logo.png')
+    background-repeat no-repeat
+    background-position left center
+    background-size 38px 44px
+
+    font-size 2.4rem
+    font-weight 300
+    line-height 68px
+    text-transform uppercase
+
+    &:after
+      content ''
+      display block
+      position absolute
+      height 18px
+      width 52px
+      left -6px
+
+      background-image url('../images/logo-chevron.png')
+      background-size 52px 18px
+
+  em
+    font-style normal
+
+aside
+  box-sizing border-box
+  height 164px
+  margin-bottom 16px
+  padding 24px 8px 16px
+  overflow hidden
+
+  background-color blackrock
+  color alabaster
+
+  .container
+    margin 0 auto
+    max-width 700px
+
+  p
+    margin 0 auto
+    position relative
+    width 200px
+
+    font-size 1.6rem
+    font-weight 300
+    line-height 2.4rem
+    text-align center
+
+    @media screen and (min-width: 360px)
+      padding-right 160px
+      width 360px
+
+      &:first-of-type:before
+        content ''
+        display block
+        position absolute
+        width 160px
+        height 176px
+        top -30px
+        right -16px
+
+        background-image url('../images/headshot.png')
+        background-size 160px 176px
+
+    @media screen and (min-width: 512px)
+      float right
+      width 480px
+
+      & + p
+        text-align right
+
+  p + p
+    margin-top 8px
+
+  a
+    display inline-block
+    height 44px
+    width 40px
+    margin 0 8px
+
+    background-image url('../images/link.png')
+    background-size 40px 44px
+    opacity 0.5
+
+    color currentColor
+    line-height 44px
+    text-align center
+    text-decoration none
+
+    &:active
+      .icon
+        fill blackrock
+      .fill
+        fill white
+
+  svg
+    fill white
+
+  .fill
+    fill transparent
+
+[role='main']
+  margin 0 auto
+  padding 16px
+  max-width 800px
+
+  font-size 1.8rem
+  line-height 2.8rem
+
+  header
+    padding-left 12px
+
+    background-image url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAqCAMAAACNzCuYAAAAM1BMVEUAAADDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7z5XzbMAAAAEHRSTlMAECAwQFBgcICPn6+/z9/vIxqCigAAAG9JREFUeNrVkjkOwCAMBLnCFQ7//7WBbpQg99lytHhA2HxjazdMniKRoInItABeVgorZRPHoXOBxkralUAyFhgEYVeSqnZntVfVcVcukn5UZ5L7qK6sZEVNoBzBUGqVi+HqeNyflPxXLl16reUwWh7KIAtMyT0yHQAAAABJRU5ErkJggg==')
+    background-position left 1px
+    background-repeat no-repeat
+    background-size 8px 21px
+
+    p
+      color tint(black, 65%)
+      font-size 1.4rem
+      font-style oblique
+
+    h1
+      color tint(black, 33%)
+      font-size 2.4rem
+      font-weight 200
+      text-transform uppercase
+
+  p
+    color mix(black, alabaster, 65%)
+
+  p,
+  pre
+    margin-bottom 16px
+
+  pre
+    overflow-x auto
+
+    font-size 1.4rem
+    line-height 2.0rem
+
+.toast
+  position fixed
+  bottom 0
+  width 100%
+
+  background-color rgba(alabaster, 90%)
+  box-shadow 0 -4px rgba(black, 15%)
+
+// =========================================
+
+// @import 'nib'
+//
+// alabaster = rgb(241, 242, 237)
+// shade     = mix(black, alabaster, 15%)
+// shadow    = mix(black, alabaster)
+aqua      = rgb( 53, 171, 165)
+dark-aqua = rgb(  0, 135, 127)
+// orange    = rgb(248, 142,  41)
+// purple    = rgb(182,  81, 154)
+//
+// @import '_fonts'
+//
+// *
+//   border 0
+//   box-sizing border-box
+//   margin 0
+//   padding 0
+//
+// body
+//   background-color alabaster
+//   color rgba(black, 0.67)
+//   font-family 'Fira Sans'
+//   font-size 62.5%
+//   font-weight 300
+//
+// header, main, footer
+//   max-width 60.0rem // ~960px
+//   margin 0 auto
+//
+a
+  color aqua
+  transition color 0.2s
+  &:hover
+    color dark-aqua
+//
+// /* Header */
+//
+// header
+//   background url('../images/banner.png') top center no-repeat
+//   background-size 45.0rem 100px
+//
+//   position fixed
+//   left 50%
+//   transform translateX(-50%)
+//   top 0
+//   height 100px
+//   max-width 50.0rem
+//   width 100%
+//
+//   h1
+//     float left
+//     margin-top 0.7rem
+//     display block
+//     height 64px
+//     line-height 64px
+//     margin-top 13px
+//     color shadow
+//     font-size 1.1rem
+//     font-weight 300
+//     text-transform uppercase
+//
+//     em
+//       font-style normal
+//       animation hues 30s infinite linear
+//
+//     &:after
+//       content ''
+//       display block
+//       height 66px
+//       width 58px
+//
+//       background url('../images/logo.png') no-repeat
+//       background-size 58px 66px
+//
+//       position absolute
+//       top 13px
+//       left 50%
+//       margin-left -29px
+//
+//   a, a:hover
+//     color currentColor
+//     text-decoration none
+//
+//   nav
+//     float right
+//
+//     ul
+//       height 16px
+//       margin-top 37px
+//       overflow hidden
+//       &:hover a
+//         color shade
+//
+//     li
+//       display block
+//       float left
+//       height 16px
+//       margin-left 0.5rem
+//
+//     a
+//       display inline-block
+//       height 16px
+//       width 16px
+//
+//       color shadow
+//       font-family 'Icons'
+//       font-size 16px
+//       line-height 16px
+//       transition color 200ms
+//
+//       &:before
+//         -webkit-font-smoothing antialiased
+//         -moz-osx-font-smoothing grayscale
+//
+//     .nav-archives
+//       &:before
+//         content '\e91f'
+//       &:hover
+//         color shadow
+//
+//     .nav-feed
+//       &:before
+//         content '\ea94'
+//       &:hover
+//         color orange // #faae44
+//
+//     .nav-github
+//       &:before
+//         content '\eab4'
+//       &:hover
+//         color purple // #cb83b7
+//
+//     .nav-twitter
+//       &:before
+//         content '\ea91'
+//       &:hover
+//         color aqua // #59c3bf
+//
+@import '_content'
+@import '_code'
+//
+// @keyframes hues
+//   0%
+//     color shade
+//   16.5%
+//     color aqua
+//   33%
+//     color shade
+//   50%
+//     color orange
+//   67%
+//     color shade
+//   83.2%
+//     color purple
+//   100%
+//     color shade

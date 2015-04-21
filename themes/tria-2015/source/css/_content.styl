@@ -1,0 +1,167 @@
+// [role='main']
+//   background-image url('../images/section.png')
+//   background-position bottom center
+//   background-repeat no-repeat
+//   background-size 32px
+//   margin-bottom 1.8rem
+//   padding-bottom calc(0.6rem + 32px)
+//
+//   &:first-of-type
+//     margin-top calc(110px + 0.6rem)
+
+[role='main'], footer
+  // display block
+  // max-width 40.0rem
+
+  h2, h3
+    font-weight 300
+    text-align center
+    text-transform uppercase
+
+  // h1
+  //   font-size 1.5rem
+  //   letter-spacing 0.1rem
+  //   line-height: 1.618
+  //   margin-bottom 1.2rem
+  //   padding 0 1.8rem
+
+  h2, h3 //, p, ol, ul, dl, pre, blockquote, iframe
+    color mix(black, alabaster, 65%)
+    font-size 1.8rem
+    line-height 1.618
+    margin-bottom 0.6rem
+
+  pre
+    margin-bottom 1.2rem
+    margin-top 1.2rem
+
+  h2
+    color purple
+    letter-spacing 0.15rem
+    margin 2.4rem 0
+
+  h3
+    text-align left
+
+  p
+    text-align justify
+    text-rendering optimizeLegibility
+
+  ol, ul
+    margin-left 2.4rem
+
+  dl
+    font-size 0.9rem
+    margin-bottom 1.2rem
+
+  dd, blockquote, blockquote p, figcaption
+    color mix(black, alabaster, 45%)
+    font-size 0.9rem
+    font-style italic
+    margin-bottom 0.6rem
+    margin-left 0.6rem
+    margin-right 0.6rem
+
+  figcaption
+    font-size 0.7rem
+    margin 0.3rem 0.6rem 0.6rem
+    text-align center
+
+  pre, blockquote
+    border-left 0.2rem solid darken(alabaster, 10%)
+    margin-left 1.2rem
+    padding-left 0.6rem
+
+  pre, code
+    font-family 'Fira Mono'
+    font-size 0.9rem
+
+  pre
+    width calc(100% - 2.4rem)
+    word-wrap break-word
+
+  img, iframe
+    display block
+    max-width 30.0rem
+    margin 1.2rem auto
+
+  // Disqus <iframe> shouldn't follow the same rules.
+  iframe#dsq-2
+    max-width 100% // 40.0rem
+
+  img
+    border-radius 0.5rem
+
+    &.inline
+      border-radius 0
+      box-shadow none
+
+  iframe
+    min-height 15.0rem
+    width 100%
+
+footer
+  font-size 0.9rem
+
+#copyright
+  color shadow
+  font-size 0.8rem
+  text-align center
+  margin-bottom 0.6rem
+
+
+// "Next"/"Previous" post navigation
+
+[role='main'] nav
+
+  .post-nav-prev,
+  .post-nav-next
+    display block
+    margin-bottom 1.6rem
+
+    font-size 1.4rem
+    line-height 21px
+
+  .post-nav-prev a
+      background-position left -8px center
+      padding-left 14px
+
+  .post-nav-next
+    text-align right
+
+    a
+      background-position right -8px center
+      padding-right 14px
+
+  a
+    display block
+    background-image url('../images/nav.png')
+    background-repeat no-repeat
+    background-size 15px 21px
+
+@media screen and (min-width: 550px)
+
+  [role='main'] nav
+    display table
+    table-layout fixed
+    margin 1.2rem 0
+    width 100%
+
+    .post-nav-prev,
+    .post-nav-next
+      display table-cell
+      vertical-align middle
+
+      a
+        max-width 250px
+        display inline-block
+
+    .post-nav-prev
+      float left
+      a
+        padding-left 24px
+
+    .post-nav-next
+      float right
+      a
+        padding-right 24px

@@ -85,7 +85,7 @@ disqus_shortname: timgthomas
 # Extensions
 ## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
 ## Themes: https://github.com/tommy351/hexo/wiki/Themes
-theme: tria
+theme: tria-2015
 exclude_generator:
 
 # Deployment

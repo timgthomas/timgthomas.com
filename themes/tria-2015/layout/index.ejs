@@ -1,0 +1,18 @@
+<% var firstpost = page.posts.first(); %>
+<div role="main">
+  <article>
+    <header>
+      <h1><%= firstpost.title %></h1>
+      <p><%= date(firstpost.date, config.date_format) %></p>
+    </header>
+    <%- firstpost.content %>
+  </article>
+  <nav>
+    <span class="post-nav-prev"></span>
+    <span class="post-nav-next">
+      <% var nextpost = page.posts.skip(1).limit(1).first() %>
+      <a href="<%- url_for(nextpost.path) %>"><%= nextpost.title %></a>
+    </span>
+  </nav>
+  <%- partial('_partial/comments', { page: firstpost }) %>
+</div>
