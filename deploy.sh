@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on error (e.g. when `hexo generate` fails)
+set -e
+
 rsync -aqv --exclude='.git' --exclude='build' . build
 
 cd build
