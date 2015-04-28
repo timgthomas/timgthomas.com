@@ -11,7 +11,9 @@
     <span class="post-nav-prev"></span>
     <span class="post-nav-next">
       <% var nextpost = page.posts.skip(1).limit(1).first() %>
-      <a href="<%- url_for(nextpost.path) %>"><%= nextpost.title %></a>
+      <% if (nextpost) { %>
+        <a href="<%- url_for(nextpost.path) %>"><%= nextpost.title %></a>
+      <% } %>
     </span>
   </nav>
   <%- partial('_partial/comments', { page: firstpost }) %>
