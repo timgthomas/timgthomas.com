@@ -3,7 +3,8 @@
   "version": "2.8.3",
   "private": true,
   "scripts": {
-    "start": "hexo server"
+    "start": "hexo server",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "hexo-renderer-ejs": "*",
