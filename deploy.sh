@@ -12,8 +12,8 @@ hexo generate
 git init
 git add .
 git commit -m 'deploy'
-git remote add origin git@heroku.com:timgthomas.git
-git push origin master --force
+git remote add origin git@github.com:TimGThomas/timgthomas.com.git
+git push origin HEAD:gh-pages --force
 
 cd ..
 rm -rf build
