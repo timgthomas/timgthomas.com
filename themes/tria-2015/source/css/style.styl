@@ -89,6 +89,7 @@ aside
   overflow hidden
 
   background-color blackrock
+  background-image linear-gradient(to bottom, #1e1d27, #48475f)
   color alabaster
 
   .container
@@ -144,27 +145,30 @@ aside
     text-align center
     text-decoration none
 
+    .icon,
+    .fill,
+    .outline
+      transition fill 200ms
+
+    .outline,
+    .icon
+      fill shade
+
+    .fill
+      fill transparent
+
     &:hover
-      svg
-        fill white
+      .outline,
+      .icon
+        fill alabaster
 
     &:active
-      svg
+      .fill,
+      .icon,
+      .outline
         fill white
       .icon
         fill blackrock
-      .fill
-        fill white
-
-  svg
-    fill shade
-
-    &,
-    *
-      transition fill 200ms
-
-  .fill
-    fill transparent
 
 [role='main']
   margin 0 auto
