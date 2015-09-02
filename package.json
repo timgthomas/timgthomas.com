@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "hexo server",
-    "deploy": "hexo deploy"
+    "deploy": "hexo deploy -g"
   },
   "dependencies": {
     "express": "~4.4.3",
