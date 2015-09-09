@@ -6,6 +6,7 @@
       <p><%= date(firstpost.date, config.date_format) %></p>
     </header>
     <%- firstpost.content %>
+    <%- partial('_partial/structured-data', { post: firstpost }) %>
   </article>
   <nav>
     <span class="post-nav-prev"></span>

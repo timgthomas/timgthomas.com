@@ -5,6 +5,7 @@
       <p><%= date(page.date, config.date_format) %></p>
     </header>
     <%- page.content %>
+    <%- partial('_partial/structured-data', { post: page }) %>
   </article>
   <nav>
     <span class="post-nav-next">
