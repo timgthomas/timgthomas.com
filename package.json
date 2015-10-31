@@ -12,12 +12,12 @@
   "dependencies": {
     "express": "~4.4.3",
     "hexo": "^3.1.1",
+    "hexo-browsersync": "^0.2.0",
     "hexo-deployer-git": "0.0.4",
     "hexo-generator-archive": "^0.1.3",
     "hexo-generator-cname": "^0.2.0",
     "hexo-generator-feed": "^1.0.3",
     "hexo-generator-index": "^0.1.3",
-    "hexo-livereload": "^0.1.0",
     "hexo-renderer-ejs": "^0.1.0",
     "hexo-renderer-marked": "^0.2.5",
     "hexo-renderer-stylus": "^0.3.0",
