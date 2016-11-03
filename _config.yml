@@ -89,9 +89,6 @@ disqus_shortname: timgthomas
 theme: tria-2015
 exclude_generator:
 
-plugins:
-- hexo-generator-cname
-
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
