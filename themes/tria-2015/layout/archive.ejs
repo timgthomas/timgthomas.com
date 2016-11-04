@@ -1,7 +1,9 @@
 <% page.title = 'Archives'; %>
 
-<main>
-  <h1>Blog Archives</h1>
+<div role="main">
+  <header>
+    <h1>Blog Archives</h1>
+  </header>
   <% var last; %>
   <% page.posts.each(function(post) { %>
     <% var year = post.date.year(); %>
@@ -19,4 +21,4 @@
   <% if (page.posts.length) { %>
   </dl>
   <% } %>
-</main>
+</div>
