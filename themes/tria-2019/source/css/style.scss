@@ -1,0 +1,24 @@
+@import '_palette';
+
+* {
+  box-sizing: inherit;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  box-sizing: border-box;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 62.5%;
+  line-height: 1;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+@import '_banner';
