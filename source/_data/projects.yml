@@ -1,0 +1,4 @@
+- name: Test A
+  link: foo.com
+- name: Test B
+  link: bar.com

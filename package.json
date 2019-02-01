@@ -24,6 +24,7 @@
     "hexo-server": "^0.3.3"
   },
   "devDependencies": {
+    "hexo-renderer-mustache": "^1.0.1",
     "hexo-renderer-scss": "^1.2.0"
   }
 }

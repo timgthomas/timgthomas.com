@@ -1,4 +1,6 @@
 [role='banner'] {
+  --base-size: 1.4rem;
+
   align-items: center;
   background-color: var(--color-background);
   background-image: url('/images/logo.png');
@@ -7,10 +9,10 @@
   background-repeat: no-repeat;
   display: grid;
   filter: drop-shadow(0 4px rgba(0, 0, 0, 0.15));
-  font-size: 1.4rem;
-  grid-gap: 2.0rem;
+  font-size: var(--base-size);
+  grid-gap: calc(var(--base-size) / 2);
   grid-template-columns: 1fr 38px 1fr;
-  height: 60px;
+  height: calc(var(--base-size) * 4);
   letter-spacing: 0.1rem;
   position: fixed;
   top: 0;
@@ -40,14 +42,22 @@
   }
 
   a {
+    align-items: center;
+    background-color: var(--color-background);
+    display: flex;
+    height: 44px;
+    padding: 0 calc(var(--base-size) / 2);
     text-decoration: none;
+    transition: color 250ms;
 
     &:hover {
       color: #fff;
+      transition-duration: 0ms;
     }
 
-    & + a {
-      margin-left: 2.0rem;
+    &:active {
+      color: var(--color-foreground-active);
+      transition-duration: 0ms;
     }
   }
 }
