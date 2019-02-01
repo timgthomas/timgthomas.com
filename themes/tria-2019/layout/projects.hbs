@@ -1,8 +1,8 @@
 <h1>{{page.title}}</h1>
 <ul>
-  {{#site.data.projects}}
+  {{#each site.data.projects}}
     <li>
       {{name}}: {{link}}
     </li>
-  {{/site.data.projects}}
+  {{/each}}
 </ul>
