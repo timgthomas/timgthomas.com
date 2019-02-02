@@ -6,6 +6,8 @@ layout: post
 
 If you’ve spent any amount of time speaking with me about coding, you’ve probably heard me enthuse about typefaces. Much like mattresses are the unsung heroes of a full third of our lives, coding fonts are rarely discussed, but constantly stared at.
 
+<!-- more -->
+
 In the tradition of trying out new things for the new year, I want to share a few of my favorite coding typefaces. If you've been staring at the same letterforms for a while, maybe consider a change!
 
 ## SF Mono

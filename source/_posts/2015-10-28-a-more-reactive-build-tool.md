@@ -4,6 +4,8 @@ date: 2015-10-28
 
 An interesting philosophy I've been introduced to while building apps with [React](https://facebook.github.io/react/) is that of avoiding static config files. Even HTML, arguably one of the most venerable "config" languages out there, has been replaced with a superset that can contain JavaScript, [React's JSX](https://facebook.github.io/jsx/). Newer trends even recommend [supplementing _CSS_ with JavaScript](https://speakerdeck.com/vjeux/react-css-in-js), so you can make changes to styles based on application state in near real-time.
 
+<!-- more -->
+
 One of the "complementary tools" to React (and the one recommended by many example apps I've encountered) is [Webpack](http://webpack.github.io/): a self-described "module bundler" that's also commonly used to compile and process images, CSS, and other soon-to-be-static assets. Though Webpack is often suggested, I encountered several problems that led me to look elsewhere for setting up a build task. In this post, we'll look at a few of those problems and what I ended up replacing Webpack with to solve them.
 
 **TL;DR:** If you want to jump straight to the good parts, I've created an [example app hosted on GitHub](https://github.com/TimGThomas/building-react-with-broccoli) that covers everything in this post.

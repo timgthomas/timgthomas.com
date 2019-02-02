@@ -1,4 +1,19 @@
-- name: Test A
-  link: foo.com
-- name: Test B
-  link: bar.com
+- id: faire-day
+  name: Faire Day
+  description: (TBD)
+  featured: true
+  link: (TBD)
+- id: blog
+  name: Personal Site
+  description: My personal site, portfolio, and blog.
+  featured: true
+  links:
+    - type: web
+      link: http://timgthomas.com
+    - type: github
+      link: https://github.com/timgthomas/timgthomas.com
+- id: active-syntax
+  name: Active Syntax
+  description: A simple syntax theme based on colors from Apple's Activity apps.
+  link: https://atom.io/themes/active-syntax
+  code: https://github.com/timgthomas/active-syntax

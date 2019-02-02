@@ -1,0 +1,15 @@
+<article>
+  <header>
+    <h1>{{page.title}}</h1>
+    <p>{{date page.date config.date_format}}</p>
+  </header>
+  {{{page.content}}}
+  <nav>
+    {{#if page.prev}}
+      <a href="{{url_for page.prev.path}}">{{page.prev.title}}</a>
+    {{/if}}
+    {{#if page.next}}
+      <a href="{{url_for page.next.path}}">{{page.next.title}}</a>
+    {{/if}}
+  </nav>
+</article>

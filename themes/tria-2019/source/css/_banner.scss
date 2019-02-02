@@ -1,6 +1,4 @@
 [role='banner'] {
-  --base-size: 1.4rem;
-
   align-items: center;
   background-color: var(--color-background);
   background-image: url('/images/logo.png');
@@ -48,16 +46,5 @@
     height: 44px;
     padding: 0 calc(var(--base-size) / 2);
     text-decoration: none;
-    transition: color 250ms;
-
-    &:hover {
-      color: #fff;
-      transition-duration: 0ms;
-    }
-
-    &:active {
-      color: var(--color-foreground-active);
-      transition-duration: 0ms;
-    }
   }
 }

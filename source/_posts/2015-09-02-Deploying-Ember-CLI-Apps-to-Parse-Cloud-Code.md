@@ -4,6 +4,8 @@ title: Deploying Ember CLI Apps to Parse Cloud Code
 
 I'm a big fan of [Parse](https://parse.com/): their backend-as-a-service works great for the type of apps I build, which generally have little to no "server" and communicate primarily through REST endpoints.
 
+<!-- more -->
+
 Just the other day, I discovered that their back-end can [host static files](http://blog.parse.com/announcements/goodbye-web-servers-hello-parse-hosting/), meaning I could move my deployed [Ember](http://emberjs.com/) apps away from services like [S3](http://aws.amazon.com/s3/) or [Heroku](https://www.heroku.com/), thus simplifying (and cheapening) my deployments. Getting an [Ember CLI](http://www.ember-cli.com/) app to run on Parse was a little less than frictionless, though, and, in this post, we'll look at how to manage it.
 
 To get started, you'll need:

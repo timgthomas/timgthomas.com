@@ -4,6 +4,8 @@ title: The Making of “You Might Not Need JavaScript”
 
 Last week, I had the pleasure of presenting at the [JavaScript Austin](http://www.meetup.com/javascript-austin/) meetup. For this month's meetup, I gave my "stateful CSS" talk (titled "Form with Function" or "[You Might Not Need JavaScript](http://www.meetup.com/javascript-austin/events/225015546/)", depending on how trolling I feel at the time). If you haven't seen it yet, there's a video of it [on Vimeo](https://vimeo.com/131410261):
 
+<!-- more -->
+
 <iframe src="http://player.vimeo.com/video/131410261?title=0&amp;color=35aba5" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
 
 There's a bit of a plot twist at the end of the talk that I get a lot of questions about (watch the video above first if you don't want spoilers). In this post, we'll look at how this plot twist was created.
