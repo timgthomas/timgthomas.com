@@ -28,33 +28,25 @@ h1:not(:first-of-type) {
 li {
   list-style-type: none;
 
-  & + li {
-    margin-top: var(--base-size);
-  }
-}
-
-.post {
-  // border-left: 0.5px solid #fff;
-  // padding-left: calc(var(--base-size) / 4);
-
-  a {
-    text-decoration: none;
-  }
-
   h2 {
     border-bottom: 0.5px solid;
     color: white;
     margin-bottom: calc(var(--base-size) / 4);
-
-
   }
 }
 
-time {
-  color: var(--color-foreground);
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
+.post {
+  a {
+    text-decoration: none;
+  }
+
+  & + .post {
+    margin-top: var(--base-size);
+  }
+}
+
+.projects {
+  display: grid;
+  grid-gap: var(--base-size);
+  grid-template-columns: 1fr 1fr;
 }

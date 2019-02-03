@@ -1,9 +1,23 @@
+aside {
+  align-items: stretch;
+  background-image: linear-gradient(to bottom, #1e1d27, #48475f);
+  display: flex;
+  height: calc(var(--base-size) * 8);
+  justify-content: center;
+
+  > div {
+    max-width: 64.0rem;
+    padding: calc(var(--base-size) * 2) var(--base-size);
+    width: 100%;
+  }
+}
+
 main {
   font-size: var(--base-size);
   font-weight: 300;
   margin: 0 auto;
   max-width: 64.0rem;
-  padding: calc(var(--base-size) * 6) var(--base-size) 0;
+  padding: calc(var(--base-size) * 2) var(--base-size) 0;
 
   h1, h2, header time {
     font-weight: 400;
@@ -19,10 +33,11 @@ main {
   }
 }
 
-.projects {
-  list-style-type: none;
-
-  > li + li {
-  margin-top: var(--base-size);
-  }
-}
+// TODO: Move to projects layout CSS?
+// .projects {
+//   list-style-type: none;
+//
+//   > li + li {
+//     margin-top: var(--base-size);
+//   }
+// }

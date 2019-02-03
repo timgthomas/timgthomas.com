@@ -16,7 +16,11 @@
       <a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>
     </nav>
   </header>
-  <main class="<%= page.layout || 'index' %>"><%- body %></main>
+  <% let { layout = 'index' } = page %>
+  <% if (layout === 'index') { %>
+    <%- partial('_partial/hero') %>
+  <% } %>
+  <main class="<%= layout %>"><%- body %></main>
   <footer>&copy; Tim G. Thomas</footer>
 </body>
 </html>

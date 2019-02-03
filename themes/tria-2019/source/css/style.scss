@@ -34,6 +34,7 @@ a {
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  padding-top: calc(var(--base-size) * 4);
 }
 
 p {

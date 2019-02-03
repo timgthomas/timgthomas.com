@@ -1,12 +1,9 @@
-<!-- <h1>Upcoming Talks</h1> -->
-<!-- <p>TBD</p> -->
 <h1>Recent Posts</h1>
 <ol>
   <% for (let post of site.posts.data.slice(-4).reverse()) { %>
     <li class="post">
       <a href="<%= url_for(post.path) %>">
         <h2><%= post.title %></h2>
-        <!-- <time><%= date(post.date) %></time> -->
         <p class="excerpt"><%= strip_html(post.excerpt) %></p>
       </a>
     </li>
@@ -15,9 +12,12 @@
 <% let featuredProjects = site.data.projects.filter(p => p.featured) %>
 <% if (featuredProjects.length) { %>
   <h1>Featured Projects</h1>
-  <ul>
+  <ul class="projects">
     <% for (let project of featuredProjects) { %>
-      <h2><%= project.name %></h2>
+      <li>
+        <h2><%= project.name %></h2>
+        <p class="excerpt"><%= project.description %></p>
+      </li>
     <% } %>
   </ul>
 <% } %>
