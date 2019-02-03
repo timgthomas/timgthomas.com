@@ -36,6 +36,11 @@ body {
   color: var(--color-foreground);
 }
 
+p {
+  line-height: 1.618;
+  text-align: justify;
+}
+
 footer {
   font-size: 1.2rem;
   font-weight: 200;
@@ -45,3 +50,6 @@ footer {
 
 @import '_banner';
 @import '_content';
+
+main.index { @import 'layouts/_index'; };
+main.post  { @import 'layouts/_post'; };

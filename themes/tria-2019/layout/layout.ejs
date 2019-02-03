@@ -17,7 +17,7 @@
       <a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>
     </nav>
   </header>
-  <main><%- body %></main>
+  <main class="<%= page.layout || 'index' %>"><%- body %></main>
   <footer>&copy; Tim G. Thomas</footer>
 </body>
 </html>

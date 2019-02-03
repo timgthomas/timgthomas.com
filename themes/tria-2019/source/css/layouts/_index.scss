@@ -1,0 +1,8 @@
+& {
+
+}
+
+.excerpt {
+  max-height: calc(var(--base-size) * 1.618 * 2);
+  overflow: hidden;
+}

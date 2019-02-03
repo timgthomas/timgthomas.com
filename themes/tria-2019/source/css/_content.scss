@@ -2,32 +2,10 @@ main {
   font-size: var(--base-size);
   font-weight: 300;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 64.0rem;
   padding: calc(var(--base-size) * 6) var(--base-size) 0;
 
-  article {
-    margin: 0 auto;
-    max-width: 64.0rem;
-
-    > * + * {
-      margin-top: var(--base-size);
-    }
-
-    header h1 {
-      margin-bottom: calc(var(--base-size) / 2);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      text-align: center;
-    }
-
-    header + p {
-      text-indent: var(--base-size);
-    }
-  }
-
-  h1, h2, header p {
+  h1, h2, header time {
     font-weight: 400;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
@@ -38,29 +16,6 @@ main {
     font-size: 2.0rem;
     margin-bottom: var(--base-size);
     text-align: center;
-  }
-
-  h2 {
-    border-bottom: 0.5px solid;
-    color: #fff;
-    font-size: 1.4rem;
-    margin-top: calc(var(--base-size) * 2);
-    padding: 0 calc(var(--base-size) / 2);
-  }
-
-  article > p {
-    font-size: 1.4rem;
-    line-height: 1.618;
-    padding: 0 var(--base-size);
-    text-align: justify;
-  }
-
-  img {
-    border-radius: calc(var(--base-size) / 2);
-    display: block;
-    margin: 0 auto;
-    max-width: 48.0rem;
-    width: 100%;
   }
 }
 
