@@ -1,5 +1,5 @@
 & {
-  --font-size: 1.6rem;
+  --font-size: 1.8rem;
   --line-height: 1.5;
 }
 
@@ -8,7 +8,7 @@ h1:not(:first-of-type) {
 }
 
 .excerpt {
-  max-height: calc(var(--font-size) * var(--line-height) * 2);
+  max-height: calc(var(--font-size) * var(--line-height) * 3.3);
   overflow: hidden;
   position: relative;
 
@@ -34,7 +34,7 @@ li {
     color: #28d5bd;
     font-size: var(--font-size);
     position: relative;
-    transition: color 200ms;
+    transition: color var(--duration-default);
     width: max-content;
 
     &::before {
@@ -50,13 +50,14 @@ li {
       position: absolute;
       top: 50%;
       transform: translate(calc(100% - 5px), -50%) scaleX(0.576) rotate(45deg);
-      transition: right 200ms, opacity 200ms;
+      transition: right var(--duration-default), opacity var(--duration-default);
       width: var(--size);
     }
   }
 
   a:hover h2 {
-    color: white;
+    // color: white;
+    color: hsl(170, 70%, 65%);
     transition-duration: 0ms;
   }
 
