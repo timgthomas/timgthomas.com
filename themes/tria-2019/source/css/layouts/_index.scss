@@ -1,5 +1,5 @@
 & {
-  --font-size: 1.8rem;
+  --font-size: 1.6rem;
   --line-height: 1.5;
 }
 
@@ -30,7 +30,7 @@ li {
   list-style-type: none;
 
   h2 {
-    border-bottom: 0.5px solid var(--color-foreground);
+    border-bottom: 1px solid var(--color-foreground);
     color: #28d5bd;
     font-size: var(--font-size);
     position: relative;
@@ -56,8 +56,8 @@ li {
   }
 
   a:hover h2 {
-    // color: white;
-    color: hsl(170, 70%, 65%);
+    color: white;
+    // color: hsl(170, 70%, 65%);
     transition-duration: 0ms;
   }
 

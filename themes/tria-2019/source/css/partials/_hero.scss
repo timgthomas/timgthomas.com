@@ -1,0 +1,55 @@
+aside {
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, hsl(60,  3%, 18%), hsl(60,  6%, 10%));
+
+  .container {
+    display: grid;
+    grid-gap: var(--base-size);
+    grid-template-columns: 1fr 160px;
+    grid-template-rows: 1fr 1fr;
+    margin: 0 auto;
+    max-width: 80.0rem;
+  }
+
+  p {
+    width: 300px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 2.4rem;
+    text-align: right;
+  }
+
+  .about {
+    align-self: end;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    justify-self: end;
+  }
+
+  .social {
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+    justify-self: end;
+  }
+
+  svg {
+    fill: currentColor;
+    height: 100%;
+    width: 100%;
+  }
+
+  img {
+    grid-column: 2 / 2;
+    grid-row: 1 / span 2;
+    height: 170px;
+    width: 160px;
+  }
+}
+
+aside a {
+  display: inline-block;
+  font: 0 / 0 a;
+  height: 44px;
+  width: 40px;
+  color: currentColor;
+}

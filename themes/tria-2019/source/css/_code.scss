@@ -1,0 +1,64 @@
+code,
+pre {
+  font-family: monospace;
+}
+
+code {
+  display: inline-block;
+  padding: 0 calc(var(--base-size) / 4);
+  background-color: hsl(60, 3%, 30%);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: 2.4rem;
+}
+
+a code {
+  text-decoration: underline;
+}
+
+pre {
+  --color-code-aqua: var(--color-link);
+  --color-code-orange: hsl(25, 97%, 65%);
+  --color-code-purple: hsl(307, 50%, 73%);
+
+  border-left: 1px solid var(--color-foreground-active);
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1.618;
+  padding-left: var(--base-size);
+
+  .keyword {
+    color: var(--color-code-purple);
+  }
+
+  .string,
+  .tag .value {
+    color: var(--color-code-orange);
+  }
+
+  .tag .name,
+  .built_in {
+    color: var(--color-code-aqua);
+  }
+
+  .comment {
+    color: hsl(70.9, 5%, 65.2%);
+  }
+
+  // CSS
+
+  .selector-class,
+  .selector-attr {
+    color: var(--color-code-aqua);
+  }
+
+  .attribute,
+  .selector-pseudo {
+    color: var(--color-code-purple);
+  }
+
+  .selector-tag {
+    color: var(--color-code-orange);
+  }
+}

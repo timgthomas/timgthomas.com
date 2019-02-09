@@ -18,7 +18,7 @@
 }
 
 a {
-  transition: color 250ms;
+  transition: color var(--duration-default);
 
   &:hover {
     color: #fff;
@@ -43,14 +43,22 @@ p {
 }
 
 footer {
-  font-size: 1.2rem;
-  font-weight: 200;
+  background: top center / 19px 22px no-repeat url('/images/footer-chevron.png') var(--color-background);
+  color: var(--color-foreground);
+  font-size: var(--base-size);
+  font-weight: 400;
+  letter-spacing: 0.1rem;
   margin: calc(var(--base-size) * 2) 0;
+  padding-top: calc(22px + var(--base-size));
   text-align: center;
+  text-transform: uppercase;
 }
 
 @import '_banner';
 @import '_content';
+@import '_code';
+
+@import 'partials/_hero';
 
 main.index { @import 'layouts/_index'; };
 main.post  { @import 'layouts/_post'; };

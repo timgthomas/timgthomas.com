@@ -12,13 +12,15 @@ One of the "complementary tools" to React (and the one recommended by many examp
 
 ## A (Web)pack of Trouble
 
-When I was first getting started with React, I found the guides to be lacking with regards to setting up and maintaining a local development environment. Admittedly, I'm very spoiled by the [Ember](http://emberjs.com/) ecosystem and [Ember CLI](http://www.ember-cli.com/), but I eventually happened on ["The React.js Way"](https://blog.risingstack.com/the-react-way-getting-started-tutorial/) blog series, which advocates using Webpack for this purpose. I started using it, but quickly ran into a number of issues:
+When I was first getting started with React, I found the guides to be lacking with regards to setting up and maintaining a local development environment. Admittedly, I'm very spoiled by the [Ember](http://emberjs.com/) ecosystem and [Ember CLI](http://www.ember-cli.com/), but I eventually happened on “[The React.js Way](https://blog.risingstack.com/the-react-way-getting-started-tutorial/)” blog series, which advocates using Webpack for this purpose. I started using it, but quickly ran into a number of issues:
 
 **Regular expressions.** Web pack uses “[loaders](http://webpack.github.io/docs/using-loaders.html)” to transform files, which rely on regular expressions to select the files to be transformed. Coming from the world of [Grunt](http://gruntjs.com/) and friends, which uses very readable strings like `src/**/*.js` to represent files, expressions like `/src\/.+.js$/` make my head hurt, and I'm utterly unable to create new expressions without [a reference guide](http://www.regular-expressions.info/).
 
 **Magic strings.** Once you've managed to select your files using arcane RegEx strings, you'll need to tell Webpack how to transform them. Webpack implicitly imports these loaders, then relies on string parsing to figure out what to do to the files, and in what order. Here's an example [from the Webpack documentation](http://webpack.github.io/docs/using-loaders.html#loaders-in-require):
 
-    require("!style!css!less!bootstrap/less/bootstrap.less")
+```js
+require("!style!css!less!bootstrap/less/bootstrap.less")
+```
 
 Aside from [using Bootstrap](https://vimeo.com/97318798), there are more insidious issues with this approach: one, it's very unclear what, exactly, each of these processing steps does (and from which package they're loaded), and, two, it turns out they're executed from right to left, thereby guaranteeing I'll get the execution order backwards _every time_ I write a config file. Even after you decipher this processing instruction, you still need to import your CSS into your JavaScript, of course. [Wait: _what_?](https://github.com/webpack/css-loader#usage)
 
@@ -59,7 +61,9 @@ The first command installs the Broccoli binary, while the second tells our app t
 
 Broccoli works primarily with directory paths, called “[trees](https://github.com/broccolijs/broccoli#plugin-api-specification)”, that represent files and folders in your app. If we wanted Broccoli to act as a passthrough and not do any real processing, all we'd need in `Brocfile.js`—assuming our app assets are in an `app` folder—is:
 
-    module.exports = 'app';
+```js
+module.exports = 'app';
+```
 
 We need a bit more than this, so let's continue. First, we'll need to install React, since our code depends on it. You'll use a similar method if you want to install other packages on which your runtime code depends. Install it with the following npm command:
 
