@@ -10,6 +10,30 @@ aside {
     padding: calc(var(--base-size) * 2) var(--base-size);
     width: 100%;
   }
+
+  .social {
+    display: flex;
+  }
+
+  .social a {
+    // TODO: Transition stroke color.
+
+    display: block;
+    fill: currentColor;
+    height: 44px;
+    margin-right: -22px;
+    margin-top: -19px;
+    width: 44px;
+
+    &:nth-of-type(2n) {
+      margin-top: 19px;
+    }
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }
 
 main {
@@ -17,7 +41,7 @@ main {
   font-weight: 300;
   margin: 0 auto;
   max-width: 64.0rem;
-  padding: calc(var(--base-size) * 2) var(--base-size) 0;
+  padding: calc(var(--base-size) * 2) calc(var(--base-size) * 2) 0;
 
   h1, h2, header time {
     font-weight: 400;
@@ -28,7 +52,7 @@ main {
   h1 {
     color: white;
     font-size: 2.0rem;
-    margin-bottom: var(--base-size);
+    margin-bottom: calc(var(--base-size) * 1.5);
     text-align: center;
   }
 }

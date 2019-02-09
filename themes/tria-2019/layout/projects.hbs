@@ -2,7 +2,7 @@
 <ul class="projects">
   {{#each site.data.projects}}
     <li>
-      <h2>{{name}}</h2>
+      <h2 id="{{id}}">{{name}}</h2>
       <p>{{description}}</p>
       {{#if links.length}}
         <nav aria-labelledby="{{id}}-links">

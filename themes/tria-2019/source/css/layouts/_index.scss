@@ -1,14 +1,14 @@
 & {
-
+  --font-size: 1.6rem;
+  --line-height: 1.5;
 }
 
 h1:not(:first-of-type) {
-  margin-top: calc(var(--base-size) * 2);
+  margin-top: calc(var(--font-size) * 2);
 }
 
 .excerpt {
-  margin-top: calc(var(--base-size) / 2);
-  max-height: calc(var(--base-size) * 1.618 * 2);
+  max-height: calc(var(--font-size) * var(--line-height) * 2);
   overflow: hidden;
   position: relative;
 
@@ -17,36 +17,87 @@ h1:not(:first-of-type) {
     bottom: 0;
     content: '';
     display: block;
-    height: calc(var(--base-size) * 1.618);
+    height: calc(var(--font-size) * var(--line-height));
     pointer-events: none;
     position: absolute;
     right: 0;
-    width: calc(var(--base-size) * 1.618 * 3);
+    width: calc(var(--font-size) * var(--line-height) * 4);
   }
 }
 
 li {
+  line-height: var(--line-height);
   list-style-type: none;
 
   h2 {
-    border-bottom: 0.5px solid;
+    border-bottom: 0.5px solid var(--color-foreground);
+    color: #28d5bd;
+    font-size: var(--font-size);
+    position: relative;
+    transition: color 200ms;
+    width: max-content;
+
+    &::before {
+      --size: calc(var(--font-size) / 1.414);
+      background: var(--color-background);
+      border-top-right-radius: 4px;
+      box-shadow: 3px -3px 0 #c556b7;
+      content: '';
+      display: block;
+      height: var(--size);
+      right: -15px;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(calc(100% - 5px), -50%) scaleX(0.576) rotate(45deg);
+      transition: right 200ms, opacity 200ms;
+      width: var(--size);
+    }
+  }
+
+  a:hover h2 {
     color: white;
-    margin-bottom: calc(var(--base-size) / 4);
+    transition-duration: 0ms;
+  }
+
+  a:hover h2::before {
+    opacity: 1;
+    right: -5px;
+    transition-duration: 0ms;
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .post {
-  a {
-    text-decoration: none;
-  }
+  position: relative;
 
   & + .post {
-    margin-top: var(--base-size);
+    margin-top: calc(var(--font-size) * 1);
+    padding-top: calc(var(--font-size) * 1);
+
+    &:before {
+      background-color: var(--color-foreground-active);
+      content: '';
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: calc(var(--font-size) * 2);
+    }
   }
 }
 
 .projects {
   display: grid;
-  grid-gap: var(--base-size);
+  grid-gap: var(--font-size);
   grid-template-columns: 1fr 1fr;
+}
+
+p {
+  font-size: var(--font-size);
 }
