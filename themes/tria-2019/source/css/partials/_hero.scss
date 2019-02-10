@@ -1,6 +1,7 @@
 aside {
   overflow: hidden;
-  background-image: linear-gradient(to bottom, hsl(60,  3%, 18%), hsl(60,  6%, 10%));
+  // background-image: linear-gradient(to bottom, hsl(60,  3%, 18%), hsl(60,  6%, 10%));
+  background: center / cover url('/images/hero.jpg');
 
   .container {
     display: grid;

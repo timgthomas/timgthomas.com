@@ -2,8 +2,10 @@
   name: Faire Day
   description: (TBD)
   featured: true
-  link: (TBD)
-- id: blog
+  links:
+    - type: facebook
+      link: https://www.facebook.com/faireday
+- id: personal-site
   name: Personal Site
   description: My personal site, portfolio, and blog.
   links:
@@ -13,7 +15,24 @@
       link: https://github.com/timgthomas/timgthomas.com
 - id: active-syntax
   name: Active Syntax
-  description: A simple syntax theme based on colors from Apple's Activity apps.
+  description: A syntax theme for Atom based on colors from Apple's Activity apps.
   featured: true
-  link: https://atom.io/themes/active-syntax
-  code: https://github.com/timgthomas/active-syntax
+  links:
+    - type: web
+      link: https://atom.io/themes/active-syntax
+    - type: github
+      link: https://github.com/timgthomas/active-syntax
+- id: dragon-dice
+  name: Dragon Dice
+  description: (TBD)
+  links:
+    - type: web
+      link: http://dragon-dice.surge.sh/
+- id: heart-points
+  name: Heart Points
+  description: Add Heart Points to your tabletop RPG games and track damage, healing, and your hard-earned HP with every new level.
+  links:
+    - type: apple
+      link: https://itunes.apple.com/us/app/heart-points/id1092311753?mt=8
+    - type: facebook
+      link: https://www.facebook.com/heartpointsapp/

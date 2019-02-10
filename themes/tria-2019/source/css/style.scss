@@ -60,5 +60,6 @@ footer {
 
 @import 'partials/_hero';
 
-main.index { @import 'layouts/_index'; };
-main.post  { @import 'layouts/_post'; };
+main.index    { @import 'layouts/_index'; };
+main.post     { @import 'layouts/_post'; };
+main.projects { @import 'layouts/_projects'; };
