@@ -1,15 +1,15 @@
 aside {
-  overflow: hidden;
-  // background-image: linear-gradient(to bottom, hsl(60,  3%, 18%), hsl(60,  6%, 10%));
   background: center / cover url('/images/hero.jpg');
+  overflow: hidden;
 
   .container {
-    display: grid;
-    grid-gap: var(--base-size);
-    grid-template-columns: 1fr 160px;
-    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0 auto;
     max-width: 80.0rem;
+    min-height: 14.0rem;
   }
 
   p {
@@ -21,16 +21,17 @@ aside {
   }
 
   .about {
-    align-self: end;
     grid-column: 1 / 1;
     grid-row: 1 / 1;
-    justify-self: end;
+    margin-bottom: calc(var(--base-size) / 2);
+    text-align: center;
   }
 
   .social {
+    display: flex;
     grid-column: 1 / 1;
     grid-row: 2 / 2;
-    justify-self: end;
+    justify-content: center;
   }
 
   svg {
@@ -40,6 +41,7 @@ aside {
   }
 
   img {
+    display: none;
     grid-column: 2 / 2;
     grid-row: 1 / span 2;
     height: 170px;
@@ -51,6 +53,31 @@ aside a {
   display: inline-block;
   font: 0 / 0 a;
   height: 44px;
-  width: 40px;
+  width: 44px;
   color: currentColor;
 }
+
+@media (min-width: 500px) { aside {
+  .container {
+    display: grid;
+    grid-gap: var(--base-size);
+    grid-template-columns: 1fr 160px;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .about {
+    align-self: end;
+    justify-self: end;
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .social {
+    justify-content: flex-end;
+    justify-self: end;
+  }
+
+  img {
+    display: initial;
+  }
+} }

@@ -39,7 +39,9 @@ h2 {
   border-bottom: 1px solid;
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
-  line-height: 1.618;
+  line-height: 1;
+  max-width: 100%;
+  padding: calc(var(--base-size) / 3) 0;
   width: max-content;
 }
 
