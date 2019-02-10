@@ -12,6 +12,13 @@
 }
 
 @font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/fira-mono-400.woff2') format('woff2'), url('/fonts/fira-mono-400.woff') format('woff');
+}
+
+@font-face {
   font-family: 'Fira Sans';
   font-style: normal;
   font-weight: 300;

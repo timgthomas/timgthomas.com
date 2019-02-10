@@ -14,7 +14,7 @@
       <a class="<%- is_current('/', true) ? 'active' : '' %>" href="/">Tim G Thomas</a>
     </h1>
     <nav>
-      <a class="<%- is_current('blog') ? 'active' : '' %>" href="<%= url_for(site.posts.last().path) %>">Blog</a>
+      <a class="<%- (is_current('blog') || page.layout === 'post') ? 'active' : '' %>" href="<%= url_for(site.posts.last().path) %>">Blog</a>
       <a class="<%- is_current('projects') ? 'active' : '' %>" href="/projects">Projects</a>
       <!--<a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>-->
     </nav>
