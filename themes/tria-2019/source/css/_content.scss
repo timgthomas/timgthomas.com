@@ -42,3 +42,20 @@ h2 {
   line-height: 1.618;
   width: max-content;
 }
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.6rem;
+  justify-content: space-between;
+  list-style-type: none;
+
+  > li {
+    position: relative;
+    width: calc(50% - var(--base-size));
+
+    &:nth-of-type(n + 3) {
+      margin-top: calc(var(--base-size) * 2);
+    }
+  }
+}

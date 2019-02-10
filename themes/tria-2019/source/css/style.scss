@@ -59,7 +59,7 @@ footer {
 @import '_code';
 
 @import 'partials/_hero';
+@import 'partials/_project';
 
-main.index    { @import 'layouts/_index'; };
-main.post     { @import 'layouts/_post'; };
-main.projects { @import 'layouts/_projects'; };
+main.index { @import 'layouts/_index'; };
+main.post  { @import 'layouts/_post'; };

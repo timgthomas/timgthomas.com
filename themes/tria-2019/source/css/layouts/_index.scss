@@ -29,7 +29,7 @@ li {
   line-height: var(--line-height);
   list-style-type: none;
 
-  h2 {
+  a h2 {
     border-bottom: 1px solid var(--color-foreground);
     color: #28d5bd;
     font-size: var(--font-size);
@@ -45,12 +45,10 @@ li {
       content: '';
       display: block;
       height: var(--size);
-      right: -15px;
-      opacity: 0;
+      right: -5px;
       position: absolute;
       top: 50%;
       transform: translate(calc(100% - 5px), -50%) scaleX(0.576) rotate(45deg);
-      transition: right var(--duration-default), opacity var(--duration-default);
       width: var(--size);
     }
   }
@@ -58,12 +56,6 @@ li {
   a:hover h2 {
     color: white;
     // color: hsl(170, 70%, 65%);
-    transition-duration: 0ms;
-  }
-
-  a:hover h2::before {
-    opacity: 1;
-    right: -5px;
     transition-duration: 0ms;
   }
 }
@@ -91,12 +83,6 @@ a {
       width: calc(var(--font-size) * 2);
     }
   }
-}
-
-.projects {
-  display: grid;
-  grid-gap: var(--font-size);
-  grid-template-columns: 1fr 1fr;
 }
 
 p {

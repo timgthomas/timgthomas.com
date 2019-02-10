@@ -1,21 +1,6 @@
 <h1>{{page.title}}</h1>
-<ul>
+<ul class="projects">
   {{#each site.data.projects}}
-    <li>
-      <h2 id="{{id}}">{{name}}</h2>
-      <div class="img" style="background-image: url('/images/projects/{{id}}.jpg')"></div>
-      <p>{{description}}</p>
-      {{#if links.length}}
-        <nav aria-labelledby="{{id}}-links">
-          <h3 id="{{id}}-links">Links</h3>
-          {{#each links}}
-            <a href="{{link}}" target="_blank">
-              <svg><use xlink:href="/images/social.svg#{{type}}"></use></svg>
-              {{type}}
-            </a>
-          {{/each}}
-        </nav>
-      {{/if}}
-    </li>
+    {{partial '_partial/project' project=this}}
   {{/each}}
 </ul>

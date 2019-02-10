@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
   <title><%= page.title ? page.title + ' | ' : '' %>Tim G. Thomas</title>
 </head>
 <body>
@@ -13,7 +16,7 @@
     <nav>
       <a class="<%- is_current('blog') ? 'active' : '' %>" href="<%= url_for(site.posts.last().path) %>">Blog</a>
       <a class="<%- is_current('projects') ? 'active' : '' %>" href="/projects">Projects</a>
-      <a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>
+      <!--<a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>-->
     </nav>
   </header>
   <% let { layout = 'index' } = page %>
@@ -22,5 +25,8 @@
   <% } %>
   <main class="<%= layout %>"><%- body %></main>
   <footer>&copy; Tim G. Thomas</footer>
+  <% if (!env.debug) { %>
+    <%- partial('_partial/analytics') %>
+  <% } %>
 </body>
 </html>

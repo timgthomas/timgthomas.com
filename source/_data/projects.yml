@@ -1,13 +1,13 @@
 - id: faire-day
   name: Faire Day
-  description: (TBD)
+  description: Faire Day is your source for up-to-date weather conditions at your favorite Renaissance faires.
   featured: true
   links:
     - type: facebook
       link: https://www.facebook.com/faireday
 - id: personal-site
   name: Personal Site
-  description: My personal site, portfolio, and blog.
+  description: My personal web site, featuring personal projects and blog posts on a variety of topics.
   links:
     - type: web
       link: http://timgthomas.com
@@ -15,8 +15,7 @@
       link: https://github.com/timgthomas/timgthomas.com
 - id: active-syntax
   name: Active Syntax
-  description: A syntax theme for Atom based on colors from Apple's Activity apps.
-  featured: true
+  description: A syntax theme for GitHub's Atom text editor based on colors from Apple's Activity apps.
   links:
     - type: web
       link: https://atom.io/themes/active-syntax
@@ -24,13 +23,14 @@
       link: https://github.com/timgthomas/active-syntax
 - id: dragon-dice
   name: Dragon Dice
-  description: (TBD)
+  description: A reference guide for the Dragon Dice game to track your armies' statistics and capabilities.
+  featured: true
   links:
     - type: web
       link: http://dragon-dice.surge.sh/
 - id: heart-points
   name: Heart Points
-  description: Add Heart Points to your tabletop RPG games and track damage, healing, and your hard-earned HP with every new level.
+  description: An iOS app to track damage, healing, and overall hit points in your favorite tabletop RPGs.
   links:
     - type: apple
       link: https://itunes.apple.com/us/app/heart-points/id1092311753?mt=8

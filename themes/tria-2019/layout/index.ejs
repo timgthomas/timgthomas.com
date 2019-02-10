@@ -14,12 +14,7 @@
   <h1>Featured Projects</h1>
   <ul class="projects">
     <% for (let project of featuredProjects) { %>
-      <li>
-        <a href="<%= url_for('projects') %>">
-          <h2><%= project.name %></h2>
-          <p class="excerpt"><%= project.description %></p>
-        </a>
-      </li>
+      <%- partial('_partial/project', { project }) %>
     <% } %>
   </ul>
 <% } %>
