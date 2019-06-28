@@ -38,6 +38,12 @@ article {
     text-indent: var(--base-size);
   }
 
+  figure {
+    max-width: 100%;
+    overflow: auto;
+    -webkit-touch-overflow: scroll;
+  }
+
   hr {
     background: var(--color-foreground-active);
     border: none;

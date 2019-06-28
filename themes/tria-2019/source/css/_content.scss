@@ -47,17 +47,33 @@ h2 {
 
 .projects {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+
   font-size: 1.6rem;
-  justify-content: space-between;
   list-style-type: none;
 
   > li {
     position: relative;
+  }
+}
+
+@media (max-width: 499px) { .projects {
+  > li + li {
+    margin-top: calc(var(--base-size) * 2);
+  }
+} }
+
+@media (min-width: 500px) { .projects {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > li {
+    margin-top: 0;
     width: calc(50% - var(--base-size));
 
     &:nth-of-type(n + 3) {
       margin-top: calc(var(--base-size) * 2);
     }
   }
-}
+} }
