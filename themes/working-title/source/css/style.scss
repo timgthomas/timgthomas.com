@@ -9,11 +9,47 @@
 }
 
 :root {
+  -webkit-font-smoothing: antialiased;
   background-color: var(--color-background);
   box-sizing: border-box;
   color: var(--color-body);
   color-scheme: light dark;
+  font-family: 'Weekly Pro';
   line-height: 1;
+}
+
+// Typography ==================================================================
+
+@font-face {
+  font-family: 'Karu';
+  font-style: oblique;
+  font-weight: 500;
+  src: url('../fonts/karu-500i.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Karu';
+  font-style: oblique;
+  font-weight: 700;
+  src: url('../fonts/karu-700i.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Weekly Pro';
+  font-weight: 400;
+  src: url('../fonts/weekly-pro-400.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Weekly Pro';
+  font-style: oblique;
+  src: url('../fonts/weekly-pro-400i.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Weekly Pro';
+  font-weight: 700;
+  src: url('../fonts/weekly-pro-700.otf') format('opentype');
 }
 
 // Variables ===================================================================
@@ -64,12 +100,21 @@ main {
   h1,
   h2 {
     color: var(--color-header);
+    font-family: 'Karu';
   }
 
   h1 {
     font-size: 32px;
     font-style: oblique;
-    font-weight: bold;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-style: oblique;
+    font-weight: 700;
+    margin: 30px 0 15px;
   }
 
   time {
@@ -79,13 +124,6 @@ main {
   li,
   p {
     line-height: 30px;
-  }
-
-  h2 {
-    font-size: 26px;
-    font-style: oblique;
-    font-weight: bold;
-    margin: 30px 0 15px;
   }
 
   figure {
@@ -109,7 +147,7 @@ main {
   }
 
   strong {
-    font-weight: bold;
+    font-weight: 700;
   }
 
 }
