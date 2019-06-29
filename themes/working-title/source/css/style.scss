@@ -1,4 +1,4 @@
-// Resets
+// Resets ======================================================================
 
 * {
   box-sizing: inherit;
@@ -9,9 +9,32 @@
 }
 
 :root {
+  background-color: var(--color-background);
   box-sizing: border-box;
+  color: var(--color-body);
+  color-scheme: light dark;
   line-height: 1;
 }
+
+// Variables ===================================================================
+
+:root {
+  --color-background: hsl(72, 16%, 93%);
+  --color-header: black;
+  --color-body: hsl(60, 1%, 30%);
+}
+
+// Dark Mode
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: hsl(60, 1%, 15%);
+    --color-header: white;
+    --color-body: hsl(60, 5%, 70%);
+  }
+}
+
+// Content =====================================================================
 
 main {
   margin: 0 auto;
@@ -24,7 +47,7 @@ main {
   header {
     margin-bottom: 30px;
     margin-left: auto;
-    max-width: 50%;
+    max-width: 400px;
     width: max-content;
   }
 
@@ -36,6 +59,11 @@ main {
     font-size: 20px;
     hyphens: auto;
     margin-bottom: 15px;
+  }
+
+  h1,
+  h2 {
+    color: var(--color-header);
   }
 
   h1 {
@@ -64,6 +92,12 @@ main {
     margin-left: 15px;
   }
 
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: calc(100% - 120px);
+  }
+
   ol,
   ul {
     margin-left: 45px;
@@ -72,6 +106,10 @@ main {
   hr {
     margin: 30px auto;
     width: 50%;
+  }
+
+  strong {
+    font-weight: bold;
   }
 
 }
