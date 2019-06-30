@@ -1,0 +1,36 @@
+pre {
+
+  color: var(--color-header);
+
+  .keyword {
+    color: var(--color-blue);
+  }
+
+  .selector-tag,
+  .string,
+  .tag .value {
+    color: var(--color-orange);
+  }
+
+  .tag .name,
+  .built_in {
+    color: var(--color-green);
+  }
+
+  .comment {
+    color: var(--color-body);
+  }
+
+  // CSS
+
+  .selector-class,
+  .selector-attr {
+    color: var(--color-green);
+  }
+
+  .attribute,
+  .keyword,
+  .selector-pseudo {
+    color: var(--color-blue);
+  }
+}

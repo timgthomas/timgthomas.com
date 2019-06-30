@@ -1,0 +1,17 @@
+* {
+  box-sizing: inherit;
+  font: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-background);
+  box-sizing: border-box;
+  color: var(--color-body);
+  color-scheme: light dark;
+  font-family: 'Weekly Pro';
+  line-height: 1;
+}
