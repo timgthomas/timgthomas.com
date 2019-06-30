@@ -9,16 +9,17 @@ main {
   margin: 0 auto;
   max-width: 920px;
   padding: 0 60px;
+
+  @import '_bases';
+}
+
+footer {
+  font-size: 12px;
+  margin: 30px 0;
+  text-align: center;
 }
 
 .post {
-
-  header {
-    margin-bottom: 30px;
-    margin-left: auto;
-    max-width: 400px;
-    width: max-content;
-  }
 
   figure,
   iframe,
@@ -30,26 +31,6 @@ main {
     margin-bottom: 15px;
   }
 
-  h1,
-  h2 {
-    color: var(--color-header);
-    font-family: 'Karu';
-  }
-
-  h1 {
-    font-size: 32px;
-    font-style: oblique;
-    font-weight: 500;
-    line-height: 1.25;
-  }
-
-  h2 {
-    font-size: 24px;
-    font-style: oblique;
-    font-weight: 700;
-    margin: 30px 0 15px;
-  }
-
   time {
     font-size: 14px;
   }
@@ -59,20 +40,8 @@ main {
     line-height: 30px;
   }
 
-  a {
-    color: var(--color-link);
-
-    &:hover {
-      color: var(--color-link--hover);
-    }
-
-    &:active {
-      color: var(--color-link--active);
-    }
-
-    code {
-      text-decoration: underline;
-    }
+  a code {
+    text-decoration: underline;
   }
 
   blockquote {
@@ -81,20 +50,6 @@ main {
     line-height: 20px;
     margin-bottom: 15px;
     padding-left: 14px;
-  }
-
-  dl {
-    font-size: 16px;
-    line-height: 20px;
-    margin-bottom: 30px;
-  }
-
-  dt:not(:first-of-type) {
-    margin-top: 5px;
-  }
-
-  dd {
-    text-indent: 30px;
   }
 
   code,
@@ -111,7 +66,6 @@ main {
   }
 
   p code {
-
     display: inline-block;
   }
 
@@ -133,25 +87,12 @@ main {
     max-width: calc(100% - 120px);
   }
 
-  ol,
-  ul {
-    margin-left: 45px;
-  }
-
   hr {
     background-color: var(--color-body);
     border: none;
     height: 1px;
     margin: 30px auto;
     width: 50%;
-  }
-
-  em {
-    font-style: oblique;
-  }
-
-  strong {
-    font-weight: 700;
   }
 
   // The code highlighting plugin wraps <pre> elements in tables, which add
