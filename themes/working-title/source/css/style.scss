@@ -35,6 +35,12 @@
 }
 
 @font-face {
+  font-family: 'Overpass Mono';
+  font-weight: 300;
+  src: url('../fonts/overpass-mono-300.otf') format('opentype');
+}
+
+@font-face {
   font-family: 'Weekly Pro';
   font-weight: 400;
   src: url('../fonts/weekly-pro-400.otf') format('opentype');
@@ -58,6 +64,9 @@
   --color-background: hsl(72, 16%, 93%);
   --color-header: black;
   --color-body: hsl(60, 1%, 30%);
+  --color-link: hsl(300, 45%, 34%);
+  --color-link--hover: hsl(170, 70%, 20%);
+  --color-link--active: hsl(170, 70%, 15%);
 }
 
 // Dark Mode
@@ -67,6 +76,9 @@
     --color-background: hsl(60, 1%, 15%);
     --color-header: white;
     --color-body: hsl(60, 5%, 70%);
+    --color-link: hsl(300, 100%, 75%);
+    --color-link--hover: hsl(170, 100%, 66%);
+    --color-link--active: hsl(170, 70%, 46%);
   }
 }
 
@@ -126,8 +138,50 @@ main {
     line-height: 30px;
   }
 
-  figure {
-    margin-left: 15px;
+  a {
+    color: var(--color-link);
+
+    &:hover {
+      color: var(--color-link--hover);
+    }
+
+    &:active {
+      color: var(--color-link--active);
+    }
+
+    code {
+      text-decoration: underline;
+    }
+  }
+
+  code,
+  pre {
+    background-color: hsl(60, 1%, 13%);
+    border-radius: 8px / 15px;
+    font-family: 'Overpass Mono';
+    font-weight: 300;
+  }
+
+  code {
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  p code {
+
+    display: inline-block;
+  }
+
+  pre {
+    display: block;
+    font-size: 18px;
+    line-height: 28px;
+    padding: 10px 15px;
+  }
+
+  .highlight {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   img {
@@ -142,12 +196,22 @@ main {
   }
 
   hr {
+    background-color: var(--color-body);
+    border: none;
+    height: 1px;
     margin: 30px auto;
     width: 50%;
   }
 
   strong {
     font-weight: 700;
+  }
+
+  // The code highlighting plugin wraps <pre> elements in tables, which add
+  // border space.
+  table {
+    border-collapse: collapse;
+    width: 100%;
   }
 
 }
