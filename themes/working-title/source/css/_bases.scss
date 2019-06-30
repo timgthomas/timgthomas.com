@@ -7,23 +7,14 @@ header {
   width: max-content;
 }
 
-h1,
+h1 {
+  color: var(--color-header);
+  font: oblique 500 32px / 1 'Karu';
+}
+
 h2 {
   color: var(--color-header);
-  font-family: 'Karu';
-}
-
-h1 {
-  font-size: 32px;
-  font-style: oblique;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
-h2 {
-  font-size: 24px;
-  font-style: oblique;
-  font-weight: 700;
+  font: oblique 700 24px / 1 'Karu';
   margin: 30px 0 15px;
 }
 
