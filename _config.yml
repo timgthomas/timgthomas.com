@@ -84,9 +84,9 @@ pagination_dir: page
 disqus_shortname: timgthomas
 
 # Extensions
-## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
-## Themes: https://github.com/tommy351/hexo/wiki/Themes
-theme: working-title
+## HACK: This doesn't seem to work, so I've prepended other themes with
+## underscores.
+theme: tria-2015
 exclude_generator:
 
 # Deployment

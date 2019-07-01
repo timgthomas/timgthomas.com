@@ -20,15 +20,43 @@ purple    = rgb(182,  81, 154)
   -webkit-tap-highlight-color rgba(0, 0, 0, 0)
   -webkit-tap-highlight-color transparent
 
+@css {
+  :root {
+    --color-background--primary: hsl(72, 16.13%, 93.92%);
+    --color-background--secondary: hsl(73.33, 16.36%, 89.22%);
+    --color-background--tertiary: hsl(72, 16%, 80%);
+
+    --color-body: hsl(60, 1.2%, 32.55%);
+    --color-heading: hsl(0, 0%, 32.94%);
+
+    --image-chevron: url('/images/chevron-light.png');
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background--primary: hsl(60, 1%, 15%);
+      --color-background--secondary: hsl(60, 1%, 20%);
+      --color-background--tertiary: hsl(60, 1%, 30%);
+
+      --color-body: hsl(60, 5%, 70%);
+      --color-heading: hsl(0, 0%, 100%);
+
+      --image-chevron: url('/images/chevron-dark.png');
+    }
+  }
+}
+
 html
   box-sizing border-box
   font-size 62.5%
   line-height 1
 
 body
-  background-color alabaster
+  background-color var(--color-background--primary)
   font-family 'Fira Sans'
   font-weight 200
+
+@import 'partials/_header'
 
 [role='banner']
   position fixed
@@ -36,7 +64,7 @@ body
   width 100%
   z-index 1
 
-  background-color alabaster
+  // background-color alabaster
   box-shadow 0 4px rgba(black, 15%)
 
   .container
@@ -58,7 +86,7 @@ body
       left 10px
       top 100%
 
-      background-image url('../images/logo-chevron.png')
+      background-image var(--image-chevron)
       background-size 52px 18px
 
     @media screen and (min-width: 415px)
@@ -123,7 +151,7 @@ aside
   padding 142px 8px 16px
   overflow hidden
 
-  background-color blackrock
+  background-color var(--color-body)
   background-image linear-gradient(to bottom, #1e1d27 72px, #48475f)
   color alabaster
 
@@ -207,7 +235,7 @@ aside
       .outline
         fill white
       .icon
-        fill blackrock
+        fill var(--color-body)
 
 [role='main']
   overflow-x hidden // HACK: Mobile Safari stretches the viewport for some reason
@@ -222,7 +250,7 @@ aside
     padding-left 12px
 
     background-image url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAqCAMAAACNzCuYAAAAM1BMVEUAAADDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7zDV7z5XzbMAAAAEHRSTlMAECAwQFBgcICPn6+/z9/vIxqCigAAAG9JREFUeNrVkjkOwCAMBLnCFQ7//7WBbpQg99lytHhA2HxjazdMniKRoInItABeVgorZRPHoXOBxkralUAyFhgEYVeSqnZntVfVcVcukn5UZ5L7qK6sZEVNoBzBUGqVi+HqeNyflPxXLl16reUwWh7KIAtMyT0yHQAAAABJRU5ErkJggg==')
-    background-position left 1px
+    background-position top 3px left 1px
     background-repeat no-repeat
     background-size 8px 21px
 
@@ -232,13 +260,13 @@ aside
       font-style oblique
 
     h1
-      color tint(black, 33%)
+      color var(--color-heading)
       font-size 2.4rem
       font-weight 200
       text-transform uppercase
 
   p
-    color mix(black, alabaster, 65%)
+    color var(--color-body)
     font-size 1.8rem
 
   p,
