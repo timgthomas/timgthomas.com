@@ -6,9 +6,11 @@
   --color-background--secondary: hsl(72, 16%, 97%);
   --color-header: black;
   --color-body: hsl(60, 1%, 30%);
-  --color-link: hsl(300, 45%, 34%);
+  --color-link: hsl(290, 45%, 36%);
   --color-link--hover: hsl(170, 70%, 20%);
   --color-link--active: hsl(170, 70%, 15%);
+
+  --image-avatar: url('/images/avatar-light.png');
 }
 
 // Dark Mode
@@ -23,8 +25,10 @@
     --color-background--secondary: hsl(60, 1%, 13%);
     --color-header: white;
     --color-body: hsl(60, 5%, 70%);
-    --color-link: hsl(300, 100%, 75%);
+    --color-link: hsl(290, 70%, 76%);
     --color-link--hover: hsl(170, 100%, 66%);
     --color-link--active: hsl(170, 70%, 46%);
+
+    --image-avatar: url('/images/avatar-dark.png');
   }
 }

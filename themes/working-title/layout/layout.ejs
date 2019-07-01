@@ -10,20 +10,22 @@
 </head>
 <body ontouchstart>
   <header role="banner">
-    <h1>
-      <a class="<%- is_current('/', true) ? 'active' : '' %>" href="/">Tim G Thomas</a>
-    </h1>
-    <nav>
-      <a class="<%- (is_current('blog') || page.layout === 'post') ? 'active' : '' %>" href="<%= url_for(site.posts.last().path) %>">Blog</a>
-      <a class="<%- is_current('projects') ? 'active' : '' %>" href="/projects">Projects</a>
-      <!--<a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>-->
-    </nav>
+    <div>
+      <h1>
+        <a class="<%- is_current('/', true) ? 'active' : '' %>" href="/">Tim G Thomas</a>
+      </h1>
+      <nav>
+        <a class="<%- (is_current('blog') || page.layout === 'post') ? 'active' : '' %>" href="<%= url_for(site.posts.last().path) %>">Blog</a>
+        <a class="<%- is_current('projects') ? 'active' : '' %>" href="/projects">Projects</a>
+        <!--<a class="<%- is_current('talks') ? 'active' : '' %>" href="/talks">Talks</a>-->
+      </nav>
+    </div>
   </header>
-  <% let { layout = 'index' } = page %>
+  <!-- <% let { layout = '' } = page %> -->
   <!-- <% if (layout === 'index') { %>
     <%- partial('_partial/hero') %>
   <% } %> -->
-  <main class="<%= layout %>"><%- body %></main>
+  <main class="<%= page.layout %>"><%- body %></main>
   <footer>&copy; Tim G. Thomas</footer>
   <% if (!env.debug) { %>
     <%- partial('_partial/analytics') %>

@@ -1,11 +1,15 @@
-<h1>Recent Posts</h1>
-<ol>
-  <% for (let post of site.posts.data.slice(-3).reverse()) { %>
+<header>
+  <h1>Recent Posts</h1>
+</header>
+<ol class="post-list">
+  <% for (let post of site.posts.data.slice(-5).reverse()) { %>
     <li class="post">
-      <a href="<%= url_for(post.path) %>">
-        <h2><%= post.title %></h2>
-        <p class="excerpt"><%= strip_html(post.excerpt) %></p>
-      </a>
+      <h2>
+        <a href="<%= url_for(post.path) %>">
+          <%= post.title %>
+        </a>
+      </h2>
+      <p class="excerpt"><%= strip_html(post.excerpt) %></p>
     </li>
   <% } %>
 </ol>
