@@ -93,5 +93,5 @@ exclude_generator:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:TimGThomas/timgthomas.com.git
+  repo: git@github.com:timgthomas/timgthomas.com.git
   branch: gh-pages
