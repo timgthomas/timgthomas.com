@@ -29,6 +29,7 @@ purple    = rgb(182,  81, 154)
     --color-body: hsl(60, 1.2%, 32.55%);
     --color-heading: hsl(0, 0%, 32.94%);
 
+    --image-avatar: url('/images/avatar-light.png');
     --image-chevron: url('/images/chevron-light.png');
   }
 
@@ -41,6 +42,7 @@ purple    = rgb(182,  81, 154)
       --color-body: hsl(60, 5%, 70%);
       --color-heading: hsl(0, 0%, 100%);
 
+      --image-avatar: url('/images/avatar-dark.png');
       --image-chevron: url('/images/chevron-dark.png');
     }
   }
@@ -181,13 +183,13 @@ aside
         content ''
         display block
         position absolute
-        width 160px
+        width 220px
         height 176px
         top -30px
-        right -16px
+        right -40px
 
-        background-image url('../images/headshot.png')
-        background-size 160px 176px
+        background-image var(--image-avatar)
+        background-size 220px 176px
 
     @media screen and (min-width: 512px)
       float right
