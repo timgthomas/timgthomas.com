@@ -1,0 +1,11 @@
+<div role="main">
+  <header>
+    <h1>{{page.title}}</h1>
+  </header>
+  <dl>
+    {{#each site.data.talks}}
+      <dt>{{this.name}}</dt>
+      <dd>{{this.conference}}</dd>
+    {{/each}}
+  </dl>
+</div>
