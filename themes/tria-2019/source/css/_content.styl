@@ -185,3 +185,60 @@ footer
       float right
       a
         padding-right 18px
+
+// Talk List (Speaking page)
+
+.talk-list
+  list-style-type none
+  margin-left 0 !important // HACK
+
+  figure
+    align-items center
+    display flex
+    flex-direction column
+
+    @media screen and (min-width: 512px)
+      &
+        flex-direction row
+
+  figcaption
+    flex-grow 1
+    font-style normal // RESET
+    margin 0 // RESET
+    margin-left 1.2rem
+    text-align center
+
+    @media screen and (min-width: 512px)
+      &
+        text-align left
+
+  img
+    flex-shrink 0
+    width 224px
+
+  h2
+    font-size 1.6rem
+    margin 0 // RESET
+    text-align inherit // RESET
+
+  p
+    color mix(black, alabaster, 45%)
+    font-size 1.4rem
+    font-style oblique
+    margin 0 // RESET
+    margin 0 1.2rem
+    text-align inherit
+
+  ul
+    display flex
+    list-style-type none
+    justify-content center
+    margin 0
+    text-transform capitalize
+
+    @media screen and (min-width: 512px)
+      &
+        justify-content flex-start
+
+    li + li
+      margin-left 1.2rem

@@ -2,10 +2,22 @@
   <header>
     <h1>{{page.title}}</h1>
   </header>
-  <dl>
+  <ol class="talk-list">
     {{#each site.data.talks}}
-      <dt>{{this.name}}</dt>
-      <dd>{{this.conference}}</dd>
+      <li>
+        <figure>
+          <img src="/images/talks/{{this.thumbnail}}">
+          <figcaption>
+            <h2>{{this.name}}</h2>
+            <p>{{this.conference}}</p>
+            <ul>
+              {{#each this.links}}
+                <li><a href={{this.link}} target='_blank' rel='noopener'>{{this.type}}</a></li>
+              {{/each}}
+            </ul>
+          </figcaption>
+        </figure>
+      </li>
     {{/each}}
-  </dl>
+  </ol>
 </div>
