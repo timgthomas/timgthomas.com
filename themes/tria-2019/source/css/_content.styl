@@ -192,6 +192,9 @@ footer
   list-style-type none
   margin-left 0 !important // HACK
 
+  > li + li
+    margin-top 1.2em
+
   figure
     align-items center
     display flex
@@ -205,15 +208,18 @@ footer
     flex-grow 1
     font-style normal // RESET
     margin 0 // RESET
-    margin-left 1.2rem
+    margin-top 0.6rem
     text-align center
 
     @media screen and (min-width: 512px)
       &
+        margin-left 1.2rem
+        margin-top 0
         text-align left
 
   img
     flex-shrink 0
+    margin 0 // RESET
     width 224px
 
   h2
@@ -231,9 +237,11 @@ footer
 
   ul
     display flex
+    font-size 1.6rem
     list-style-type none
     justify-content center
     margin 0
+    margin-top 0.6rem
     text-transform capitalize
 
     @media screen and (min-width: 512px)
