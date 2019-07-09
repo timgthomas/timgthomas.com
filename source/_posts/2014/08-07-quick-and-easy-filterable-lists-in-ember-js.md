@@ -1,7 +1,6 @@
 ---
 title: Quick and Easy Filterable Lists in Ember.js
-date: 2014-08-07
------
+---
 
 There are many great [filterable grids](http://demos.telerik.com/kendo-ui/grid/index) available for Javascript. Sometimes, though, you just want an easy way to show a subset of items in a small list. In this post, we'll look at doing just that in your [Ember.js](http://emberjs.com/) applications.
 

@@ -1,6 +1,5 @@
 ---
 title: A Completely Unnecessary Redesign
-date: 2013-05-16
 ---
 
 ## Posts in This Series

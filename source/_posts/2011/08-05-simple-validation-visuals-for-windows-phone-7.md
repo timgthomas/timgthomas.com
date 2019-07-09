@@ -1,6 +1,5 @@
 ---
 title: Simple Validation Visuals for Windows Phone 7
-date: 2011-08-05
 ---
 
 In the Windows Phone 7 app I'm working on, I'd like to provide some visual feedback for invalid input fields by outlining each one with the user's [selected accent color][1]. Ideally, invalid input boxes would look something like this:

@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack"
-date: 2012-10-02
 ---
 
 ## Posts in This Series

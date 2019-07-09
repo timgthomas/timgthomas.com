@@ -1,6 +1,5 @@
 ---
 title: "A Bumbling Bundler: Fixing IncludeDirectory()"
-date: 2013-12-16
 ---
 
 [In my post on getting started with ASP.NET MVC's Bundler][0], we looked at a couple of methods that allow you to include files and directories to include as part of a bundle. Unfortunately, there's a serious gotcha with [`IncludeDirectory()`][1] that we'll see—and correct!—in this post.

@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part VI: Making It Look Native"
-date: 2012-11-01
 ---
 
 ## Posts in This Series

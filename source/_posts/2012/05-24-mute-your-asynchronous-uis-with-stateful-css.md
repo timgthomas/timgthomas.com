@@ -1,6 +1,5 @@
 ---
 title: Mute Your Asynchronous UIs with Stateful CSS
-date: 2012-05-24
 ---
 
 Asynchronous operations are very common in today's highly-interactive Web sites. Often, these operations are communicated to users by "muting" or "greying-out" the page, thus preventing user interactions. This is both a convenient way of setting user expectations (so they don't frantically click on other parts of your page expecting something to happen) and helps to prevent circumstances wherein you have multiple, potentially conflicting, operations in progress.

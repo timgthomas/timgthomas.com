@@ -1,6 +1,5 @@
 ---
 title: Feature Folders in ASP.NET MVC
-date: 2013-10-03
 ---
 
 If you've worked with ASP.NET MVC, you're no doubt familiar with the default folder structure, which looks something like this:

@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part V: Testing the App"
-date: 2012-10-23
 ---
 
 ## Posts in This Series

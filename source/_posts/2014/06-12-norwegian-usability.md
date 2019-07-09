@@ -1,6 +1,5 @@
 ---
 title: Norwegian Usability
-date: 2014-06-12
 ---
 
 One of my favorite parts about traveling internationally is the ability to see how other cultures design everyday objects and experiences. I had the opportunity to [speak in Norway last week][0], and took note of some of my favorite examples of usability:

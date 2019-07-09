@@ -1,7 +1,5 @@
 ---
 title: Upstaging Upsetting Upstreams
-date: 2019-07-09 15:08:04
-tags:
 ---
 
 Many browser requests communicate directly with one server: the client needs to grab or update data, or perhaps perform an action like logging in. Sometimes, though, you need to chat with sources upstream of even your own resource: passing an API token to a third party service, for example. In these situations, response status codes can quickly get out of hand. Do you return the upstream status code? Your own? A combination of the two?

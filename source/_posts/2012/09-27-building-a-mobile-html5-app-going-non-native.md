@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part I: A Business Case"
-date: 2012-09-27
 ---
 
 ## Posts in This Series

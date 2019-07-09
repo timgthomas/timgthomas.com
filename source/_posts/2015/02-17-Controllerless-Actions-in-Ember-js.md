@@ -1,6 +1,5 @@
 ---
 title: Controllerless Actions in Ember.js
-date: 2015-02-17
 ---
 
 Ember.js includes a robust eventing system for sending [actions](http://emberjs.com/guides/templates/actions/) from user-facing components deeper into your application (often into a [Controller](http://emberjs.com/guides/controllers/)):

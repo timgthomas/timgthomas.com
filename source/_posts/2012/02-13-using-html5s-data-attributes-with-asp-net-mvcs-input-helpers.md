@@ -1,6 +1,5 @@
 ---
 title: Using HTML5's "data" Attributes with ASP.NET MVC's Input Helpers
-date: 2012-02-13
 ---
 
 HTML5's "data" attributes are a great way to store metadata about a particular

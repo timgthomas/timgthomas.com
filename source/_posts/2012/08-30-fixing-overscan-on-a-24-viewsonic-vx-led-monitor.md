@@ -1,6 +1,5 @@
 ---
 title: Fixing Overscan on a 24" ViewSonic VX LED Monitor
-date: 2012-08-30
 ---
 
 To free up some monitors with DVI ports for our Dell-using developers at Headspring, I was recently upgraded to a pair of [ViewSonic VX2453mh][1] monitors. Overall, I'm very impressed with these screens: the colors are vibrant, the response times are excellent, and the input ports are conveniently-located. However, after hooking them up to my MacBook Pro, I almost immediately noticed a chunk of my screen was missing around the edges, a problem known as [overscan][2] (and similar to one about which I [blogged in April][3]). Overscan also tends to stretch the screen image, causing things to appear a bit fuzzy.

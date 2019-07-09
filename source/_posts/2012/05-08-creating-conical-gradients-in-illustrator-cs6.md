@@ -1,6 +1,5 @@
 ---
 title: Creating Conical Gradients in Illustrator CS6
-date: 2012-05-08
 ---
 
 One feature I used to use frequently in [CorelDRAW!][1] is conical gradients. The concept is simple: take a linear gradient and wrap it around a central point to create the appearance of a cone. When I switched to [Adobe Illustrator][2] (my primary motivation was that Corel's exporting features weren't very Web-friendly, but that's a topic for another day), my main complaint was its lack of conical gradients. While [some workarounds][3] are available, none was frictionless, and my designs went without for some time.

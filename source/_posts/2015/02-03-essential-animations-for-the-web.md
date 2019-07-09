@@ -1,6 +1,5 @@
 ---
 title: Essential Animations for the Web
-date: 2015-02-03
 ---
 
 [Rachel Nabors](http://rachelnabors.com/) predicts 2015 will be "a year in motion for the web", and it's easy to see why: more and more sites are adding motion to communicate their designs, and the abundance of [animation libraries](http://julian.com/research/velocity/) (not to mention progressively greater support for [CSS transitions](http://caniuse.com/#feat=css-transitions)) makes it easier than ever to bring motion to your apps.

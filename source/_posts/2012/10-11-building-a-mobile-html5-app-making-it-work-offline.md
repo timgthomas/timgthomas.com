@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part IV: Making It Work Offline"
-date: 2012-10-11
 ---
 
 ## Posts in This Series

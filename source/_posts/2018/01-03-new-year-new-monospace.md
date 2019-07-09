@@ -1,8 +1,5 @@
 ---
 title: New Year, New Monospace
-date: 2018-01-03
-category: blog
-layout: post
 ---
 
 If you’ve spent any amount of time speaking with me about coding, you’ve probably heard me enthuse about typefaces. Much like mattresses are the unsung heroes of a full third of our lives, coding fonts are rarely discussed, but constantly stared at.

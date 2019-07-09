@@ -1,6 +1,5 @@
 ---
 title: Inspect Mobile Web Sites with a Mac and iOS 6
-date: 2012-09-19
 ---
 
 iOS 6 includes [a number of new features][1], including brand-new, Apple-designed maps and, for some, Siri support. My favorite new feature by far, however, is one that very few consumers will even know exists: remote Web inspection.

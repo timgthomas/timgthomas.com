@@ -1,6 +1,5 @@
 ---
 title: "Tame Your Illustrator Layers with Isolation Mode"
-date: 2015-03-10
 ---
 
 When designing UIs, I make copious use of [Illustrator’s](http://www.adobe.com/products/illustrator.html) layers. I love the flexibility of designing parts of an interface separately, then toggling them on and off to see how various parts fit together.

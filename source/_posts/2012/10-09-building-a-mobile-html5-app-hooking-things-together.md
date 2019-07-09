@@ -1,6 +1,5 @@
 ---
 title: "Building a Non-Native Mobile HTML5 App, Part III: Hooking Things Together"
-date: 2012-10-09
 ---
 
 ## Posts in This Series

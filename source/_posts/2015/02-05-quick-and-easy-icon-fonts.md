@@ -1,6 +1,5 @@
 ---
 title: Quick and Easy Icon Fonts
-date: 2015-02-05
 ---
 
 Creating icon fonts is one of my favorite things to do these days. With all the great browser design and development tools available, I'm using my pure design skills less and less; creating icons is one of the few times when I can sit down and do some solid vector-pushing.

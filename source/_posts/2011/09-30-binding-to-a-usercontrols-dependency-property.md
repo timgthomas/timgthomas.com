@@ -1,6 +1,5 @@
 ---
 title: Binding to a UserControl's Dependency Property
-date: 2011-09-30
 ---
 
 NOTE: This post's code was written for Windows Phone 7 and may or may not work with other versions of Silverlight or WPF.

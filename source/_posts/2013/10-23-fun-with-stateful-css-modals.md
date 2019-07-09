@@ -1,6 +1,5 @@
 ---
 title: "Fun with Stateful CSS: Modals"
-date: 2013-10-23
 ---
 
 [In the first post in this series][0], we looked at how to switch between the "view" and "edit" modes of a page with just a checkbox. Today, we'll apply a similar technique to show a modal popup. Once again, we'll be using nothing but HTML and CSS…no JavaScript!

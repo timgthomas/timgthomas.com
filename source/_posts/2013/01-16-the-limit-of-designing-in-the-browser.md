@@ -1,6 +1,5 @@
 ---
 title: The Limit of Designing in-the-Browser
-date: 2013-01-16
 ---
 
 The concept of designing Web pages using only a Web browser is popular these days. It's easy to understand why: browser developer tools make it simple to make a real-time change to HTML, CSS, or even JavaScript, see its effect immediately, and save the result back to the originating file. Furthermore, there's a certain symmetry in building for the Web using the same tools that others will eventually use to experience your work. Unfortunately, this approach has a limitation of which would-be browser-based designers need be aware.

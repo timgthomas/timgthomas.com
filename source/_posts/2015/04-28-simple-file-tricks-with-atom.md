@@ -1,6 +1,5 @@
 ---
 title: "Simple File Tricks with Atom"
-date: 2015-04-28
 ---
 
 I’m a huge fan of [Atom](https://atom.io/), [GitHub](https://github.com/)’s [open source](https://github.com/atom/atom) text editor. The more time I can spend in it (instead of switching contexts between different applications), the better. In this post, I’d like to share with you a few simple file operations you can perform inside Atom instead of ⌘+Tab-ing elsewhere:

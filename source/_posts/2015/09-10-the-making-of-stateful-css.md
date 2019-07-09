@@ -1,6 +1,5 @@
 ---
 title: The Making of “You Might Not Need JavaScript”
-date: 2015-09-10
 ---
 
 Last week, I had the pleasure of presenting at the [JavaScript Austin](http://www.meetup.com/javascript-austin/) meetup. For this month's meetup, I gave my "stateful CSS" talk (titled "Form with Function" or "[You Might Not Need JavaScript](http://www.meetup.com/javascript-austin/events/225015546/)", depending on how trolling I feel at the time). If you haven't seen it yet, there's a video of it [on Vimeo](https://vimeo.com/131410261):

@@ -1,6 +1,5 @@
 ---
 title: Restoring "Show Hidden Windows on Hover" in Visual Studio 2012
-date: 2012-08-23
 ---
 
 I like my Visual Studio workspace to be as unobtrusive as possible. Easy-to-learn [keyboard shortcuts][1]&mdash;which negate the need for tons of buttons and menus&mdash;and productivity tools like JetBrains's [ReSharper][2] eliminate most reasons for needing to show tool windows at all.

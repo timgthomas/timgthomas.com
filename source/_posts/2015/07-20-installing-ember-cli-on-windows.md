@@ -1,6 +1,5 @@
 ---
 title: Installing Ember CLI on Windows
-date: 2015-07-20
 ---
 
 Yesterday, I made a huge mistake: I decided to install [Ember CLI](http://www.ember-cli.com/) on a brand-new Windows installation. Over _two hours_ later, I was finally able to build and run an Ember CLI project. I'd like to share some of that process with you, and perhaps save you some of the headaches I encountered.

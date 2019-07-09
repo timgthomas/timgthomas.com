@@ -1,6 +1,5 @@
 ---
 title: "Fun with Stateful CSS: A View/Edit Screen"
-date: 2013-10-17
 ---
 
 I've [previously blogged][0] about using the concept of "stateful CSS" to indicate when your application is in the middle of a potentially long-running process. In that post, we looked at how to create a simple "view/edit" screen, but we relied on JavaScript to swap out CSS classes. Fortunately, there's an easier way: using a checkbox!
