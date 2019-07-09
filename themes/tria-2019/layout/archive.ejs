@@ -16,7 +16,7 @@
       <dl>
     <% } %>
     <dt><a href="<%- url_for(post.path) %>"><%= post.title %></a></dt>
-    <dd><%= date(post.date, config.date_format) %> <%= post.path %></dd>
+    <dd><%= date(post.date, config.date_format) %></dd>
   <% }); %>
   <% if (page.posts.length) { %>
   </dl>
