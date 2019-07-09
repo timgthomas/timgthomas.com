@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "hexo server --debug",
-    "deploy": "hexo deploy -g"
+    "deploy": "NODE_ENV=production hexo deploy -g"
   },
   "devDependencies": {
     "hexo": "^3.9.0",
