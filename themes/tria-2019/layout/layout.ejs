@@ -57,6 +57,8 @@
   </aside>
   <%- body %>
   <p id="copyright">&copy; Tim G. Thomas</p>
-  <%- partial('_partial/analytics') %>
+  <% if (env.env !== 'development') { %>
+    <%- partial('_partial/analytics') %>
+  <% } %>
 </body>
 </html>
