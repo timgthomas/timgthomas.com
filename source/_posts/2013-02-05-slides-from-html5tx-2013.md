@@ -1,7 +1,6 @@
 ---
 title: Slides from HTML5.tx 2013
-category: blog
-layout: post
+date: 2013-02-05
 ---
 
 Last Saturday, 2 February, I had the honor of presenting at the incredible [HTML5.tx][1] conference here in Austin, Texas. If you'd like to view the slides from my presentation, "Web Usability on a Budget", they're [located on SpeakerDeck][2].

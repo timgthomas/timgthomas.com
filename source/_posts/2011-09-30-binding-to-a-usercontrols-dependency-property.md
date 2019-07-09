@@ -1,7 +1,6 @@
 ---
 title: Binding to a UserControl's Dependency Property
-category: blog
-layout: post
+date: 2011-09-30
 ---
 
 NOTE: This post's code was written for Windows Phone 7 and may or may not work with other versions of Silverlight or WPF.
@@ -13,7 +12,7 @@ Creating the `DependencyProperty` on the `CombatActions` control was pretty stra
       public partial class CombatActions : UserControl
       {
          // ...
-      
+
          public static readonly DependencyProperty CanCastSpellsProperty =
             DependencyProperty.Register("CanCastSpells", typeof(bool),
             typeof(CombatActions), null);
@@ -23,7 +22,7 @@ Creating the `DependencyProperty` on the `CombatActions` control was pretty stra
             get { return (bool)GetValue(CanCastSpellsProperty); }
             set { SetValue(CanCastSpellsProperty, value); }
          }
-         
+
          // ...
       }
 
@@ -36,22 +35,22 @@ Unfortunately, I spent more time than I'd care to admit trying to figure out why
       public class CombatForm : PhoneApplicationPage
       {
          public bool CanCastSpells { get; set; }
-      
+
          public CombatForm()
          {
             // ...
-            
+
             // In this example, we're binding the UserControl to a property on this
             // instance of CombatForm, so the DataContext is "this".
             DataContext = this;
-            
+
             Actions.SetBinding(CombatActions.CanCastSpellsProperty, new Binding
                {
                   Source = DataContext,
                   Path = new PropertyPath("CanCastSpells"),
                   Mode = BindingMode.TwoWay
                });
-            
+
             // ...
          }
       }

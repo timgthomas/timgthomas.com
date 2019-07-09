@@ -1,7 +1,6 @@
 ---
 title: "Fun with Stateful CSS: Tabs"
-category: blog
-layout: post
+date: 2013-10-23
 ---
 
 In this series, we've covered how to use form inputs and some [clever CSS selectors][0] to [toggle between states of a form][1] and [show a modal window][2]. Now, let's apply the same principles to create a simple—and JavaScript-less!—collection of tabs.

@@ -1,7 +1,6 @@
 ---
 title: Breaking Your Old HTML Habits
-category: blog
-layout: post
+date: 2011-07-01
 ---
 
 The markup portion of HTML 5 is an incredible leap forward in Web development, but is nonetheless not a brand-new language or technology.  As such, bad habits that have crept up after years of working with browser inconsistencies, poor maintenance habits, and so forth continue to exist even in so-called "modern, HTML 5 sites".  In this post, I'll share some of my own bad habits and how HTML 5 has allowed me to ditch them in favor of much cleaner pages that I don't mind showing off to my friends.

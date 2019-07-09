@@ -1,5 +1,6 @@
 ---
 title: New Year, New Monospace
+date: 2018-01-03
 category: blog
 layout: post
 ---

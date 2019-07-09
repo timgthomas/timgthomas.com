@@ -1,7 +1,6 @@
 ---
 title: A Quick-Start of ASP.NET MVC 4's Bundling
-category: blog
-layout: post
+date: 2012-09-17
 ---
 
 As a Web application becomes more complex, the number of external scripts on which it depends grows significantly. Start with [jQuery][1] and some application libraries like [Backbone.js][2] (and its dependency, [Underscore][3]), then throw in plugins from UI frameworks like [Foundation][4] and some form validation scripts—not to mention your app's code itself!—and you can easily discover your app has dozens of external files, each of which must be loaded on every page refresh.

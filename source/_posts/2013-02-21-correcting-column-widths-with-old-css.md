@@ -1,7 +1,6 @@
 ---
 title: Correcting Column Widths with Old CSS
-category: blog
-layout: post
+date: 2013-02-21
 ---
 
 During a demo this week, one of the participants pointed out some strange behavior: when data tables in this application are modified by adding in more rows with `colspan` attributes—as happens when users request more details about a particular row of data—the table's column widths inexplicably shift positions and sizes. Normally, I work around this bit of silliness by adding some explicit widths (always in percentages! :) to the header cells, but these tables already featured that "fix".

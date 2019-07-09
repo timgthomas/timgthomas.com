@@ -1,3 +1,4 @@
+---
 title: A More Reactive Build Tool
 date: 2015-10-28
 ---

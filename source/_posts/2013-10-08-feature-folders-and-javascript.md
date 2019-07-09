@@ -1,7 +1,6 @@
 ---
 title: Feature Folders and JavaScript
-category: blog
-layout: post
+date: 2013-10-08
 ---
 
 [In my last post][0], we looked at how to organize C# files in an ASP.NET MVC project into "feature folders" that contain all the files needed for a vertical slice of an application (view models, commands/queries, and views). Today, we'll see how we can accomplish the same thing with JavaScript files, and maybe optimize how JavaScript works in an MVC app while we're at it.

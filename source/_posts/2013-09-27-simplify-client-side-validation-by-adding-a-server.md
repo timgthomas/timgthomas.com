@@ -1,4 +1,6 @@
+---
 title: Simplify Client-side Validation…by Adding a Server
+date: 2013-09-27
 ---
 
 Traditional web validation techniques typically involve a mix of client-side validation (with a JavaScript library), followed by another round of validation on the server. By necessity, server-side validation needs to be a superset of client-side code to prevent erroneous—or sometimes malicious—data from getting into the system.

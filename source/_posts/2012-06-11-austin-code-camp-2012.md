@@ -1,7 +1,6 @@
 ---
 title: Austin Code Camp 2012
-category: blog
-layout: post
+date: 2012-06-11
 ---
 
 The 2012 edition of [Austin Code Camp][0] last Saturday was a resounding success! Thanks to everyone who attended (especially those who survived one of my talks).

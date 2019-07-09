@@ -1,7 +1,6 @@
 ---
 title: NDC Oslo Videos
-category: blog
-layout: post
+date: 2013-06-28
 ---
 
 Two weeks ago, I had the honor to speak at the [Norwegian Developers Conference][0] in Oslo. The event featured a noteworthy variety of sessions and speakers, and more than a few [bronies and pegasisters][0]! It was a truly amazing experience, and one I hope to repeat next year.

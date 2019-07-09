@@ -1,5 +1,6 @@
 ---
 title: Deploying Ember CLI Apps to Parse Cloud Code
+date: 2015-09-02
 ---
 
 I'm a big fan of [Parse](https://parse.com/): their backend-as-a-service works great for the type of apps I build, which generally have little to no "server" and communicate primarily through REST endpoints.

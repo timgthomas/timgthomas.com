@@ -1,7 +1,6 @@
 ---
 title: Disable "Track Changes" in SQL Server Management Studio
-category: blog
-layout: post
+date: 2011-12-30
 ---
 
 For whatever reason, I get very little use out of the "track changes" feature in

@@ -1,7 +1,6 @@
 ---
 title: The Path Ahead
-category: blog
-layout: post
+date: 2013-05-28
 ---
 
 ## Posts in This Series

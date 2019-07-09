@@ -1,7 +1,6 @@
 ---
 title: Correct HDMI Display Scaling in Windows on a Radeon-Equipped MacBook Pro
-category: blog
-layout: post
+date: 2012-04-24
 ---
 
 <p>Note: this post involves replacing default drivers with new, potentially-unsupported ones. Use caution and keep backups of your original drivers just in case.</p>

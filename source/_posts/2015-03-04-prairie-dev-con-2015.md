@@ -1,4 +1,6 @@
+---
 title: Prairie Dev Con 2015
+date: 2015-03-04
 ---
 
 Earlier this week, I had the extreme pleasure to return to Winnipeg, Manitoba, to speak at the 2015 edition of the [Prairie Dev Con](http://prairiedevcon.com/) (the conference’s ninth annual event).

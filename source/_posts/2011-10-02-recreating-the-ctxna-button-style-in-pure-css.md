@@ -1,7 +1,6 @@
 ---
 title: Recreating the CTXNA Button Style in Pure CSS
-category: blog
-layout: post
+date: 2011-10-02
 ---
 
 Although the design of the [CTXNA Web site][1] makes extensive use of images (for browser compatability), I became curious how difficult the style would be to reproduce in nothing but CSS and threw together a demo using JSFiddle:
