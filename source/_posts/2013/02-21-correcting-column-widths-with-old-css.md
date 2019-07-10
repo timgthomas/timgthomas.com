@@ -10,7 +10,7 @@ The solution, helpfully provided by forum member "pocu", involves a CSS property
 
 The following [JSFiddle][3] demonstrates this behavior. Click in any cell to modify its value, and notice how the automatic-layout table (top) differs from the fixed-layout one:
 
-<iframe src="http://jsfiddle.net/TimGThomas/D3eYK/15/embedded/result,html,css" style="height:300px" allowfullscreen="allowfullscreen" frameborder="0">.</iframe>
+<iframe src="https://jsfiddle.net/TimGThomas/D3eYK/15/embedded/result,html,css" style="height:300px" allowfullscreen="allowfullscreen" frameborder="0">.</iframe>
 
 Though table-based layouts are a distant memory, many sites still need to represent tabular data, and it's still important to give `table`s some visual consideration. `table-layout` does just that, by solving column width inconsistencies when a table's structure is modified. Maybe it's time to move this antique from its long-forgotten home into your HTML table toolbelt.
 

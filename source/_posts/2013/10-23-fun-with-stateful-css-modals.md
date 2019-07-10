@@ -8,30 +8,34 @@ To review, the concept is simple: use HTML elements that are designed to hold st
 
 The HTML is quite simple. Due to the nature of CSS, our checkbox needs to be before (in the DOM) any elements we want to target with selectors, but we only need two extra elements beyond that (one for the modal itself and another to form the "cover" behind it):
 
-      <input id="show-modal" type="checkbox">
-      <div class="modal">
-        <p>This is content of the modal.</p>
-        <label class="button" for="show-modal">Hide Modal</label>
-      </div>
-      <div class="modal-cover"></div>
-      <label class="button" for="show-modal">Show Modal</label>
+```html
+<input id="show-modal" type="checkbox">
+<div class="modal">
+  <p>This is content of the modal.</p>
+  <label class="button" for="show-modal">Hide Modal</label>
+</div>
+<div class="modal-cover"></div>
+<label class="button" for="show-modal">Show Modal</label>
+```
 
 Behaviorally, both `label` elements in this example will toggle the state of the `show-modal` checkbox. We'll use CSS to show the modal (and its cover) when that checkbox is checked, and hide it otherwise. [The "general sibling" selector][1] makes another appearance here:
 
-      /* Hide the modal by default... */
-      .modal, .modal-cover { visibility: hidden; }
+```css
+/* Hide the modal by default... */
+.modal, .modal-cover { visibility: hidden; }
 
-      /* ...and show it when the checkbox is checked. */
-      #show-modal:checked ~ .modal,
-      #show-modal:checked ~ .modal-cover { visibility: visible; }
+/* ...and show it when the checkbox is checked. */
+#show-modal:checked ~ .modal,
+#show-modal:checked ~ .modal-cover { visibility: visible; }
 
-      /* Always hide the checkbox. */
-      #show-modal { display: none; }
+/* Always hide the checkbox. */
+#show-modal { display: none; }
+```
 
 You can easily add some CSS transitions to make the modal fade in and out (or even [something more exciting][2]), but the concept remains the same. You may wonder about the `label` tag inside the modal: its purpose is to un-check the checkbox, thereby hiding the modal, much like a "close" button (but without the JavaScript!).
 
-<p data-theme-id="0" data-slug-hash="KILyq" data-user="TimGThomas" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/TimGThomas/pen/KILyq'>KILyq</a> by Tim G. Thomas (<a href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a></p>
-<script src="http://codepen.io/assets/embed/ei.js"> </script>
+<p data-theme-id="0" data-slug-hash="KILyq" data-user="TimGThomas" data-default-tab="result" class='codepen'>See the Pen <a href='https://codepen.io/TimGThomas/pen/KILyq'>KILyq</a> by Tim G. Thomas (<a href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a></p>
+<script src="https://codepen.io/assets/embed/ei.js"> </script>
 
 My team uses this approach on our current project. Though we use JavaScript to populate the *contents* of our modals, this technique seriously cuts down on the script overhead of showing a modal popup. Stick around for more fun with stateful CSS!
 

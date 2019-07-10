@@ -8,13 +8,13 @@ At this year's event, I gave two presentations: "[Web Usability on a Budget][2]"
 
 ## Web Usability on a Budget
 
-<iframe src="http://player.vimeo.com/video/68331686?title=0&amp;color=7c7d2b" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
+<iframe src="https://player.vimeo.com/video/68331686?title=0&amp;color=7c7d2b" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
 
 > Not all projects have the budget for UX designers; as a result, experience in disciplines such as user research, interaction design, and information architecture are often expected of all developers on a team. Fortunately, these arcane-sounding topics are far from impossible to grasp for mere programmer mortals. In this session, you'll learn some easy tricks to make your sites more approachable, discover ways to help develop an emotional connection between your apps and your users, and see some tools that can assist you with planning and designing your next masterpiece of usability.
 
 ## A Developer's Guide to Design Frameworks (and More!)
 
-<iframe src="http://player.vimeo.com/video/68331927?title=0&amp;color=7c7d2b" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
+<iframe src="https://player.vimeo.com/video/68331927?title=0&amp;color=7c7d2b" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
 
 > You and your team have unit-tested, continuously-integrated, and overall maintainably-crafted a great Web application. To match the rock-solid foundation underneath, why not give your site the visual polish it deserves? In this talk, you'll be introduced to several UI-focused frameworks to help give your functional site a facelift. You'll also learn about some easy ways to spruce up your UI with Web fonts, icons, and colors. Come learn how to take your site from maintainable to magnificent...no design expertise required!
 

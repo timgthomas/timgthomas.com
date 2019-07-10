@@ -6,7 +6,7 @@ Last week, I had the pleasure of presenting at the [JavaScript Austin](http://ww
 
 <!-- more -->
 
-<iframe src="http://player.vimeo.com/video/131410261?title=0&amp;color=35aba5" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
+<iframe src="https://player.vimeo.com/video/131410261?title=0&amp;color=35aba5" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
 
 There's a bit of a plot twist at the end of the talk that I get a lot of questions about (watch the video above first if you don't want spoilers). In this post, we'll look at how this plot twist was created.
 
@@ -35,7 +35,7 @@ A slide deck doesn't have many "features" beyond showing one slide at a time (an
 
 Now, if we could somehow link the "checked" state of a radio button to the visibility of another element, we'd have the beginnings of a slide deck right there. Select the radio buttons in the following [pen](http://codepen.io/TimGThomas/pen/LppWpY/) to see what happens:
 
-<p data-height="250" data-theme-id="1840" data-slug-hash="LppWpY" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:250px">See the Pen <a href='http://codepen.io/TimGThomas/pen/LppWpY/'>LppWpY</a> by Tim G. Thomas (<a href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="250" data-theme-id="1840" data-slug-hash="LppWpY" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:250px">See the Pen <a href='http://codepen.io/TimGThomas/pen/LppWpY/'>LppWpY</a> by Tim G. Thomas (<a href='https://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 So far, we've got a passable—albeit boring—slide deck, and all it took was some very basic HTML and a little clever CSS. Turns out styling elements is pretty straightforward thanks to the [`:checked`](https://developer.mozilla.org/en-US/docs/Web/CSS/%3Achecked) pseudo-class and the `+` ([adjacent](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_selectors)) selector:
@@ -66,7 +66,7 @@ input[name='slide'] {
 
 That's better, but now we have no way of moving through the slides. Fortunately, this is already (partially) solved for us: browsers will let you switch between radio button values with your keyboard. Try it out below: click on a radio button, then use your arrow keys to select different options. Obviously, this won't work if you're on a device without a keyboard, so keep that in mind if your slides' consumers will be on their phones:
 
-<p data-height="150" data-theme-id="1840" data-slug-hash="xwwqRK" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:150px">See the Pen <a href='http://codepen.io/TimGThomas/pen/xwwqRK/'>xwwqRK</a> by Tim G. Thomas (<a href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="150" data-theme-id="1840" data-slug-hash="xwwqRK" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:150px">See the Pen <a href='http://codepen.io/TimGThomas/pen/xwwqRK/'>xwwqRK</a> by Tim G. Thomas (<a href='https://codepen.io/TimGThomas'>@TimGThomas</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 Next, we'll have to link each slide to its radio button. If we're hiding the inputs, we need some way of giving them focus so that the browser can work its keyboard magic. This is as easy as either giving each input an ID and changing each slide to be a `<label>`...
