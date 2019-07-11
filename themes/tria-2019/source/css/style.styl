@@ -189,6 +189,40 @@ aside
   background-image linear-gradient(to bottom, #1e1d27 72px, #48475f)
   color alabaster
 
+  .social
+    display flex
+    justify-content flex-end
+
+    a
+      background-size contain
+      font 0 / 0 a
+      height 44px
+      mix-blend-mode lighten
+      opacity 0.65
+      width 40px
+
+      &:hover
+        opacity 1
+
+      &:active
+        filter invert(1)
+        opacity 1
+
+      & + a
+        margin-left 10px
+
+  .social-twitter
+    background-image url('/images/social-twitter.png')
+
+  .social-github
+    background-image url('/images/social-github.png')
+
+  .social-codepen
+    background-image url('/images/social-codepen.png')
+
+  .social-dribbble
+    background-image url('/images/social-dribbble.png')
+
   .container
     box-sizing border-box
     margin 0 auto
@@ -229,44 +263,6 @@ aside
 
   p + p
     margin-top 8px
-
-  a
-    display inline-block
-    height 44px
-    width 40px
-    margin 0 2px
-
-    background-size 40px 44px
-
-    color currentColor
-    line-height 44px
-    text-align center
-    text-decoration none
-
-    .icon,
-    .fill,
-    .outline
-      transition fill 200ms
-
-    .outline,
-    .icon
-      fill shade
-
-    .fill
-      fill transparent
-
-    &:hover
-      .outline,
-      .icon
-        fill alabaster
-
-    &:active
-      .fill,
-      .icon,
-      .outline
-        fill white
-      .icon
-        fill var(--color-body)
 
 [role='main']
   overflow-x hidden // HACK: Mobile Safari stretches the viewport for some reason
