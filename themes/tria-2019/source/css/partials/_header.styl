@@ -2,4 +2,12 @@
   [role='banner'] {
     background-color: var(--color-background--primary);
   }
+
+  @supports (backdrop-filter: blur(0)) {
+    [role='banner'] {
+      background-color: transparent;
+      background-image: linear-gradient(to bottom, var(--color-background--primary--transparent), var(--color-background--primary));
+      backdrop-filter: saturate(0.5) blur(10px);
+    }
+  }
 }

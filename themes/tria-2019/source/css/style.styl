@@ -26,7 +26,8 @@ purple    = rgb(182,  81, 154)
 
 @css {
   :root {
-    --color-background--primary: hsl(72, 16.13%, 93.92%);
+    --color-background--primary: hsla(72, 16.13%, 93.92%, 1.0);
+    --color-background--primary--transparent: hsla(72, 16.13%, 93.92%, 0.8);
     --color-background--secondary: hsl(73.33, 16.36%, 89.22%);
     --color-background--tertiary: hsl(72, 16%, 80%);
 
@@ -39,7 +40,8 @@ purple    = rgb(182,  81, 154)
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-background--primary: hsl(60, 1%, 15%);
+      --color-background--primary: hsla(60, 1%, 15%, 1.0);
+      --color-background--primary--transparent: hsl(60, 1%, 15%, 0.8);
       --color-background--secondary: hsl(60, 1%, 20%);
       --color-background--tertiary: hsl(60, 1%, 30%);
 
