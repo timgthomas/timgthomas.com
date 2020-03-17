@@ -2,6 +2,8 @@
 title: Unit-testing Glimmer Components
 ---
 
+_Update: Some amazing sleuthing by Discord user DanDan has not only uncovered breaking API changes, but also cleaned up some of the component manager lookup code. Thanks so much, DanDan!_
+
 Like many Ember developers, I'm excited about [Glimmer](https://glimmerjs.com). With the [Octane](https://emberjs.com/editions/octane/) release, the Ember team has removed a lot of cruft from the framework and dramatically simplified day-to-day development. As such, I was excited to upgrade to the latest releases that support Glimmer—3.13 and 3.14—and try out the new goodies.
 
 Unfortunately, I quickly ran into what seemed like a strange miss on Glimmer's part: Glimmer components don't appear to support unit tests. Most of my Ember projects use a large number of component unit tests, so this was a bummer to discover: I'd have to make major changes to the way my components worked in order to have test coverage.
@@ -52,12 +54,10 @@ let lookupPath = 'component:my-component';
 let { class: componentClass } = owner.factoryFor(lookupPath);
 ```
 
-**The Component Manager.** Next, we need to create the aforementioned Component Manager, through which we'll pass arguments to our soon-to-be-created component. Looking at the Glimmer source, [a manager is exported into Ember apps](https://github.com/glimmerjs/glimmer.js/blob/master/packages/%40glimmer/component/app/component-managers/glimmer.js), so we can import it thusly:
+**The Component Manager.** Next, we need to create the aforementioned Component Manager, through which we'll pass arguments to our soon-to-be-created component. The component manager is injected into Ember's dependency container, so we can import it thusly:
 
 ```js
-import GlimmerComponentManager from '../../component-managers/glimmer';
-// This example is "located" in `tests/helpers`, so we need to go up two levels.
-let componentManager = new GlimmerComponentManager(owner);
+let componentManager = owner.lookup('component-manager:glimmer');
 ```
 
 **At last: the Component!** Now that we have an Owner and Component Manager, we can create the component we've always wanted! We'll need one last thing: any arguments we want to provide the Component. The Component Manager expects these [in an attribute named `named`](https://github.com/glimmerjs/glimmer.js/blob/master/packages/%40glimmer/component/addon/-private/ember-component-manager.ts#L74), so we'll oblige it:
@@ -80,12 +80,11 @@ I use this approach often enough that I usually create a test helper to do all t
 
 ```js
 import { getContext } from '@ember/test-helpers';
-import GlimmerComponentManager from '../../component-managers/glimmer';
 
 export default function createComponent(lookupPath, named = {}) {
   let { owner } = getContext();
+  let componentManager = owner.lookup('component-manager:glimmer');
   let { class: componentClass } = owner.factoryFor(lookupPath);
-  let componentManager = new GlimmerComponentManager(owner);
   return componentManager.createComponent(componentClass, { named });
 }
 ```
@@ -95,7 +94,7 @@ And you can use it thusly:
 ```js
 import createComponent from 'my-app/tests/helpers/create-component';
 
-test('should calculate uv indices', async function(assert) {
+test('should calculate the value', async function(assert) {
   let model = { val: 4 };
   let component = createComponent('component:my-component', { model });
   assert.equal(component.valueSquared, 16);
@@ -105,6 +104,8 @@ test('should calculate uv indices', async function(assert) {
 });
 ```
 
+I've published a [sample Ember Octane app on GitHub](https://github.com/timgthomas/unit-testing-glimmer-components) if you'd like to play around with real code.
+
 ## A Disclaimer
 
 As I mentioned earlier in this post, Octane doesn't officially support unit tests for Glimmer components. Although (as far as I can tell), everything in this post uses non-private APIs, there's no guarantee this approach will work in the future. Of course, I hope the Ember and Glimmer teams restore official support for this type of test, as it's usually the first thing I reach for when building out components. Until then, I'll try to keep up with any API changes and update this post to match.
@@ -112,5 +113,7 @@ As I mentioned earlier in this post, Octane doesn't officially support unit test
 -----
 
 I want to extend special thanks to [NullVoxPopuli](https://twitter.com/nullvoxpopuli), [pzuraq](https://www.pzuraq.com), and [bendemboski](https://twitter.com/bendemboski) from the Discord server, for listening to my concerns, patiently explaining me through the Glimmer rendering process, and offering suggestions on how to proceed.
+
+I also owe Discord user DanDan a debt of gratitude for letting me know of the breaking Glimmer API and his work to resolve it. Much appreciated!
 
 Do you have any other approaches you use for component tests? Suggestions for improvement? Let me know in the comments below, and happy testing!
