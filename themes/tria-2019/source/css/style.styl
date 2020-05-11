@@ -17,6 +17,7 @@ purple    = rgb(182,  81, 154)
 *
   box-sizing inherit
   margin 0
+  outline none
   padding 0
 
   line-height inherit
@@ -87,10 +88,12 @@ body
     box-sizing border-box
     display flex
     flex-direction row
+    flex-wrap wrap
     align-items stretch
     justify-content space-between
     margin 0 auto
     max-width 720px
+    padding 12px 0
     position relative
 
     &:after
@@ -116,9 +119,9 @@ body
     background-size 38px 44px
 
     color var(--color-body)
-    font-size inherit
+    font-size 2.4rem
     font-weight 300
-    line-height 68px
+    line-height 44px
     text-transform uppercase
 
     @media screen and (min-width: 512px)
@@ -162,23 +165,64 @@ body
 
   nav
     display flex
+    flex-direction column
     font-size 1.6rem
+    height 0
     letter-spacing 0.1rem
-    margin-right 1.6rem
+    overflow hidden
     text-transform uppercase
+    transition height 350ms
+    width 100%
 
     a
       align-items center
       color var(--color-body)
       display flex
+      flex-shrink 0
       font-weight 300
+      height 44px
+      justify-content flex-end
+      opacity 0
+      padding-right 2.2rem
       text-decoration none
+      transform translateX(50px)
+      transition-delay 350ms
+      transition-duration 0ms
+      transition-property opacity, transform
 
       &:hover
         color var(--color-heading)
 
-    a + a
-      margin-left 1.2rem
+  #toggle-nav
+    appearance none
+    background-image url('/images/nav-switch.png')
+    background-position top left
+    background-size cover
+    cursor pointer
+    display block
+    height 44px
+    width 55px
+
+    &:checked
+      background-position bottom left
+
+  // Expand/collapse animation
+  #toggle-nav:checked + nav
+    height 132px
+
+    a
+      opacity 1
+      transform translateX(0)
+      transition-duration 350ms
+
+      &:nth-of-type(1)
+        transition-delay 100ms
+
+      &:nth-of-type(2)
+        transition-delay 200ms
+
+      &:nth-of-type(3)
+        transition-delay 300ms
 
 aside
   box-sizing content-box
