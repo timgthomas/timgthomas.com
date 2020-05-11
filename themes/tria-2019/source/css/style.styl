@@ -96,6 +96,24 @@ body
     padding 12px 0
     position relative
 
+    @media screen and (min-width: 667px)
+      justify-content center
+
+      &:after
+        left 50% !important
+        transform translateX(-50%)
+
+      h1
+        background-position right 24px center
+        margin 0
+        padding-left 0
+        padding-right 86px
+        text-align right
+        width calc(50% + 43px)
+
+      nav
+        width calc(50% - 43px)
+
     &:after
       content ''
       display block
@@ -174,6 +192,16 @@ body
     transition height 350ms
     width 100%
 
+    @media screen and (min-width: 667px)
+      flex-direction row
+      height auto
+      width auto
+
+      a
+        opacity 1 !important
+        transform none !important
+        transition none !important
+
     a
       align-items center
       color var(--color-body)
@@ -202,6 +230,9 @@ body
     display block
     height 44px
     width 55px
+
+    @media screen and (min-width: 667px)
+      display none
 
     &:checked
       background-position bottom left
