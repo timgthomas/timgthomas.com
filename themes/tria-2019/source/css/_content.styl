@@ -101,7 +101,7 @@
     max-width 100% // 40.0rem
 
   img
-    border-radius 0.5rem
+    border-radius 0.6rem
 
     &.inline
       border-radius 0
@@ -201,9 +201,20 @@ footer
     display flex
     flex-direction column
 
+    div
+      background-position center center
+      background-size cover
+      flex-shrink 0
+      height 126px
+      margin 0
+      width 100%
+
     @media screen and (min-width: 512px)
       &
         flex-direction row
+
+      div
+        width 224px
 
   figcaption
     flex-grow 1
@@ -251,3 +262,73 @@ footer
 
     li + li
       margin-left 1.2rem
+
+.project-list {
+  > li + li {
+    margin-top: 4.8rem;
+  }
+
+  figure {
+    flex-direction: column;
+  }
+
+  figure div {
+    border-radius: 0.6rem;
+    height: 182px;
+    width 100%
+  }
+
+  figcaption {
+    margin: 0;
+    margin-top: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  p {
+    color: var(--color-body);
+    font-size: 1.8rem;
+    font-style: normal;
+    text-align: center;
+  }
+
+  ul {
+    font-size: 1.8rem;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 800px) {
+    > li + li {
+      margin-top: 2.4rem;
+    }
+
+    figure {
+      flex-direction: row;
+    }
+
+    figure div {
+      width: calc(50% - 0.6rem);
+    }
+
+    figcaption {
+      margin-left: 1.2rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      text-align: left;
+    }
+
+    p {
+      text-align: left;
+    }
+
+    ul {
+      justify-content: flex-start;
+      margin-left: 1.2rem;
+    }
+  }
+}
