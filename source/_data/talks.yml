@@ -1,3 +1,10 @@
+- name: "Living Style Guides: Bringing Designers and Developers Together"
+  thumbnail: living-style-guides.jpg
+  description: "Developers and designers rarely speak the same language. As wireframes turn into web apps, points become pixels, hues are coerced into hex values…it's no wonder a schism exists between these two essential disciplines! Fortunately, it doesn't have to be that way. In this session, we'll dive into the world of living style guides: the perfect pairing of design and code. We’ll explore how to architect your apps to make use of style guides, make design apps work for you and your design team, and reign in your varying component styles, all while providing your users a more consistent and refined experience!"
+  conference: NDC Oslo 2020 (Online!)
+  links:
+    - type: slides
+      link: https://speakerdeck.com/timgthomas/living-style-guides-bringing-designers-and-developers-together
 - name: "Icons and the Web: Symbols of the Modern Age"
   thumbnail: icons-and-the-web.jpg
   description: Icons have been a staple of software for decades, and come in as many varieties as the tools used to make them. From humble beginnings as precisely-pixelated pictograms, icons are now entering a renaissance of high-density displays, vector formats, and an almost cult-like following. In this session, you'll learn the inner workings of modern icon design, explore various techniques for adding symbology to your web apps, and discover how to bring your interfaces into the modern age!
