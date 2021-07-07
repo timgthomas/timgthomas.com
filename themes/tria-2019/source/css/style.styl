@@ -345,6 +345,8 @@ aside
   overflow-x hidden // HACK: Mobile Safari stretches the viewport for some reason
   margin 0 auto
   padding 16px
+  padding-left calc(env(safe-area-inset-left) + 16px)
+  padding-right calc(env(safe-area-inset-right) + 16px)
   max-width 800px
 
   font-size 1.8rem
