@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.9.0"
+    "version": "5.4.0"
   },
   "scripts": {
     "start": "hexo server --debug",
     "deploy": "NODE_ENV=production hexo deploy -g"
   },
   "devDependencies": {
-    "hexo": "^3.9.0",
+    "hexo": "^5.4.0",
     "hexo-autoprefixer": "^2.0.0",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "1.0.0",
