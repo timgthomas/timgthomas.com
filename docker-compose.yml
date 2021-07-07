@@ -4,7 +4,8 @@ services:
   hexo:
     build: .
     ports:
-      - 4000:4000
+      - 3000:3000 # Browsersync
+      - 4000:4000 # Hexo
     volumes:
       - .:/app
       - /app/node_modules
