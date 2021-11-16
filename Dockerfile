@@ -1,6 +1,8 @@
-FROM spurin/hexo
+FROM node:16
+RUN npm install -g hexo-cli
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install
-EXPOSE 4000
-CMD ["yarn", "start"]
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000 4000
+CMD [ "npm", "start" ]
