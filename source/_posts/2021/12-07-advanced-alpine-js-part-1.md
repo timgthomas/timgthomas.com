@@ -7,11 +7,13 @@ title: "Advanced Alpine.js, Part I: The Story So Far"
 <dl>
   <dt>Part I: The Story So Far (This post)</dt>
   <dd>In which we review some basics about Alpine.js</dd>
-  <dt>Part II</dt>
-  <dd>Coming soon!</dd>
+  <dt><a href="/2021/12/advanced-alpine-js-part-2/">Part II: Moving Beyond HTML</a></dt>
+  <dd>In which we refactor our app and add filtering</dd>
   <dt>Part III</dt>
   <dd>Coming soon!</dd>
   <dt>Part IV</dt>
+  <dd>Coming soon!</dd>
+  <dt>Part V</dt>
   <dd>Coming soon!</dd>
 </dl>
 
