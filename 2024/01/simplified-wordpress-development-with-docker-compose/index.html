@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Simplified WordPress Development with Docker Compose · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Simplified WordPress Development with Docker Compose</h1>
+      <p>15 January 2024</p>
+    </header>
+    <p>While not a WordPress developer, I nonetheless find myself occasionally putting together one-off themes and plugins. As a result, it’s rarely necessary for me to maintain a full WordPress development environment, but I also want to avoid starting from scratch whenever such a project crosses my desk.</p>
+<p>In this post, we’ll look at using Docker Compose to create a quick way to start building on WordPress plugins and themes that’s both developer- and source control–friendly. Read on to find out more!</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>Before starting, you’ll need <a target="_blank" rel="noopener" href="https://www.docker.com/get-started/">Docker installed</a> locally. Once installed, the official <a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">MySQL</a> and <a target="_blank" rel="noopener" href="https://hub.docker.com/_/wordpress/">WordPress Docker images</a> provide an excellent foundation for what we need. We’ll start with a standard Docker Compose configuration; the only points of note are that we’re using a volume for the WordPress database (so we don’t lose any data if we need to recreate the containers), and that we establish a dependency for the WordPress image on the MySQL one (via the <code>depends_on</code> property).</p>
+<p><strong>NOTE</strong>: <em>Please be aware this is</em> absolutely not <em>a production-safe configuration: Its purpose is solely for local development.</em></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.9&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">wordpress:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">wordpress:latest</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="comment"># <span class="doctag">NOTE:</span> WordPress will be accessible via port 8000, as defined here.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;8000:80&#x27;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_HOST:</span> <span class="string">db:3306</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_USER:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_NAME:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">WORDPRESS_DEBUG:</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;3306:3306&#x27;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">dbdata:/var/lib/mysql</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">somewordpress</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">dbdata:</span></span><br></pre></td></tr></table></figure>
+
+<p>Once we have the Compose configuration in place, we can get WordPress started:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker compose pull</span><br><span class="line">$ docker compose up</span><br></pre></td></tr></table></figure>
+
+<p>It will take a moment for the images to be pulled and spin up, but once that’s done, visit <code>http://localhost:8000</code> (port 8000 was configured in our Compose configuration file) and go through the WordPress setup. Once that’s complete, we now have a full WordPress instance up and running!</p>
+<h2 id="Adding-Our-Code"><a href="#Adding-Our-Code" class="headerlink" title="Adding Our Code"></a>Adding Our Code</h2><p>Now that we have a running WordPress instance, let’s modify our Compose config to link up our own code. I won’t prescribe a specific folder structure, but this approach has worked well for me: Everything’s grouped in a <code>src</code> folder, within which each theme and plugin has its own folder:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- /project</span><br><span class="line">  - /src</span><br><span class="line">    - /example-plugin</span><br><span class="line">      - index.php</span><br><span class="line">  - docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>We’ll use <a target="_blank" rel="noopener" href="https://docs.docker.com/storage/volumes/#use-a-volume-with-docker-compose">Compose’s <code>volumes</code> collection</a> to do the mapping. Note that we’re not mapping the entire <code>plugins</code> folder: Since most WordPress instances use at least some other plugins, it behooves us to map only the plugins we’re working on. This also helps keep the source code clean and focused to just our own code.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.9&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">wordpress:</span></span><br><span class="line">    <span class="comment"># Other fields removed for brevity</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./src/example-plugin:/var/www/html/wp-content/plugins/example</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.wordpress.org/plugins/intro/">Creating a WordPress plugin</a> is beyond the scope of this post, but let’s use the following trivial plugin for testing: The plugin’s only “function” is to render a message on each page…just enough for us to verify everything’s working.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Plugin Name: Example Plugin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">add_action(<span class="string">&#x27;wp_footer&#x27;</span>, <span class="string">&#x27;add_footer&#x27;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add_footer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;&lt;p&gt;Hello, world!&lt;/p&gt;&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Compose won’t be aware of our new volume mapping until the service is stopped and restarted (a normal <code>restart</code> command isn’t sufficient):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker compose stop</span><br><span class="line">$ docker compose up</span><br></pre></td></tr></table></figure>
+
+<p>Once the containers are running again, take a peek at your instance’s plugins page at <code>http://localhost:8000/wp-admin/plugins.php</code>. If all went well, you should see our new plugin in the list! Just click “Activate” and verify everything works by visiting any page of your WordPress instance and scrolling to the bottom.</p>
+<h2 id="Next-Steps"><a href="#Next-Steps" class="headerlink" title="Next Steps"></a>Next Steps</h2><p>Though we’ve just demonstrated plugin development in this post, the same procedure applies for themes, as well: Just map your theme to <code>/var/www/html/wp-content/themes/&lt;theme&gt;</code>. Don’t forget to activate it!</p>
+<p>If you’d like a jumping-off point, <a target="_blank" rel="noopener" href="https://github.com/timgthomas/blog-wordpress-docker-compose">the code for this post is available on GitHub</a>. Happy coding with WordPress!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2024/01/simplified-wordpress-development-with-docker-compose/",
+    "headline": "Simplified WordPress Development with Docker Compose",
+    "datePublished": "Mon Jan 15 2024 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2021/12/advanced-alpine-js-part-2/">Advanced Alpine.js, Part II: Moving Beyond HTML</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Simplified WordPress Development with Docker Compose';
+      this.page.url = 'http://timgthomas.com/2024/01/simplified-wordpress-development-with-docker-compose/';
+      this.page.identifier = '2024/01/simplified-wordpress-development-with-docker-compose/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>
