@@ -1,0 +1,5 @@
+<nav>
+  <% for (const [label, path] of Object.entries(site.data.menu)) { %>
+    <li><a href="<%= url_for(path) %>"><%= label %></a></li>
+  <% } %>
+</nav>

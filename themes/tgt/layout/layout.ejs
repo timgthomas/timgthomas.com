@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="<%= config.language %>">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- partial('_partial/head') %>
+    <link rel="stylesheet" href="<%= url_for('/css/style.css') %>" />
+    <link rel="icon" href="<%= url_for('/favicon.ico') %>" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="<%= url_for('/') %>"><%= config.title %></a></h1>
+      <%- partial('_partial/nav') %>
+    </header>
+    <main><%- body %></main>
+    <pre><%= JSON.stringify(page.data, null, 2) %></pre>
+    <footer>
+      <p>&copy; <%= config.author %>. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

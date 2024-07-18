@@ -1,0 +1,7 @@
+<% const title = [page.title, config.title].filter(Boolean).join(' - ') %>
+<%- partial('meta', { title }) %>
+<title><%= title %></title>
+<% if (page.description) { %>
+  <meta name="description" content="<%= page.description %>" />
+<% } %>
+<meta name="author" content="<%= config.author %>" />
