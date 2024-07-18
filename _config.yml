@@ -4,53 +4,29 @@
 
 # Site
 title: Tim G. Thomas
-subtitle:
-description:
 author: Tim G. Thomas
-email:
-language:
+email: tim@timgthomas.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://timgthomas.com
 root: /
 permalink: :year/:month/:title/
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
 
 feed:
   type: rss2
   path: feed
   limit: 20
 
-# Directory
-source_dir: source
-public_dir: public
-
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts
-default_layout: post
 auto_spacing: false # Add spaces between asian characters and western characters
-titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-max_open_file: 100
-multi_thread: true
 filename_case: 1
-render_drafts: false
 post_asset_folder: true
 highlight:
   enable: true
   line_number: false
   tab_replace:
-encoding: utf-8
-
-# Category & Tag
-default_category: uncategorized
-category_map:
-tag_map:
 
 # Archives
 ## 2: Enable pagination
