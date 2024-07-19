@@ -1,6 +1,6 @@
 <% site.posts.sort('date', 'desc').each((post) => { %>
-  <p>
-    <a href="<%- url_for(post.path) %>"><%= post.title %></a>
-    <%= post.date %>
-  </p>
+<p>
+  <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+  <%- partial('_helpers/date', { value: post.date }) %>
+</p>
 <% }) %>
