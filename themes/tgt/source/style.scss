@@ -1,0 +1,14 @@
+@import 'style/variables';
+@import 'style/resets';
+@import 'style/mixins';
+
+// Utilities
+
+.constrained {
+  padding-inline: var(--padding);
+
+  @include respond-to('tablet') {
+    margin: 0 auto;
+    max-width: 50rem;
+  }
+}

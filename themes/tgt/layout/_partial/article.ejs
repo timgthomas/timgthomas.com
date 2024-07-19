@@ -1,6 +1,4 @@
-<article>
-  <header>
-    <h1 itemprop="headline name"><%= post.title %></h1>
-  </header>
-  <%- post.content %>
-</article>
+<header>
+  <h1 class="constrained" itemprop="headline name"><%= post.title %></h1>
+</header>
+<article class="constrained"><%- post.content %></article>

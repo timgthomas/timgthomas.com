@@ -66,6 +66,9 @@ disqus_shortname: timgthomas
 # Extensions
 theme: tgt
 
+node_sass:
+  outputStyle: compressed
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
