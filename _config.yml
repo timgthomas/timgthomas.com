@@ -13,6 +13,9 @@ url: http://timgthomas.com
 root: /
 permalink: :year/:month/:title/
 
+pretty_urls:
+  trailing_index: false
+
 feed:
   type: rss2
   path: feed

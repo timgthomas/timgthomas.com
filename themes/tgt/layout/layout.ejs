@@ -14,7 +14,10 @@
       <%- partial('_partial/nav') %>
     </header>
     <main><%- body %></main>
-    <pre><%= JSON.stringify(page.data, null, 2) %></pre>
+    <details>
+      <summary>Site data</summary>
+      <pre><%= JSON.stringify(site.pages, null, 2) %></pre>
+    </details>
     <footer>
       <p>&copy; <%= config.author %>. All rights reserved.</p>
     </footer>
