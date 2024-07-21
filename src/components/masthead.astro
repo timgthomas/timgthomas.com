@@ -1,0 +1,25 @@
+---
+type Props = { title: string }
+
+const { title } = Astro.props
+
+// CONSIDER: Could this be pulled from...anywhere...else?
+const navItems = [
+  { label: 'Blog', href: '/blog' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Speaking', href: '/speaking' },
+]
+---
+
+<header class="constrain masthead">
+  <h1><a href="/">{title}</a></h1>
+  <nav>
+    {
+      navItems.map(({ href, label }) => (
+        <li>
+          <a {href}>{label}</a>
+        </li>
+      ))
+    }
+  </nav>
+</header>

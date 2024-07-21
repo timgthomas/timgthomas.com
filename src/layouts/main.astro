@@ -1,4 +1,7 @@
 ---
+import Masthead from '@components/masthead.astro'
+import { displayName } from '../../package.json'
+
 import '@styles'
 
 interface Props {
@@ -13,12 +16,15 @@ const { title } = Astro.props
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{[title, displayName].filter(Boolean).join(' • ')}</title>
   </head>
   <body>
-    <header>
-      <h1>{title}</h1>
-    </header>
-    <slot />
+    <Masthead title={displayName} />
+    <main class="constrain">
+      <slot />
+    </main>
+    <footer class="constrain">
+      <!-- TODO -->
+    </footer>
   </body>
 </html>
