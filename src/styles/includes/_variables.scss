@@ -1,0 +1,18 @@
+// TODO: What values work well here?
+$breakpoints: (
+  "tablet": 500px,
+  "desktop": 1200px,
+);
+$padding-base: 1rem;
+
+// CSS variables
+
+:root {
+  // TODO: Test and adjust for safe areas
+  --measure: min(50rem, calc(100vw - var(--padding-comfy)));
+
+  // TODO: Looks like this doesn't get replaced in prod?
+  --padding: 1rem; // $padding-base;
+  --padding-comfy: calc(2 * var(--padding));
+  --padding-cozy: calc(var(--padding) / 2);
+}

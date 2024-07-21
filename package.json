@@ -13,6 +13,7 @@
     "@astrojs/check": "^0.8.2",
     "astro": "^4.12.2",
     "prettier": "^3.3.3",
+    "sass": "^1.77.8",
     "typescript": "^5.5.3"
   }
 }

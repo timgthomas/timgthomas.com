@@ -2,18 +2,19 @@
 import { getCollection } from 'astro:content'
 import MainLayout from '../../layouts/main.astro'
 
-const posts = await getCollection('blog')
+const posts = (await getCollection('blog')).sort((a, b) =>
+  a.slug.localeCompare(b.slug)
+)
 ---
 
-<MainLayout>
+<MainLayout title="Blog">
   <ol>
     {
       posts.map((post) => (
         <li>
-          <h1>{post.data.title}</h1>
-          <p>
-            <a href={`/blog/${post.slug}`}>link</a>
-          </p>
+          <h1>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </h1>
         </li>
       ))
     }

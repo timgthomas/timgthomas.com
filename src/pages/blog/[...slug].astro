@@ -15,9 +15,7 @@ const post = Astro.props
 const { Content } = await post.render()
 ---
 
-<MainLayout>
-  <p>Blog post!</p>
-  <p>{post.data.title}</p>
+<MainLayout title={post.data.title}>
   <Content />
   <pre>{JSON.stringify(post, null, 2)}</pre>
 </MainLayout>

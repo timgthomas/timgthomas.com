@@ -1,3 +1,13 @@
+---
+import '../styles/site.scss'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,7 +17,7 @@
   </head>
   <body>
     <header>
-      <h1>(title)</h1>
+      <h1>{title}</h1>
     </header>
     <slot />
   </body>

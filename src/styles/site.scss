@@ -1,0 +1,30 @@
+@import 'includes/variables';
+@import 'includes/resets';
+@import 'includes/mixins';
+
+body {
+  background: #222;
+  color: #ccc;
+  font-size: 1.7rem;
+}
+
+.constrain {
+  display: grid;
+  grid-template-columns: var(--measure);
+  justify-content: center;
+  padding-inline: var(--padding);
+}
+
+.masthead {
+  h1,
+  nav {
+    display: flex;
+    gap: var(--padding-comfy);
+    justify-content: flex-end;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: flex-end;
+}
