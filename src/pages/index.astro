@@ -1,16 +1,1 @@
----
-import { getCollection } from 'astro:content'
-
-const posts = await getCollection('blog')
----
-
-<ol>
-  {
-    posts.map((post) => (
-      <li>
-        <h1>{post.data.title}</h1>
-        <pre>{JSON.stringify(post, null, 2)}</pre>
-      </li>
-    ))
-  }
-</ol>
+<p>Index!</p>
