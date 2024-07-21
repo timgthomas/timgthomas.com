@@ -1,10 +1,12 @@
 ---
-import { getCollection } from 'astro:content'
-import MainLayout from '../../layouts/main.astro'
+import MainLayout from '@layouts/main.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
 
-const posts = (await getCollection('blog')).sort((a, b) =>
-  a.slug.localeCompare(b.slug)
-)
+type Post = CollectionEntry<'blog'>
+
+// Since dates are components of post slugs, this acts like a date sort.
+const bySlug = (a: Post, b: Post) => a.slug.localeCompare(b.slug)
+const posts = (await getCollection('blog')).sort(bySlug)
 ---
 
 <MainLayout title="Blog">
