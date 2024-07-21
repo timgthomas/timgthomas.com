@@ -2,7 +2,11 @@
 @import 'style/resets';
 @import 'style/mixins';
 
-// Utilities
+body {
+  background: #222;
+  color: #ccc;
+  font-size: 1.7rem;
+}
 
 .constrain {
   display: grid;
@@ -18,4 +22,9 @@
     gap: var(--padding-comfy);
     justify-content: flex-end;
   }
+}
+
+.title {
+  display: flex;
+  justify-content: flex-end;
 }
