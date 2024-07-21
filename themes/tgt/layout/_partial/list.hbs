@@ -1,9 +1,8 @@
-<!-- TODO: Move to shared partial and use for talks and projects. -->
 <header>
-  <h1 class="constrained" itemprop="headline name">{{page.title}}</h1>
+  <h1 itemprop="headline name">{{page.title}}</h1>
 </header>
-<dl class="constrained">
-  {{#each site.data.projects}}
+<dl>
+  {{#each data}}
     <li>
       <figure>
         <img src="/images/projects/{{this.id}}.jpg" />

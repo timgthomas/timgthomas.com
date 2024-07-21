@@ -4,11 +4,9 @@
 
 // Utilities
 
-.constrained {
+.constrain {
+  display: grid;
+  grid-template-columns: var(--measure);
+  justify-content: center;
   padding-inline: var(--padding);
-
-  @include respond-to('tablet') {
-    margin: 0 auto;
-    max-width: 50rem;
-  }
 }

@@ -9,16 +9,13 @@
     <link rel="stylesheet" href="<%= url_for('/style.css') %>" />
   </head>
   <body>
-    <header>
-      <h1><a href="<%= url_for('/') %>"><%= config.title %></a></h1>
-      <%- partial('_partial/nav') %>
-    </header>
-    <main><%- body %></main>
+    <%- partial('_partial/masthead') %>
+    <main class="constrain"><%- body %></main>
     <details>
       <summary>Site data</summary>
       <pre><%= JSON.stringify(site.pages, null, 2) %></pre>
     </details>
-    <footer>
+    <footer class="constrain">
       <p>&copy; <%= config.author %>. All rights reserved.</p>
     </footer>
   </body>
