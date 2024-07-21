@@ -5,14 +5,20 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "astro dev",
     "build": "npm run check && astro build",
     "check": "prettier --check --log-level=warn . '!src/content/**/*' && astro check",
-    "preview": "astro preview"
+    "prepare": "husky",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "lint-staged": {
+    "*": "npm run check"
   },
   "devDependencies": {
     "@astrojs/check": "^0.8.2",
     "astro": "^4.12.2",
+    "husky": "^9.1.1",
+    "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.5.3"
