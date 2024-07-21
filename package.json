@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "hexo server --debug",
-    "deploy": "NODE_ENV=production hexo deploy -g"
+    "deploy": "NODE_ENV=production hexo deploy -g",
+    "lint:css": "stylelint 'themes/tgt/**/*.scss'"
   },
   "devDependencies": {
     "hexo": "^7.3.0",
@@ -23,6 +24,8 @@
     "hexo-renderer-marked": "^6.3.0",
     "hexo-renderer-sass": "^0.5.0",
     "hexo-renderer-stylus": "^3.0.1",
-    "hexo-server": "^3.0.0"
+    "hexo-server": "^3.0.0",
+    "stylelint": "^16.7.0",
+    "stylelint-config-standard-scss": "^13.1.0"
   }
 }

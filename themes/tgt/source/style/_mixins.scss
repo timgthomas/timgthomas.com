@@ -1,5 +1,5 @@
 @mixin respond-to($device) {
-  $min-width: map-get($breakpoints, $device);
+  $min-width: map.get($breakpoints, $device);
 
   @if $min-width {
     @media (min-width: $min-width) {
