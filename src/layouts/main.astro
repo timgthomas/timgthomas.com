@@ -21,6 +21,9 @@ const { title } = Astro.props
   <body>
     <Masthead title={displayName} />
     <main class="constrain">
+      <header>
+        <h1>{title}</h1>
+      </header>
       <slot />
     </main>
     <footer class="constrain">

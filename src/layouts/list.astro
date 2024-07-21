@@ -1,0 +1,14 @@
+---
+import Main from '@layouts/main.astro'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<Main {title}>
+  <p>Hello, list layout!</p>
+  <slot />
+</Main>

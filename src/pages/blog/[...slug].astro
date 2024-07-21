@@ -1,5 +1,5 @@
 ---
-import MainLayout from '@layouts/main.astro'
+import Main from '@layouts/main.astro'
 import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
 
@@ -13,6 +13,6 @@ const post = Astro.props
 const { Content } = await post.render()
 ---
 
-<MainLayout title={post.data.title}>
+<Main title={post.data.title}>
   <Content />
-</MainLayout>
+</Main>
