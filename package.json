@@ -1,27 +1,16 @@
 {
   "name": "timgthomas.com",
-  "version": "0.0.0",
+  "version": "2024.0.0",
+  "type": "module",
   "private": true,
-  "hexo": {
-    "version": "5.4.0"
-  },
   "scripts": {
-    "start": "hexo server --debug",
-    "deploy": "NODE_ENV=production hexo deploy -g"
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
   },
   "devDependencies": {
-    "hexo": "^5.4.0",
-    "hexo-autoprefixer": "^2.0.0",
-    "hexo-browsersync": "^0.3.0",
-    "hexo-deployer-git": "^3.0.0",
-    "hexo-generator-archive": "^1.0.0",
-    "hexo-generator-cname": "^0.3.0",
-    "hexo-generator-feed": "^3.0.0",
-    "hexo-generator-index": "^2.0.0",
-    "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-handlebars": "^2.0.2",
-    "hexo-renderer-marked": "^4.0.0",
-    "hexo-renderer-stylus": "^2.0.0",
-    "hexo-server": "^2.0.0"
+    "@astrojs/check": "^0.8.2",
+    "astro": "^4.12.2",
+    "typescript": "^5.5.3"
   }
 }
