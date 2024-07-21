@@ -27,5 +27,8 @@
     "hexo-server": "^3.0.0",
     "stylelint": "^16.7.0",
     "stylelint-config-standard-scss": "^13.1.0"
+  },
+  "volta": {
+    "node": "22.5.1"
   }
 }
