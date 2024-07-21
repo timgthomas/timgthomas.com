@@ -10,3 +10,12 @@
   justify-content: center;
   padding-inline: var(--padding);
 }
+
+.masthead {
+  h1,
+  nav {
+    display: flex;
+    gap: var(--padding-comfy);
+    justify-content: flex-end;
+  }
+}
