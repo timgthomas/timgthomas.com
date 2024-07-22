@@ -1,7 +1,11 @@
 ---
-import type { ItemComponentProps } from '@layouts/list.astro'
+import type { ListItem } from '@src/types'
 
-const { item } = Astro.props as ItemComponentProps
+interface Props {
+  item: ListItem
+}
+
+const { item } = Astro.props
 ---
 
 <figure>

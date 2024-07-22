@@ -1,20 +1,14 @@
 ---
 import Main from '@layouts/main.astro'
 import type { ListItem } from '@src/types'
-
-interface ItemComponentProps {
-  item: ListItem
-}
+import ListItemComponent from '@components/list-item.astro'
 
 interface Props {
   title: string
   items: ListItem[]
-  ItemComponent: (props: ItemComponentProps) => any
 }
 
-const { ItemComponent, items, title } = Astro.props
-
-export type { ItemComponentProps }
+const { items, title } = Astro.props
 ---
 
 <Main {title}>
@@ -22,7 +16,7 @@ export type { ItemComponentProps }
     {
       items.map((item) => (
         <li>
-          <ItemComponent {item} />
+          <ListItemComponent {item} />
         </li>
       ))
     }
