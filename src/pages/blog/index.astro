@@ -5,7 +5,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 type Post = CollectionEntry<'blog'>
 
 // Since dates are components of post slugs, this acts like a date sort.
-const bySlug = (a: Post, b: Post) => a.slug.localeCompare(b.slug)
+const bySlug = (a: Post, b: Post) => b.slug.localeCompare(a.slug)
 const posts = (await getCollection('blog')).sort(bySlug)
 ---
 

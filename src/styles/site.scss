@@ -12,7 +12,6 @@ body {
   display: grid;
   grid-template-columns: var(--measure);
   justify-content: center;
-  padding-inline: var(--padding);
 }
 
 .masthead {
@@ -27,4 +26,8 @@ body {
 .title {
   display: flex;
   justify-content: flex-end;
+}
+
+.prose {
+  color: deeppink;
 }

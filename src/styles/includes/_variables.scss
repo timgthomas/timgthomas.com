@@ -9,7 +9,7 @@ $padding-base: 1rem;
 
 :root {
   // TODO: Test and adjust for safe areas
-  --measure: min(70rem, calc(100vw - var(--padding-comfy)));
+  --measure: min(70rem, calc(100vw - 2 * var(--padding-comfy)));
 
   // TODO: Looks like this doesn't get replaced in prod?
   --padding: 1rem; // $padding-base;

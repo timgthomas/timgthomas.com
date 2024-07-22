@@ -14,5 +14,7 @@ const { Content } = await post.render()
 ---
 
 <Main title={post.data.title}>
-  <Content />
+  <div class="prose">
+    <Content />
+  </div>
 </Main>
