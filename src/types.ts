@@ -6,6 +6,7 @@ type ListItemLink = {
 type ListItem = {
   title: string
   summary: string
+  type: 'project' | 'talk'
   description?: string
   heroImageUrl: string
   featured?: boolean

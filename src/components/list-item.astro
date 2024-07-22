@@ -6,13 +6,21 @@ interface Props {
 }
 
 const { item } = Astro.props
+
+const buildAlt = (item: ListItem): string => {
+  switch (item.type!) {
+    case 'project':
+      return `Screenshot of Tim’s “${item.title}” project.`
+    case 'talk':
+      return `Screenshot from Tim’s “${item.title}” talk.`
+  }
+}
 ---
 
 <figure>
-  <!-- TODO: `alt` -->
-  <img src={item.heroImageUrl} alt="TODO" />
+  <img src={item.heroImageUrl} alt={buildAlt(item)} />
   <figcaption>
-    <h1>{item.title} (Project)</h1>
+    <h1>{item.title}</h1>
     <p>{item.summary}</p>
     <ul>
       {

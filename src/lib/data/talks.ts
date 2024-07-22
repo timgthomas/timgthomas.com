@@ -1,5 +1,10 @@
 import type { ListItem } from '../../types'
 
+const map = (datum: any): ListItem => ({
+  ...datum,
+  type: 'talk',
+})
+
 const talks: ListItem[] = [
   {
     title: 'Living Style Guides: Bringing Designers and Developers Together',
@@ -175,6 +180,6 @@ const talks: ListItem[] = [
       },
     ],
   },
-]
+].map(map)
 
 export default talks

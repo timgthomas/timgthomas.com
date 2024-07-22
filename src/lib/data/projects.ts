@@ -1,5 +1,10 @@
 import type { ListItem } from '@src/types'
 
+const map = (datum: any): ListItem => ({
+  ...datum,
+  type: 'project',
+})
+
 const projects: ListItem[] = [
   {
     title: 'Faire Day',
@@ -56,6 +61,6 @@ const projects: ListItem[] = [
       { type: 'github', link: 'https://github.com/timgthomas/timgthomas.com' },
     ],
   },
-]
+].map(map)
 
 export default projects
