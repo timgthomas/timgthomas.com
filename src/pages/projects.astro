@@ -1,5 +1,7 @@
 ---
+import ProjectListItem from '@components/project-list-item.astro'
 import List from '@layouts/list.astro'
+import projects from '@src/lib/data/projects'
 ---
 
-<List title="Projects" />
+<List title="Projects" items={projects} ItemComponent={ProjectListItem} />

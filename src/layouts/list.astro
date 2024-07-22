@@ -1,14 +1,32 @@
 ---
 import Main from '@layouts/main.astro'
+import type { ListItem } from '@src/types'
+
+interface ItemComponentProps {
+  item: ListItem
+}
 
 interface Props {
   title: string
+  items: ListItem[]
+  ItemComponent: (props: ItemComponentProps) => any
 }
 
-const { title } = Astro.props
+const { ItemComponent, items, title } = Astro.props
+
+export type { ItemComponentProps }
 ---
 
 <Main {title}>
   <p>Hello, list layout!</p>
+  <ul>
+    {
+      items.map((item) => (
+        <li>
+          <ItemComponent {item} />
+        </li>
+      ))
+    }
+  </ul>
   <slot />
 </Main>

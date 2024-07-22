@@ -1,0 +1,7 @@
+---
+import type { ItemComponentProps } from '@layouts/list.astro'
+
+const { item } = Astro.props as ItemComponentProps
+---
+
+<p>(Project) {item.title}</p>
