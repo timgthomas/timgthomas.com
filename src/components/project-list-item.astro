@@ -4,4 +4,22 @@ import type { ItemComponentProps } from '@layouts/list.astro'
 const { item } = Astro.props as ItemComponentProps
 ---
 
-<p>(Project) {item.title}</p>
+<figure>
+  <!-- TODO: `alt` -->
+  <img src={item.heroImageUrl} alt="TODO" />
+  <figcaption>
+    <h1>{item.title} (Project)</h1>
+    <p>{item.summary}</p>
+    <ul>
+      {
+        item.links.map((link) => (
+          <li>
+            <a href={link.link} target="_blank" rel="noopener">
+              {link.type}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </figcaption>
+</figure>
