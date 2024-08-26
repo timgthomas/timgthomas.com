@@ -1,12 +1,13 @@
 ---
 import Prose from '@components/prose.astro'
 import Main from '@layouts/main.astro'
+import { extractParamsFromPost } from '@src/lib/utils'
 import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
 
 export const getStaticPaths = (async () =>
   (await getCollection('blog')).map((post) => ({
-    params: { slug: post.slug },
+    params: extractParamsFromPost(post),
     props: post,
   }))) satisfies GetStaticPaths
 

@@ -1,12 +1,14 @@
 ---
 import MainLayout from '@layouts/main.astro'
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { extractParamsFromPost } from '@src/lib/utils'
+import { getCollection, type CollectionEntry } from 'astro:content'
 
 type Post = CollectionEntry<'blog'>
 
 // Since dates are components of post slugs, this acts like a date sort.
 const bySlug = (a: Post, b: Post) => b.slug.localeCompare(a.slug)
 const posts = (await getCollection('blog')).sort(bySlug)
+const hrefFor = (p: Post): string => extractParamsFromPost(p).path
 ---
 
 <MainLayout title="Blog">
@@ -15,7 +17,7 @@ const posts = (await getCollection('blog')).sort(bySlug)
       posts.map((post) => (
         <li>
           <h1>
-            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            <a href={hrefFor(post)}>{post.data.title}</a>
           </h1>
         </li>
       ))
