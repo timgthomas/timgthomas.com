@@ -7,7 +7,10 @@
       "@layouts/*": ["src/layouts/*"],
       "@src/*": ["src/*"],
       "@styles": ["src/styles/site.scss"]
-    }
+    },
+    "": "// These options are set to improve DX, but don't always work.",
+    "isolatedModules": false,
+    "verbatimModuleSyntax": false
   },
   "include": ["src"]
 }

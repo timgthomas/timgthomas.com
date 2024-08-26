@@ -1,7 +1,7 @@
 ---
-import Main from '@layouts/main.astro'
-import type { ListItem } from '@src/types'
 import ListItemComponent from '@components/list-item.astro'
+import Main from '@layouts/main.astro'
+import { ListItem } from '@src/types'
 
 interface Props {
   title: string
@@ -12,7 +12,7 @@ const { items, title } = Astro.props
 ---
 
 <Main {title}>
-  <ul>
+  <ul class="list">
     {
       items.map((item) => (
         <li>
@@ -23,3 +23,11 @@ const { items, title } = Astro.props
   </ul>
   <slot />
 </Main>
+
+<style scoped lang="scss">
+  .list {
+    :global(img) {
+      max-width: 100%;
+    }
+  }
+</style>

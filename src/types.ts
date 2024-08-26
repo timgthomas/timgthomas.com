@@ -1,9 +1,9 @@
-type ListItemLink = {
+interface ListItemLink {
   type: string
   link: string
 }
 
-type ListItem = {
+interface ListItem {
   title: string
   summary: string
   type: 'project' | 'talk'
@@ -13,4 +13,4 @@ type ListItem = {
   links: ListItemLink[]
 }
 
-export type { ListItem }
+export { type ListItem }

@@ -1,12 +1,19 @@
 @import 'includes/variables';
 @import 'includes/resets';
+@import 'includes/typography';
 @import 'includes/mixins';
 
 body {
   background: #222;
   color: #ccc;
-  font-size: 1.7rem;
   padding-block: var(--padding-comfy);
+
+  // TODO: Move to font mixin
+  font-family: $font-regular;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.618;
 }
 
 .constrain {
@@ -27,14 +34,4 @@ body {
 .title {
   display: flex;
   justify-content: flex-end;
-}
-
-.prose {
-  font-size: 1.6rem;
-  letter-spacing: 0.02em;
-  line-height: 1.618;
-
-  a:link {
-    text-decoration: underline;
-  }
 }

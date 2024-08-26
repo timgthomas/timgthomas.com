@@ -2,14 +2,47 @@
 
 ---
 
-<div class="prose">
+<div>
   <slot />
 </div>
 
 <style scoped lang="scss">
-  .prose {
-    :global(iframe) {
+  @import '../styles/includes/typography';
+
+  div {
+    :global(a:link) {
+      text-decoration: underline;
+    }
+
+    :global(:is(code, iframe, pre)) {
       max-width: 100%;
+    }
+
+    :global(code:not(:has(span)), pre) {
+      background-color: var(--color-background-secondary) !important;
+    }
+
+    :global(code:not(:has(span))) {
+      padding: 0.3rem 0.4rem;
+    }
+
+    :global(code) {
+      @include type-mono;
+    }
+
+    :global(.astro-code) {
+      margin: var(--padding);
+      padding: var(--padding-cozy) var(--padding);
+
+      code {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .line {
+        display: block;
+      }
     }
   }
 </style>

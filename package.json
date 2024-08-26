@@ -16,9 +16,12 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.8.2",
+    "@fontsource/sometype-mono": "^5.0.3",
     "astro": "^4.12.2",
     "husky": "^9.1.1",
+    "install": "^0.13.0",
     "lint-staged": "^15.2.7",
+    "npm": "^10.8.2",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.5.3"

@@ -15,4 +15,6 @@ $padding-base: 1rem;
   --padding: 1rem; // $padding-base;
   --padding-comfy: calc(2 * var(--padding));
   --padding-cozy: calc(var(--padding) / 2);
+
+  --color-background-secondary: #fff1;
 }

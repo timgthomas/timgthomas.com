@@ -1,0 +1,17 @@
+// Monospace
+@import '@fontsource/sometype-mono/400.css';
+@import '@fontsource/sometype-mono/500.css';
+@import '@fontsource/sometype-mono/600.css';
+@import '@fontsource/sometype-mono/700.css';
+
+$font-regular: sans-serif;
+$font-monospace: 'Sometype Mono', monospace;
+
+@mixin type-mono {
+  font-family: $font-monospace;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-wrap: balance;
+  text-wrap: wrap;
+}
