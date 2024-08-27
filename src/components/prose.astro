@@ -10,13 +10,73 @@
   @import '../styles/includes/typography';
 
   div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-comfy);
+
+    // CONSIDER: I don't love all these `:global`s, but I haven't been able to
+    // get nesting working with it yet. Perhaps a more global class?
+
+    :global(h2) {
+      @include type-subheadline;
+      padding-block-start: var(--padding-comfy);
+    }
+
     :global(a:link) {
       text-decoration: underline;
+    }
+
+    :global(strong) {
+      // TODO: Type mixin
+      font-weight: 600;
+    }
+
+    // Lists and items
+
+    :global(ul) {
+      display: flex;
+      flex-direction: column;
+      gap: var(--padding);
+      padding-inline: var(--padding-spacious);
+    }
+
+    :global(ul > li) {
+      list-style: circle;
+    }
+
+    :global(ol) {
+      display: flex;
+      flex-direction: column;
+      gap: var(--padding);
+      padding-inline: var(--padding-spacious);
+    }
+
+    :global(ol > li) {
+      list-style: decimal-leading-zero;
+    }
+
+    :global(dl) {
+      display: flex;
+      flex-direction: column;
+      gap: var(--padding-close);
+      padding-inline: var(--padding-comfy);
+    }
+
+    :global(dl > dd + dt) {
+      padding-block-start: var(--padding);
+    }
+
+    // Inset items (images, iframes, etc.)
+
+    :global(iframe) {
+      margin-inline: var(--padding-comfy);
     }
 
     :global(:is(code, iframe, pre)) {
       max-width: 100%;
     }
+
+    // Code blocks
 
     :global(code:not(:has(span)), pre) {
       background-color: var(--color-background-secondary) !important;
@@ -31,7 +91,7 @@
     }
 
     :global(.astro-code) {
-      margin: var(--padding);
+      margin-inline: var(--padding);
       padding: var(--padding-cozy) var(--padding);
 
       code {

@@ -14,6 +14,7 @@ $padding-base: 1rem;
   // TODO: Looks like this doesn't get replaced in prod?
   --padding: 1rem; // $padding-base;
   --padding-comfy: calc(2 * var(--padding));
+  --padding-spacious: calc(4 * var(--padding));
   --padding-cozy: calc(var(--padding) / 2);
 
   --color-background-secondary: #fff1;

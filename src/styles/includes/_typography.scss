@@ -1,11 +1,36 @@
-// Monospace
-@import '@fontsource/sometype-mono/400.css';
-@import '@fontsource/sometype-mono/500.css';
-@import '@fontsource/sometype-mono/600.css';
-@import '@fontsource/sometype-mono/700.css';
+@import '@fontsource/alegreya-sans/400.css';
+@import '@fontsource/alegreya-sans/500.css';
+@import '@fontsource/alegreya-sans/700-italic.css';
+@import '@fontsource/alegreya-sans/800-italic.css';
 
-$font-regular: sans-serif;
-$font-monospace: 'Sometype Mono', monospace;
+$font-regular: 'Alegreya Sans', sans-serif;
+$font-monospace: monospace;
+
+@mixin type-body {
+  font-family: $font-regular;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@mixin type-title {
+  font-family: $font-regular;
+  font-size: 3rem;
+  font-style: oblique;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+  text-wrap: balance;
+  // letter-spacing: -0.025em;
+}
+
+@mixin type-subheadline {
+  font-family: $font-regular;
+  font-size: 2.4rem;
+  font-style: oblique;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+}
 
 @mixin type-mono {
   font-family: $font-monospace;
