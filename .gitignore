@@ -1,7 +1,8 @@
-.DS_Store
-Thumbs.db
-db.json
-debug.log
-node_modules/
-public/
-.deploy_git/
+.vercel
+.svelte-kit
+build
+node_modules
+
+.env
+.env.*
+!.env.example
