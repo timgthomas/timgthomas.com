@@ -13,18 +13,22 @@ export default class Post {
 
   static async getAll(): Promise<Post[]> {
     const paths = await globby(`${postsDirectory}/**/*.md`)
-    return (await Promise.all(paths.map(Post.get))).sort(Post.byDate)
+    const barePaths = paths.map((path) => path.replace(postsDirectory, ''))
+    return (await Promise.all(barePaths.map(Post.get))).sort(Post.byDate)
   }
 
+  /**
+   * @param path A path relative to the posts directory.
+   */
   static async get(path: string): Promise<Post> {
-    const fileContents = await readFile(path, 'utf8')
+    const fullPath = join(postsDirectory, path)
+    const fileContents = await readFile(fullPath, 'utf8')
 
     // Contents
     const { content, data } = matter(fileContents)
 
     // Metadata: Posts' dates and slugs are filename-based.
-    const barePath = path.replace(postsDirectory, '')
-    const [, year, slug] = barePath.match(/^\/([\w-]+)\/([\w-]+)\.md/i)
+    const [, year, slug] = path.match(/^\/([\w-]+)\/([\w-]+)\.md/i)
 
     return { title: data.title, slug, year: Number(year), content } as Post
   }
