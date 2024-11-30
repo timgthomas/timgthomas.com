@@ -1,6 +1,6 @@
+import Post from '$lib/server/models/post'
 import type { PageLoad } from './$types'
 
-export const load: PageLoad = async ({ parent }) => {
-  const { posts } = await parent()
-  return { post: posts[0] }
+export const load: PageLoad = async () => {
+  return { post: (await Post.getAll())[0] }
 }
