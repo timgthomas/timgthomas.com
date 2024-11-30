@@ -1,8 +1,11 @@
 <script lang="ts">
-  import Prose from '$lib/components/prose.svelte'
   import type { PageData } from './$types'
 
   const { data }: { data: PageData } = $props()
 </script>
 
-<Prose title={data.post.title} content={data.post.content} />
+<ol>
+  {#each data.posts as post}
+    <li>{post.title}</li>
+  {/each}
+</ol>
