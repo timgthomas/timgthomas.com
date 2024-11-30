@@ -35,6 +35,7 @@ export default class Post {
     const posts = await Promise.all(descriptors.map(this.#createPostFromDescriptor))
 
     this.#postsCache = posts.sort(this.byDate)
+    return this.#postsCache
   }
 
   /**
