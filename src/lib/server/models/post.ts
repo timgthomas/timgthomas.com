@@ -2,8 +2,15 @@ import { globby } from 'globby'
 import matter from 'gray-matter'
 import { readFile } from 'node:fs/promises'
 import { join } from 'path'
+import { remark } from 'remark'
+import html from 'remark-html'
 
 const postsDirectory = join(process.cwd(), 'src', 'lib', 'data', 'posts')
+
+async function render(markdown: string): Promise<string> {
+  const result = await remark().use(html).process(markdown)
+  return result.toString()
+}
 
 export default class Post {
   title: string
@@ -18,6 +25,7 @@ export default class Post {
   }
 
   /**
+   * Fetch a post given its path (e.g. `/2024/foo`).
    * @param path A path relative to the posts directory.
    */
   static async get(path: string): Promise<Post> {
@@ -26,11 +34,12 @@ export default class Post {
 
     // Contents
     const { content, data } = matter(fileContents)
+    const renderedContent = await render(content)
 
     // Metadata: Posts' dates and slugs are filename-based.
     const [, year, slug] = path.match(/^\/([\w-]+)\/([\w-]+)\.md/i)
 
-    return { title: data.title, slug, year: Number(year), content } as Post
+    return { title: data.title, slug, year: Number(year), content: renderedContent } as Post
   }
 
   static byDate(lhs: Post, rhs: Post): number {

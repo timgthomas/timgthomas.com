@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit'
-import type { PageServerLoad } from './$types'
 import Post from '$lib/server/models/post'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ params }) => {
   const postPath = `/${params.year}/${params.slug}.md`
