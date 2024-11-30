@@ -1,3 +1,21 @@
+- id: sherwood-scheduler
+  name: Sherwood Scheduler
+  description: The official interactive schedule for Sherwood Forest Faire near Austin, Texas!
+  featured: true
+  links:
+    - type: web
+      link: https://schedule.sherwoodforestfaire.com
+  tags: ["web", "svelte"]
+
+- id: dragon-dice
+  name: Dragon Dice
+  description: The official reference guide for the Dragon Dice game to track your armies' statistics and capabilities.
+  featured: true
+  links:
+    - type: web
+      link: https://commander.dragondice.com/
+  tags: ["web", "svelte"]
+
 - id: faire-day
   name: Faire Day
   description: Faire Day is your source for up-to-date weather conditions at your favorite Renaissance faires.
@@ -7,14 +25,7 @@
       link: https://apps.apple.com/us/app/faire-day/id1450462432
     - type: facebook
       link: https://www.facebook.com/faireday
-
-- id: dragon-dice
-  name: Dragon Dice
-  description: A reference guide for the Dragon Dice game to track your armies' statistics and capabilities.
-  featured: true
-  links:
-    - type: web
-      link: http://dragon-dice.surge.sh/
+  tags: ["mobile", "swift", "swiftui"]
 
 - id: active-syntax
   name: Active Syntax
@@ -33,6 +44,7 @@
       link: https://itunes.apple.com/us/app/heart-points/id1092311753
     - type: facebook
       link: https://www.facebook.com/heartpointsapp/
+  tags: ["mobile", "react"]
 
 - id: personal-site
   name: Personal Site
@@ -42,3 +54,4 @@
       link: http://timgthomas.com
     - type: github
       link: https://github.com/timgthomas/timgthomas.com
+  tags: ["web", "hexo"]
