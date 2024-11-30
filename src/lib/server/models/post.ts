@@ -32,10 +32,9 @@ export default class Post {
     if (this.#postsCache) return this.#postsCache
 
     const descriptors = await this.getPostDescriptors()
-    const posts = await Promise.all(descriptors.map(this.#createPostFromDescriptor))
+    this.#postsCache = await Promise.all(descriptors.map(this.#createPostFromDescriptor))
 
-    this.#postsCache = posts.sort(this.byDate)
-    return this.#postsCache
+    return this.#postsCache.sort(this.byDate)
   }
 
   /**
