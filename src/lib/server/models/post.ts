@@ -18,7 +18,7 @@ export default class Post {
   date: string
   content: string
 
-  static #postsCache: Post[]
+  static #postsCache: Post[] = []
 
   static async getPostDescriptors(): Promise<[string, string, string][]> {
     const fileNames = await globby(`${postsDirectory}/*.md`)
@@ -29,7 +29,7 @@ export default class Post {
   }
 
   static async getAll(): Promise<Post[]> {
-    if (this.#postsCache) return this.#postsCache
+    if (this.#postsCache.length) return this.#postsCache
 
     const descriptors = await this.getPostDescriptors()
     this.#postsCache = await Promise.all(descriptors.map(this.#createPostFromDescriptor))
