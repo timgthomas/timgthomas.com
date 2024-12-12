@@ -10,7 +10,9 @@ In the past year, I've had to request something like three or four additional ro
 
 In addition to the great at-the-door experience, the light switches just inside the room won't even turn on unless a room key is inserted, providing both insurance that you don't leave any lights on when you leave, and a convenient place to store your room key while you're inside.
 
-<figure><img src="/css/images/blog/2014-06-10-00.jpg" alt="Light switches with a hotel room key card slot. Photo by @housecor." style="max-width:300px"><figcaption>Photo by <a href="https://twitter.com/housecor">@housecor</a>.</figcaption></figure>
+![Light switches with a hotel room key card slot. Photo by @housecor.][a]
+
+Photo by <a href="https://twitter.com/housecor">@housecor</a>.
 
 ## Light Switches
 
@@ -56,8 +58,8 @@ Even though I interacted with (or sometimes just _looked at_) these items, exper
 [1]: http://hepol.manufacturer.globalsources.com/si/6008816192747/pdtl/Light-switch/1079490296/1-gang-Intermediary-Wall-Switches.htm
 [2]: https://www.google.com/search?q=uk+emergency+exit&tbm=isch
 
-[a]: /css/images/blog/2014-06-10-00.jpg
-[b]: /css/images/blog/2014-06-10-01.jpg
-[c]: /css/images/blog/2014-06-10-02.jpg
-[d]: /css/images/blog/2014-06-10-03.jpg
-[e]: /css/images/blog/2014-06-10-04.jpg
+[a]: $/2014-06-12-00.jpg
+[b]: $/2014-06-12-01.jpg
+[c]: $/2014-06-12-02.jpg
+[d]: $/2014-06-12-03.jpg
+[e]: $/2014-06-12-04.jpg

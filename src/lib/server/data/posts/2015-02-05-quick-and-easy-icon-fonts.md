@@ -14,19 +14,19 @@ The only hard requirements you'll need for this exercise are a) a vector graphic
 
 To start, we'll create a new document in Illustrator. Illustrator supports multiple ["artboards"](https://helpx.adobe.com/illustrator/how-to/work-with-artboards.html) in one document, so we can make each one the exact size of our finished icons and keep them all in one file. For this example, we'll use icons that are 16 pixels square, but you could choose any size that fits your design (though I generally stick to sizes in multiples of 8 pixels since they're easier for me to design).
 
-![Adobe Illustrator's "New Document" dialog](/2015/02/quick-and-easy-icon-fonts/new-document.png)
+![Adobe Illustrator's "New Document" dialog]($/new-document.png)
 
 Next, create the icon. Illustrator has a [myriad of tools](https://helpx.adobe.com/illustrator/using/drawing-pen-pencil-or-flare.html) available for this, but I find myself using the Pen and Line Segment tools most often. The most important thing to keep in mind at this point is to stick to whole values for sizes and positions; putting a half-pixel-thick line in-between pixels is a one-way ticket to Blursville. In Illustrator, you can check the potential blurriness of an icon by turning on Pixel Preview (View > Pixel Preview) and zooming in. I generally use a one-pixel grid while designing to make sure everything lines up _just so_, and check with Pixel Preview frequently.
 
 For this example, we'll create a simple "delete" icon. I used perpendicular lines to form an 'x', and made each one two pixels thick. Rounded caps may not add much visual interest for some screens, but if any of your users have high-density displays, they'll appreciate the extra level of detail. (Note: in this image, I've reduced the opacity of the lines so you can see how the anchor points align perfectly with the pixel grid.)
 
-![Our in-progress icon](/2015/02/quick-and-easy-icon-fonts/construction-lines.png)
+![Our in-progress icon]($/construction-lines.png)
 
 As I mentioned, I generally work with lines when making icons, but feel free to experiment with any of the vector tools at your disposal. Remember, though, that only _vector_ shapes can be used for icon fonts, so any raster images (drop shadows are a common example) won't come across in the final icon.
 
 There's one last thing we need to do before moving on: while lines are great to work with while constructing icons, icon fonts require filled shapes instead. To do this, "expand" the lines into shapes with the "Expand..." (Object > Expand...) command. Next, I typically merge the two now-shapes together to make a single path with the ["Union" command](https://helpx.adobe.com/illustrator/using/combining-objects.html) of the "Pathfinder" palette (Window > Pathfinder).
 
-![Line construction](/2015/02/quick-and-easy-icon-fonts/line-construction.gif)
+![Line construction]($/line-construction.gif)
 
 ## Exporting the icons
 
@@ -45,7 +45,7 @@ To get started, [fire up the IcoMoon app](https://icomoon.io/app). There are som
 
 Click "Import Icons" and navigate to your icon folder. Select any of the icons you'd like included in this font and click "Open". If all goes well, you should instantly see your newly-crafted icons. If, instead, you see blank boxes, check that you converted your lines to shapes (in "Making the icons" above). By default, none of the icons we've uploaded are included in this icon font, so make sure the "select" tool (the first icon with the mouse cursor) is active, and click your uploaded icons. Each selected icon is outlined.
 
-![A selected icon](/2015/02/quick-and-easy-icon-fonts/selected-icon.png)
+![A selected icon]($/selected-icon.png)
 
 At this point, you _technically_ already have an icon font. If you want, you can stop here, click "Generate Font" at the bottom of the app window, followed by "Download", and use this font in your app; however, there are some optimizations we can perform at this point to make our lives as web designers easier.
 

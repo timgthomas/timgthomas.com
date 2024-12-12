@@ -12,13 +12,13 @@ You may be familiar with Isolation Mode if you use [symbols](https://helpx.adobe
 
 Fortunately, you can also enter Isolation Mode on other things (including layers, groups, and even single _objects_), as well! To start, select a layer in the Layers panel (you just need to select the layer, not “target” it), then click the panel’s “menu” icon and choose “Enter Isolation Mode”.
 
-![The Layers panel's context menu](/2015/03/tame-your-illustrator-layers-with-isolation-mode/enter-isolation-mode.gif)
+![The Layers panel's context menu]($/enter-isolation-mode.gif)
 
 ## Working in Isolation
 
 After entering Isolation Mode, you’ll notice a couple of changes to the Illustrator UI. First, the Layers Panel updates to only show the layer you’re working with. Second, everything _not_ in the isolated layer will fade out, allowing you to visually focus on the layer you’ve selected. Finally, a new bar appears below the active tab (or below its rulers, if you have those enabled) that shows the hierarchy of this layer:
 
-![The Isolation Mode bar](/2015/03/tame-your-illustrator-layers-with-isolation-mode/isolation-mode-bar.gif)
+![The Isolation Mode bar]($/isolation-mode-bar.gif)
 
 Now that you’re in Isolation Mode, any new objects you create will become part of the isolated layer, and you won’t be able to select anything outside that layer (that part alone is my favorite part of this feature).
 

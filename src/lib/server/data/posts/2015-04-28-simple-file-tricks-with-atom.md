@@ -8,7 +8,7 @@ I’m a huge fan of [Atom](https://atom.io/), [GitHub](https://github.com/)’s 
 
 You may have used Atom’s “rename” feature a time or two, but did you know you can also use it to move files, as well? When you open the “rename” palette, Atom displays the file’s full path (relative to the project root). Want to relocate the file? Simply change the path and hit return:
 
-![Using Atom to move a file](/2015/04/simple-file-tricks-with-atom/moving-files.gif)
+![Using Atom to move a file]($/moving-files.gif)
 
 ## Copying/Pasting Files
 

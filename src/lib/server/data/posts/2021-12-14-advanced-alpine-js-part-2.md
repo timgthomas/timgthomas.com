@@ -124,7 +124,7 @@ At this point, we could play around with the `filter` property to make sure the 
 
 We now have a nice quick filter input that searches playlist names, and thanks to our updates to the `groupedPlaylist` property, we don't even have to deal with empty groups! If you're feeling adventurous, though, a great UX improvement would be to display a "no results" message, but I'll leave that as an exercise to the reader.
 
-![The running app with filtering working](/2021/12/advanced-alpine-js-part-2/0-filtering.png)
+![The running app with filtering working]($/0-filtering.png)
 
 ## Until Next Time!
 
