@@ -31,6 +31,7 @@
     "vitest": "^2.0.4"
   },
   "dependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@sveltejs/adapter-vercel": "^5.5.2",
     "globby": "^14.0.2",
     "gray-matter": "^4.0.3",

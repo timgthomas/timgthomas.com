@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": false,
-    "strict": true
+    "strict": true,
+    "types": ["@modyfi/vite-plugin-yaml/modules"]
   }
 }

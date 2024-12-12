@@ -10,6 +10,7 @@
 
 <nav>
   <a href="/">Home</a>
+  <a href="/projects">Projects</a>
   <a href="/archives">Archives</a>
 </nav>
 {@render children()}
