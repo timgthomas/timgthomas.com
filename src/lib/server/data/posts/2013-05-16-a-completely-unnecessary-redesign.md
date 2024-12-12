@@ -8,7 +8,7 @@ title: A Completely Unnecessary Redesign
 
 Personal sites are often designers' "forever projects": ones that are in a perpetual state of being in need of "just one more" feature or tweak. This one is no different, having gone through five iterations in the past several years. If I were to be completely honest with myself, I could easily consider it "done": the design, while not spectacular, caters well to my intended audience, I have the ability to easily add and edit content with a low-friction workflow, and the site affords users the ability to see my recent online activity and get in touch if they so desire.
 
-Yet I, along with my designer and developer contemporaries, continue to be unsatisfied with our online presences. Not, in my case, with the visual design, or with the features, or even with the way my GitHub activity displays on the "[contact][0]" page (when it works), but with the fact that I'm not actively developing on it. In a way, I'm worried it's representative of my current position in the industry: resting on my laurels, and not striving to expand my horizons.
+Yet I, along with my designer and developer contemporaries, continue to be unsatisfied with our online presences. Not, in my case, with the visual design, or with the features, or even with the way my GitHub activity displays on the "contact" page (when it works), but with the fact that I'm not actively developing on it. In a way, I'm worried it's representative of my current position in the industry: resting on my laurels, and not striving to expand my horizons.
 
 Of course, this is unfair, as the frequency of updates to my personal site is often inversely proportional to the amount of other work I'm doing elsewhere. My personal site is often updated out of sheer boredom and speaks to a lack of other projects on which I can spend my free time. So when I announce that I'm embarking on the design of a new edition of the site, as I'll do shortly, you may safely assume I simply have too few other projects and distractions...but you would be wrong (this time).
 
@@ -22,7 +22,6 @@ As always, listening to presentations and reading blog posts only goes so far: t
 
 ![Step 1][a]
 
-[0]: /#contact
 [1]: https://twitter.com/davatron5000
 [2]: https://twitter.com/teleject
 [3]: https://twitter.com/jpamental
