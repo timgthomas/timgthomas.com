@@ -1,6 +1,5 @@
 import { globby } from 'globby'
 import matter from 'gray-matter'
-import { readFile } from 'node:fs/promises'
 import { join } from 'path'
 import { remark } from 'remark'
 import html from 'remark-html'

@@ -27,7 +27,7 @@ In addition to testing layout and behavior on mobile devices, it's also crucial 
 
 For apps that require offline support, as we discussed [in the last post in this series][1], most mobile devices include an option for "Airplane Mode", a way to placate those annoying demands to "turn off all mobile devices" by disabling all wireless activity, including wi-fi, Bluetooth, and cellular antennas. Fortunately, this feature works outside of airplanes and airports, as well, and allows us to test how apps will work without an Internet connection.
 
-<p><img alt="iOS's Airplane Mode Setting" src="/css/images/blog/2012-10-23-01.png" style="height:195px;width:300px" /></p>
+<p><img alt="iOS's Airplane Mode Setting" src="$/2012-10-23-01.png" style="height:195px;width:300px" /></p>
 
 In this post, we've seen a few ways to test the various aspects of a mobile Web app: locally, with IIS and Safari, and on a device with some built-in iOS tools, and discussed some techniques for seeing how your app may behave in limited- or no-connectivity environments. Ultimately, it's crucial to try out your Web app before it's unleashed on your users, and I hope you've seen how easy this process can be. Next time, you'll see some tricks to make a plain Web app look *almost* native. Stay tuned!
 

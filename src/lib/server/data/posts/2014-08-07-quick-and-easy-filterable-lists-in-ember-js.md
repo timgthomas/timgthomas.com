@@ -84,4 +84,4 @@ Add in some nice styling, and we've got a pretty nice filterable list!
 
 [0]: http://thoughts.z-dev.org/2013/07/04/post/
 
-[a]: /css/images/blog/2014-08-01-01.png
+[a]: $/2014-08-07-01.png

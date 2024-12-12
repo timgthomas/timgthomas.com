@@ -10,7 +10,7 @@ In this series so far, we've mostly discussed building a back-end for our [non-n
 
 Though it's perfectly reasonable to expect users to experience your app through the lens of some mobile Web browser, some devices allow Web sites to be "pinned" to their app list, thereby appearing much like any native application would.
 
-<p><img alt="Apps on an iPhone: native or Web?" src="/css/images/blog/2012-11-01-01.png" style="height:118px;width:320px"></p>
+<p><img alt="Apps on an iPhone: native or Web?" src="$/2012-11-01-01.png" style="height:118px;width:320px"></p>
 
 In this post, we'll look at how to see your app as a native user might, correct some obviously-non-native Web site usability, and make your app shine on iOS device home screens everywhere.
 
@@ -70,7 +70,7 @@ Native iOS apps show some sort of opening screen while they're loading, so Apple
 
 One "gotcha" with this is that the landscape screen needs to be the same resolution as the portrait one...the *exact* same. This means that if your portrait image is 320×480 in size, your landscape image *also* needs to be 320×480, requiring a 90-degree rotation:
 
-<img src="/css/images/blog/2012-11-01-03.png" alt="The required iOS device splash screen layout" class="inline">
+<img src="$/2012-11-01-03.png" alt="The required iOS device splash screen layout" class="inline">
 
 ## Wrapping-up
 
@@ -89,5 +89,5 @@ As time progresses, and more and more Web sites are designed to not only work on
 [8]: /2012/10/building-a-mobile-html5-app-hooking-things-together/
 [9]: /2012/10/building-a-mobile-html5-app-testing-the-app/
 
-[a]: /css/images/blog/2012-11-01-01.png
-[b]: /css/images/blog/2012-11-01-02.png
+[a]: $/2012-11-01-01.png
+[b]: $/2012-11-01-02.png

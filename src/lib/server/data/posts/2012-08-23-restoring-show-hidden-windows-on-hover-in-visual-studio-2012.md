@@ -15,9 +15,9 @@ Fear not, for all is not lost. To restore this essential functionality, simply f
 1. Open the Options window. If your menu is visible, click "Tools"&mdash;I mean, "TOOLS"...this is <strike>Metro</strike> Windows 8 UI style, after all&mdash;followed by "Options".
 2. In the Options window's "Environment" section, select "Tabs and Windows".
 3. Enable the bottom-most option, "Show auto-hidden windows on mouse over".
-4. Et voil&#0224;!
+4. Et voilà!
 
 [1]: http://msdn.microsoft.com/en-us/library/da5kh0wa.aspx
 [2]: http://www.jetbrains.com/resharper/
 
-[a]: /css/images/blog/2012-08-23-01.png
+[a]: $/2012-08-23-01.png
