@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Link from '$lib/components/link.svelte'
   import type { Project } from '$lib/server/models/project'
   import type { PageData } from './$types'
 
@@ -6,15 +7,16 @@
 </script>
 
 {#snippet projectSummary(project: Project)}
-  <p>{project.title}</p>
+  <h2>{project.title}</h2>
+  <p>{project.description}</p>
   <ul>
-    {#each project.links as link}
-      <li><a href={link.link} rel="noreferrer" target="_blank">{link.type}</a></li>
+    {#each project.links as { link: href }}
+      <li><Link {href} /></li>
     {/each}
   </ul>
 {/snippet}
 
-<p>Projects</p>
+<h1>Projects</h1>
 <ul>
   {#each data.projects as project}
     <li>{@render projectSummary(project)}</li>
