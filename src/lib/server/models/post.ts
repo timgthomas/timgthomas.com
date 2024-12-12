@@ -29,11 +29,6 @@ export default class Post {
   }
 
   static async getAll(): Promise<Post[]> {
-    const file = await import(
-      '$lib/server/data/posts/2011-07-01-breaking-your-old-html-habits.md?raw'
-    ).then((x) => x.default)
-    console.log('file', file)
-
     if (this.#postsCache.length) return this.#postsCache
 
     const descriptors = await this.getPostDescriptors()
@@ -42,10 +37,6 @@ export default class Post {
     return this.#postsCache.sort(this.byDate)
   }
 
-  /**
-   * Fetch a post given its path (e.g. `/2024/foo`).
-   * @param path A path relative to the posts directory.
-   */
   static async get(slug: string): Promise<Opt<Post>> {
     const posts = await this.getAll()
     return posts.find((post) => post.slug === slug)
@@ -55,9 +46,6 @@ export default class Post {
     return rhs.date.localeCompare(lhs.date)
   }
 
-  /**
-   * Replace URL shortcuts in Markdown to reduce the chance of paths breaking.
-   */
   static replaceAssetUrls(content: string, date: string, slug: string): string {
     const shortcut = '$/'
     const fullUrl = `/post-assets/${date}-${slug}/`
@@ -65,10 +53,11 @@ export default class Post {
   }
 
   static async #createPostFromDescriptor(descriptor: [string, string, string]): Promise<Post> {
-    const [fileName, date, slug] = descriptor
-    const fileContents = await readFile(fileName, 'utf8')
+    const [, date, slug] = descriptor
 
-    // Contents
+    const fileContents = await import(`$lib/server/data/posts/${date}-${slug}.md?raw`).then(
+      (x) => x.default,
+    )
     const { content, data } = matter(fileContents)
     const renderedContent = await render(Post.replaceAssetUrls(content, date, slug))
 
