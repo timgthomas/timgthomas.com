@@ -1,9 +1,5 @@
 import projectData from '$lib/server/data/projects.yml'
-
-interface Link {
-  type: 'app store' | 'facebook' | 'github' | 'web'
-  link: string
-}
+import type { Link } from '$lib/server/models/link'
 
 export default class Project {
   title: string
