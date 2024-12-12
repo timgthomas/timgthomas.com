@@ -1,6 +1,6 @@
 <script lang="ts">
   import Link from '$lib/components/link.svelte'
-  import type { Project } from '$lib/server/models/project'
+  import type Project from '$lib/server/models/project'
   import type { PageData } from './$types'
 
   const { data }: { data: PageData } = $props()

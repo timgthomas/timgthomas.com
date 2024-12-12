@@ -5,4 +5,4 @@
   const { data: post }: { data: PageData } = $props()
 </script>
 
-<Prose title={post.title} content={post.content} />
+<Prose {post} />

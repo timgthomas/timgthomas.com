@@ -2,7 +2,7 @@
   import Prose from '$lib/components/prose.svelte'
   import type { PageData } from './$types'
 
-  const { data }: { data: PageData } = $props()
+  const { data: post }: { data: PageData } = $props()
 </script>
 
-<Prose title={data.post.title} content={data.post.content} />
+<Prose {post} />

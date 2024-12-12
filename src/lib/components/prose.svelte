@@ -1,15 +1,13 @@
 <script lang="ts">
-  // import type Post from '$lib/server/models/post'
+  import type Post from '$lib/server/models/post'
 
-  interface Props {
-    title: string
-    content: string
-  }
-
-  const { content, title }: Props = $props()
+  const { post }: { post: Post } = $props()
 </script>
 
 <article>
-  <h1>{title}</h1>
-  {@html content}
+  <header>
+    <h1>{post.title}</h1>
+    <p>{post.date}</p>
+  </header>
+  {@html post.content}
 </article>
