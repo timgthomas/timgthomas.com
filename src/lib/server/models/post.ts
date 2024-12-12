@@ -29,6 +29,11 @@ export default class Post {
   }
 
   static async getAll(): Promise<Post[]> {
+    const file = await import(
+      '$lib/server/data/posts/2011-07-01-breaking-your-old-html-habits.md?raw'
+    ).then((x) => x.default)
+    console.log('file', file)
+
     if (this.#postsCache.length) return this.#postsCache
 
     const descriptors = await this.getPostDescriptors()
