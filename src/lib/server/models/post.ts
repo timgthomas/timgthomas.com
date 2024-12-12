@@ -50,13 +50,22 @@ export default class Post {
     return rhs.date.localeCompare(lhs.date)
   }
 
+  /**
+   * Replace URL shortcuts in Markdown to reduce the chance of paths breaking.
+   */
+  static replaceAssetUrls(content: string, date: string, slug: string): string {
+    const shortcut = '$/'
+    const fullUrl = `/post-assets/${date}-${slug}/`
+    return content.replaceAll(shortcut, fullUrl)
+  }
+
   static async #createPostFromDescriptor(descriptor: [string, string, string]): Promise<Post> {
     const [fileName, date, slug] = descriptor
     const fileContents = await readFile(fileName, 'utf8')
 
     // Contents
     const { content, data } = matter(fileContents)
-    const renderedContent = await render(content)
+    const renderedContent = await render(Post.replaceAssetUrls(content, date, slug))
 
     return { title: data.title, slug, date: date, content: renderedContent } as Post
   }
