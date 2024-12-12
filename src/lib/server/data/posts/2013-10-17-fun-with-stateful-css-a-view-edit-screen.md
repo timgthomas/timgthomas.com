@@ -47,7 +47,7 @@ _Update: After [some feedback][3] that the functionality of the example below wa
 
 In the coming weeks, we'll see some more UI patterns you can build without JavaScript, so stay tuned!
 
-[0]: /2012/05/mute-your-asynchronous-uis-with-stateful-css/
+[0]: /blog/mute-your-asynchronous-uis-with-stateful-css/
 [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/:checked?redirectlocale=en-US&redirectslug=CSS%2F%3Achecked
 [2]: https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors
 [3]: #comment-1086752051

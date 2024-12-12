@@ -19,6 +19,6 @@ Though I've used this method on a VX2453mh specifically, I imagine it applies to
 
 [1]: http://www.viewsonic.com/products/desktop-monitors/lcd/x-series/vx2453mhled.htm
 [2]: http://en.wikipedia.org/wiki/Overscan
-[3]: /2012/04/correct-hdmi-display-scaling-in-windows-on-a-radeon-equipped-macbook-pro/
+[3]: /blog/correct-hdmi-display-scaling-in-windows-on-a-radeon-equipped-macbook-pro/
 
 [a]: $/2012-08-30-01.jpg

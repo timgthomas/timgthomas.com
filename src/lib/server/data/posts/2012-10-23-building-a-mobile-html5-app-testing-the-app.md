@@ -4,9 +4,9 @@ title: "Building a Non-Native Mobile HTML5 App, Part V: Testing the App"
 
 ## Posts in This Series
 
-<dl><dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt>Part V: Testing the App</dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
+<dl><dt><a href="/blog/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/blog/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/blog/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/blog/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt>Part V: Testing the App</dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
 
-We've [picked some technologies to help build our mobile HTML5 app](/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/), seen [how to communicate between it and a server](/2012/10/building-a-mobile-html5-app-hooking-things-together/), and [discussed how to store data offline](/2012/10/building-a-mobile-html5-app-making-it-work-offline/) for situations when a network connection is unavailable. In this post, we'll take a look at how to ensure all of these components work the way they should: testing.
+We've [picked some technologies to help build our mobile HTML5 app](/blog/building-a-mobile-html5-app-choosing-a-technology-stack/), seen [how to communicate between it and a server](/blog/building-a-mobile-html5-app-hooking-things-together/), and [discussed how to store data offline](/blog/building-a-mobile-html5-app-making-it-work-offline/) for situations when a network connection is unavailable. In this post, we'll take a look at how to ensure all of these components work the way they should: testing.
 
 ## Local Testing
 Most of the time, you'll want to test your mobile app locally, on a fully-featured computer. This helps you quickly identify the most obvious layout issues and bugs, and requires no more than having access to the same computer on which you're developing.
@@ -31,9 +31,9 @@ For apps that require offline support, as we discussed [in the last post in this
 
 In this post, we've seen a few ways to test the various aspects of a mobile Web app: locally, with IIS and Safari, and on a device with some built-in iOS tools, and discussed some techniques for seeing how your app may behave in limited- or no-connectivity environments. Ultimately, it's crucial to try out your Web app before it's unleashed on your users, and I hope you've seen how easy this process can be. Next time, you'll see some tricks to make a plain Web app look *almost* native. Stay tuned!
 
-[1]: /2012/10/building-a-mobile-html5-app-making-it-work-offline/
+[1]: /blog/building-a-mobile-html5-app-making-it-work-offline/
 [2]: http://www.headspring.com/
 [3]: http://support.apple.com/kb/DL1531
 [4]: http://www.iis.net/
-[5]: /2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/
-[6]: /2012/09/inspect-mobile-web-sites-with-a-mac-and-ios-6/
+[5]: /blog/building-a-mobile-html5-app-choosing-a-technology-stack/
+[6]: /blog/inspect-mobile-web-sites-with-a-mac-and-ios-6/

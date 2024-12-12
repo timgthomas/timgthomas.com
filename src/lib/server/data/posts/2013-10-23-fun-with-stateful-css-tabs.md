@@ -49,5 +49,5 @@ In this way, we can migrate away from a simple boolean state (with a checkbox) t
 That concludes this round of fun with stateful CSS! Thanks for reading!
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors
-[1]: /2013/10/fun-with-stateful-css-a-view-edit-screen/
-[2]: /2013/10/fun-with-stateful-css-modals/
+[1]: /blog/fun-with-stateful-css-a-view-edit-screen/
+[2]: /blog/fun-with-stateful-css-modals/

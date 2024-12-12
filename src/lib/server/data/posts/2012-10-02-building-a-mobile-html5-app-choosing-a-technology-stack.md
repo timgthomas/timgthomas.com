@@ -4,7 +4,7 @@ title: "Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology S
 
 ## Posts in This Series
 
-<dl><dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt>Part II: Choosing a Technology Stack</dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
+<dl><dt><a href="/blog/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt>Part II: Choosing a Technology Stack</dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/blog/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/blog/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/blog/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
 
 [In the first post of this series][1], we looked at some business reasons why a client went with a mobile-focused HTML5 Web app instead of a native one. In this post, we'll discuss some of the technical decisions that facilitated building the app.
 
@@ -38,12 +38,12 @@ As our app includes a small e-commerce component (users can purchase collections
 
 Thanks to the stability of Microsoft's server technologies, the flexibility of some client-side frameworks like jQuery and Backbone, the offline utility of HTML5 APIs like `localStorage` and `applicationCache`, and the power of third-party services like AppHarbor and Stripe, we were free to focus on building the best non-native HTML5 app we could.
 
-[In the next post](/2012/10/building-a-mobile-html5-app-hooking-things-together/), we'll look at some actual code to see how to communicate between a client, with JavaScript, and a server, running ASP.NET MVC.
+[In the next post](/blog/building-a-mobile-html5-app-hooking-things-together/), we'll look at some actual code to see how to communicate between a client, with JavaScript, and a server, running ASP.NET MVC.
 
-[1]: /2012/09/building-a-mobile-html5-app-going-non-native/
+[1]: /blog/building-a-mobile-html5-app-going-non-native/
 [2]: http://www.amazon.com/ASP-NET-MVC-Action-Jeffrey-Palermo/dp/1617290416/
 [3]: http://code.google.com/p/elmah/
-[4]: /2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/
+[4]: /blog/a-quick-start-of-asp-net-mvc-4s-bundling/
 [5]: http://jquery.com/
 [6]: http://backbonejs.org/
 [7]: http://documentcloud.github.com/underscore/

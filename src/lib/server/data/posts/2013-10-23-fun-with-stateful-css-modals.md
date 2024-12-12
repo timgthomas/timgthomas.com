@@ -39,6 +39,6 @@ You can easily add some CSS transitions to make the modal fade in and out (or ev
 
 My team uses this approach on our current project. Though we use JavaScript to populate the *contents* of our modals, this technique seriously cuts down on the script overhead of showing a modal popup. Stick around for more fun with stateful CSS!
 
-[0]: /2013/10/fun-with-stateful-css-a-view-edit-screen/
+[0]: /blog/fun-with-stateful-css-a-view-edit-screen/
 [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors
 [2]: http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/

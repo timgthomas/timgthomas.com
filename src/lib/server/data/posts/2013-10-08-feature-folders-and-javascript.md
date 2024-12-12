@@ -63,7 +63,7 @@ That's all it takes to relocate your RequireJS scripts! Our MVC child action tel
 
 We've had great results with this approach so far. RequireJS allows us to simplify our client-side script loading, and feature folders help us realize a dramatic reduction in context switching (not to mention Visual Studio's Solution Explorer is useful again!). If you've benefitted from switching to feature folders (or found it causes some pain), share your experiences in the comments!
 
-[0]: /2013/10/feature-folders-in-asp-net-mvc/
+[0]: /blog/feature-folders-in-asp-net-mvc/
 [1]: http://requirejs.org/
 [2]: http://www.jquery.com/
 [3]: http://backbonejs.com/

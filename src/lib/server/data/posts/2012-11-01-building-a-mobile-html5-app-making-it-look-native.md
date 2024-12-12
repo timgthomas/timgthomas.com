@@ -4,7 +4,7 @@ title: "Building a Non-Native Mobile HTML5 App, Part VI: Making It Look Native"
 
 ## Posts in This Series
 
-<dl><dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt>Part VI: Making It Look Native</dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
+<dl><dt><a href="/blog/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/blog/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/blog/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/blog/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/blog/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt>Part VI: Making It Look Native</dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
 
 In this series so far, we've mostly discussed building a back-end for our [non-native][0], [offline-enabled][1] mobile HTML5 app. Today, however, we'll see how to make the app *look* a little more native.
 
@@ -78,16 +78,16 @@ This concludes this series on building a non-native mobile HTML5 app. We've [loo
 
 As time progresses, and more and more Web sites are designed to not only work on, but *designed for*, mobile devices, I expect we'll see even more tools provided by browser vendors and device manufacturers to help us build non-native mobile HTML5 apps. Still, the methods and tools available right now are better than any available before, and allow Web developers to make some truly incredible (non-native) apps. Thanks for reading!
 
-[0]: /2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/
-[1]: /2012/10/building-a-mobile-html5-app-making-it-work-offline/
+[0]: /blog/building-a-mobile-html5-app-choosing-a-technology-stack/
+[1]: /blog/building-a-mobile-html5-app-making-it-work-offline/
 [2]: https://www.google.com/intl/en/chrome/browser/
 [3]: http://www.apple.com/iphone/iphone-4s/specs.html
 [4]: http://www.allenpike.com/2010/choosing-a-viewport-for-ipad-sites/
 [5]: http://developer.apple.com/library/ios/#DOCUMENTATION/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
 [6]: http://developer.apple.com/library/ios/#DOCUMENTATION/UserExperience/Conceptual/MobileHIG/IconsImages/IconsImages.html#//apple_ref/doc/uid/TP40006556-CH14
-[7]: /2012/09/building-a-mobile-html5-app-going-non-native/
-[8]: /2012/10/building-a-mobile-html5-app-hooking-things-together/
-[9]: /2012/10/building-a-mobile-html5-app-testing-the-app/
+[7]: /blog/building-a-mobile-html5-app-going-non-native/
+[8]: /blog/building-a-mobile-html5-app-hooking-things-together/
+[9]: /blog/building-a-mobile-html5-app-testing-the-app/
 
 [a]: $/2012-11-01-01.png
 [b]: $/2012-11-01-02.png

@@ -95,8 +95,8 @@ Once we incorporate our new directory searching function (implemented as an exte
 
 If you've used other ways of including subdirectories in a bundle, or if you have intimate knowledge of why the `searchSubdirectories` parameter even exists, let me know in the comments! Happy bundling!
 
-[0]: /2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/
+[0]: /blog/a-quick-start-of-asp-net-mvc-4s-bundling/
 [1]: http://msdn.microsoft.com/en-us/library/jj646468(v=vs.110).aspx
 [2]: http://emberjs.com/
-[3]: /2013/10/feature-folders-and-javascript/
+[3]: /blog/feature-folders-and-javascript/
 [4]: http://msdn.microsoft.com/en-us/library/s7xk2b58(v=vs.110).aspx
