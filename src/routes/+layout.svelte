@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import Header from '$lib/sections/header.svelte'
+  import Masthead from '$lib/sections/masthead.svelte'
 
   import '../app.scss'
 
@@ -10,15 +12,17 @@
   let { children }: Props = $props()
 </script>
 
-<header>
-  <h1>Tim G. Thomas</h1>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/projects">Projects</a>
-    <a href="/speaking">Speaking</a>
-    <a href="/archives">Archives</a>
-  </nav>
-</header>
-<main>
-  {@render children()}
-</main>
+<Header />
+<Masthead />
+<main>{@render children()}</main>
+
+<style>
+  main {
+    margin-inline: auto;
+    max-width: 60rem;
+    padding: var(--space);
+
+    color: var(--color-foreground);
+    mix-blend-mode: plus-lighter;
+  }
+</style>

@@ -1,3 +1,37 @@
+* {
+  box-sizing: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+li,
+ol,
+ul {
+  list-style: none;
+}
+
+:root {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  line-height: 1;
+}
+
 body {
   background-color: #1f1f1f;
+}
+
+:root {
+  --base: 1.6rem;
+
+  --space: calc(var(--base) / 2);
+  --space-narrow: calc(var(--space) / 2);
+  --space-wide: calc(var(--space) * 2);
+
+  --corners: calc(var(--base) / 3);
+
+  // This is the "rendered" color for the blending the design calls for, but
+  // that can't be repro-ed in browsers without the `plus-lighter` blend mode.
+  --color-foreground: hsl(0, 0%, 72%);
+  --color-foreground-elevated: hsl(0, 0%, 100%);
 }
