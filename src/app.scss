@@ -18,20 +18,24 @@ ul {
 }
 
 body {
+  -moz-font-feature-settings: 'kern';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   background-color: #1f1f1f;
 }
 
 :root {
   --base: 1.6rem;
 
-  --space: calc(var(--base) / 2);
+  --space: var(--base);
   --space-narrow: calc(var(--space) / 2);
   --space-wide: calc(var(--space) * 2);
 
-  --corners: calc(var(--base) / 3);
+  --corners: calc(var(--base) / 2);
 
-  // This is the "rendered" color for the blending the design calls for, but
-  // that can't be repro-ed in browsers without the `plus-lighter` blend mode.
-  --color-foreground: hsl(0, 0%, 72%);
+  --elevation-menu: 200;
+
+  // This color was interpreted from specs
+  --color-foreground: hsl(0, 0%, 60%);
   --color-foreground-elevated: hsl(0, 0%, 100%);
 }

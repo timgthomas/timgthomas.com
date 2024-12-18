@@ -3,6 +3,8 @@
   import Header from '$lib/sections/header.svelte'
   import Masthead from '$lib/sections/masthead.svelte'
 
+  import '@fontsource/fira-sans-condensed/400.css'
+  import '@fontsource/fira-sans/400.css'
   import '../app.scss'
 
   interface Props {

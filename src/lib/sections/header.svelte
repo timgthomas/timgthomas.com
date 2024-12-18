@@ -17,13 +17,17 @@
     inset: var(--space) var(--space) auto;
     padding: var(--space);
     position: fixed;
+    z-index: var(--elevation-menu);
 
     backdrop-filter: blur(5px);
-    background: #0006;
+    background: #000;
   }
 
   h1 {
     flex: 1 0;
+    font-family: 'Fira Sans Condensed';
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   a {

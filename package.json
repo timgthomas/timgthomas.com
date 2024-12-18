@@ -31,6 +31,8 @@
     "vitest": "^2.0.4"
   },
   "dependencies": {
+    "@fontsource/fira-sans": "^5.1.0",
+    "@fontsource/fira-sans-condensed": "^5.1.0",
     "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@sveltejs/adapter-vercel": "^5.5.2",
     "globby": "^14.0.2",
