@@ -3,6 +3,7 @@
   import Header from '$lib/sections/header.svelte'
   import Masthead from '$lib/sections/masthead.svelte'
 
+  import '@fontsource/fira-sans-condensed/300.css'
   import '@fontsource/fira-sans-condensed/400.css'
   import '@fontsource/fira-sans/400.css'
   import '../app.scss'
@@ -21,7 +22,7 @@
 <style>
   main {
     margin-inline: auto;
-    max-width: 60rem;
+    max-width: 80rem;
     padding: var(--space);
 
     color: var(--color-foreground);
