@@ -6,7 +6,8 @@
     "version": "7.3.0"
   },
   "scripts": {
-    "dev": "hexo server --debug"
+    "dev": "hexo server --debug",
+    "build": "NODE_ENV=production hexo generate"
   },
   "devDependencies": {
     "hexo": "^7.3.0",
