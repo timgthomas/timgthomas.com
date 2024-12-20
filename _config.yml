@@ -85,14 +85,5 @@ pagination_dir: page
 disqus_shortname: timgthomas
 
 # Extensions
-## HACK: This doesn't seem to work, so I've prepended other themes with
-## underscores.
-theme: tria-2019
+theme: timgthomas
 exclude_generator:
-
-# Deployment
-## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: git@github.com:timgthomas/timgthomas.com.git
-  branch: gh-pages
