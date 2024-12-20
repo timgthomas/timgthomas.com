@@ -1,4 +1,4 @@
-data: talks
+dataKey: talks
 layout: speaking
 title: Speaking
 ---

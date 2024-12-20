@@ -1,0 +1,6 @@
+<% const byTitle = (lhs, rhs) => lhs.title.localeCompare(rhs.title) %>
+<nav>
+  <% for (const { path, title } of site.pages.data.sort(byTitle)) { %>
+    <li><a href="<%= url_for(path) %>"><%= title %></a></li>
+  <% } %>
+</nav>

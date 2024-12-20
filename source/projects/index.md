@@ -1,4 +1,4 @@
-data: projects
+dataKey: projects
 layout: projects
 title: Projects
 ---

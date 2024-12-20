@@ -1,0 +1,25 @@
+<header class="title">
+  <h1>{{page.title}}</h1>
+</header>
+<dl>
+  {{#each data}}
+    <li>
+      <figure>
+        <img src="/images/projects/{{this.id}}.jpg" />
+        <figcaption>
+          <h1>{{this.name}}</h1>
+          <p>{{this.description}}</p>
+          <ul>
+            {{#each this.links}}
+              <li>
+                <a href={{this.link}} target="_blank" rel="noopener">
+                  {{this.type}}
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </figcaption>
+      </figure>
+    </li>
+  {{/each}}
+</dl>
