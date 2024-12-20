@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack</h1>
+      <p>2 October 2012</p>
+    </header>
+    <h2 id="Posts-in-This-Series"><a href="#Posts-in-This-Series" class="headerlink" title="Posts in This Series"></a>Posts in This Series</h2><dl><dt><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Part I: A Business Case</a></dt><dd>Why our client chose to build a Web app over a native one.</dd><dt>Part II: Choosing a Technology Stack</dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
+
+<p><a href="/2012/09/building-a-mobile-html5-app-going-non-native/">In the first post of this series</a>, we looked at some business reasons why a client went with a mobile-focused HTML5 Web app instead of a native one. In this post, we’ll discuss some of the technical decisions that facilitated building the app.</p>
+<p>As a Web app, this project had three distinct components we’ll discuss: the server, the client (in this case, a mobile device), and the hosting environment.</p>
+<h2 id="Back-End-Backup"><a href="#Back-End-Backup" class="headerlink" title="Back-End Backup"></a>Back-End Backup</h2><p>Headspring’s history of being a .NET development studio means some of the technology choices are made for us. We’ve historically found Microsoft’s server components to be solid, easy to develop for, and flexible when the need arises (so much so, in fact, that several Headspring employees and former employees have <a target="_blank" rel="noopener" href="http://www.amazon.com/ASP-NET-MVC-Action-Jeffrey-Palermo/dp/1617290416/">authored books on the subject</a>), and there were no technical limitations that would preclude its use, so we started development with the “standard” .NET Web development stack of Windows, IIS (.NET’s Web server), SQL Server (.NET’s database), and ASP.NET MVC, a fantastic model-view-controller Web application framework.</p>
+<p>Apart from our go-to stack of Microsoft components, we also leveraged the excellent <a target="_blank" rel="noopener" href="http://code.google.com/p/elmah/">ELMAH</a> library. This invaluable tool provides notifications—in our case, via email, but many other “loggers” exist—about any exceptions and errors that happen in production.</p>
+<p>We also utilized a particularly-nice feature of the newest version of MVC, bundling, to keep our CSS and JavaScript files compact. You can <a href="/2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/">learn more about MVC4’s bundling</a> in a post I wrote a few weeks ago.</p>
+<h2 id="Client-Side-Cleverness"><a href="#Client-Side-Cleverness" class="headerlink" title="Client-Side Cleverness"></a>Client-Side Cleverness</h2><p>The front-end portion of the application uses some of our other favorite tools: mainly, <a target="_blank" rel="noopener" href="http://jquery.com/">jQuery</a> and <a target="_blank" rel="noopener" href="http://backbonejs.org/">Backbone</a>, both of which we’ve found to be an excellent choice for developing responsive, interactive UIs. jQuery provides an excellent API for querying and manipulating each page’s content, while Backbone allows us to modularize each application screen to reduce code duplication and increase maintainability.</p>
+<p>Along with these two libraries (and Backbone’s dependency, <a target="_blank" rel="noopener" href="http://documentcloud.github.com/underscore/">Underscore</a>, which <a target="_blank" rel="noopener" href="http://www.headspring.com/tim/an-underscore-templates-primer/">powers our templates</a>), we relied on the outstanding jQuery plugins of Zurb’s <a target="_blank" rel="noopener" href="http://foundation.zurb.com/">Foundation project</a> for custom form skinning, modal windows, and more.</p>
+<p>Most important to the project’s success as an offline application were browser-based “HTML5” APIs. Not every browser in use today supports these APIs, but the devices the app targets—iPads, higher-end Android tablets, desktops, and laptops—have enough support to make their use a logical choice. The two that made offline support possible were <code>localStorage</code> and <code>applicationCache</code>, and we’ll take a more in-depth look at these APIs in Part IV, “Making it Work Offline”.</p>
+<h2 id="Hosting-Happiness"><a href="#Hosting-Happiness" class="headerlink" title="Hosting Happiness"></a>Hosting Happiness</h2><p>At some point, every application should move out of the development environment into production. This part of the process for our HTML5 app became quite painless by working with some amazing vendors.</p>
+<p>For Web and database hosting, we selected my favorite cloud-based .NET hosting solution: <a target="_blank" rel="noopener" href="https://appharbor.com/">AppHarbor</a>. It’s difficult to argue with the ease-of-use of features like git-based deployments (<code>git push appharbor master</code>), automatically-run unit tests, easy roll-backs for bad builds, and more. AppHarbor also features impressive scalability (a simple slider adjusts the number of processes serving the site) and an extensive collection of add-ons, one of which we leveraged to host the entire database for the application. At $49 per month (the cost of the plan we chose, cleverly titled “Catamaran”), it’s even very affordable.</p>
+<p>As our app includes a small e-commerce component (users can purchase collections of “plays”, organized by the football concept of “formations”, or layouts of players), we needed to accept credit cards. The mere mention of this, however, sends many a developer sprinting in the opposite direction, and for good reason: the price of failure to build a robust, secure payment gateway <a target="_blank" rel="noopener" href="http://www.pcicomplianceguide.org/pcifaqs.php#11">can be quite high</a>. Insted of trying to build our own e-commerce system, we chose to utilize the outstanding services of <a target="_blank" rel="noopener" href="https://stripe.com/">Stripe</a>. Stripe provides the payment processing services and some outstanding APIs with which our system integrates; all we had to do was provide the product data and call into their endpoints. Their status dashboard and documentation are especially noteworthy, as special attention is given to make the system easy for developers to work with.</p>
+<h2 id="A-Solid-Foundation"><a href="#A-Solid-Foundation" class="headerlink" title="A Solid Foundation"></a>A Solid Foundation</h2><p>Thanks to the stability of Microsoft’s server technologies, the flexibility of some client-side frameworks like jQuery and Backbone, the offline utility of HTML5 APIs like <code>localStorage</code> and <code>applicationCache</code>, and the power of third-party services like AppHarbor and Stripe, we were free to focus on building the best non-native HTML5 app we could.</p>
+<p><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">In the next post</a>, we’ll look at some actual code to see how to communicate between a client, with JavaScript, and a server, running ASP.NET MVC.</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/",
+    "headline": "Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack",
+    "datePublished": "Tue Oct 02 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Building a Non-Native Mobile HTML5 App, Part I: A Business Case</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Building a Non-Native Mobile HTML5 App, Part III: Hooking Things Together</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack';
+      this.page.url = 'http://timgthomas.com/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/';
+      this.page.identifier = '2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

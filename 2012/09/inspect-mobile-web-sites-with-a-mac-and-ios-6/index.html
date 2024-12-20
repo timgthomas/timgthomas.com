@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Inspect Mobile Web Sites with a Mac and iOS 6 · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Inspect Mobile Web Sites with a Mac and iOS 6</h1>
+      <p>19 September 2012</p>
+    </header>
+    <p>iOS 6 includes <a target="_blank" rel="noopener" href="http://www.apple.com/ios/">a number of new features</a>, including brand-new, Apple-designed maps and, for some, Siri support. My favorite new feature by far, however, is one that very few consumers will even know exists: remote Web inspection.</p>
+<p>If you’ve done any Web development, you’ve likely encountered Webkit’s Web inspector in either Safari or Chrome, but developers were relegated to inspecting pages on their desktops or laptops. With iOS 6, you can now remotely inspect a Web page running on your iOS device…from your Mac. In this post, I’ll show you how.</p>
+<h2 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h2><p>Obviously, you’ll need an iOS device. For this post, I’ll be using my (new) iPad. You’ll also need a Mac on which to run Safari (as of this writing, Safari is no longer available on Windows). You’ll also need to connect your iOS device to your Mac with a cable.</p>
+<p>You’ll now need to enable Web inspection on your device. Open Settings, then tap the “Safari” option. Scroll to the bottom and open the “Advanced” panel. Turn the option for “Web Inspector” on, and you’re good to go.</p>
+<p>After you’ve connected your iOS device and enabled the Web inspector, open up Mobile Safari and navigate to a site of your choice.</p>
+<p><img src="/css/images/blog/2012-09-19-01.png" alt="My site, running on Mobile Safari."></p>
+<h2 id="Connecting-to-the-remote-inspector"><a href="#Connecting-to-the-remote-inspector" class="headerlink" title="Connecting to the remote inspector"></a>Connecting to the remote inspector</h2><p>Next, open Safari on your Mac. If you don’t have the “Develop” toolbar showing, you’ll need to show it:</p>
+<ol>
+<li>Open the “Preferences” window.</li>
+<li>Click the “Advanced” tab.</li>
+<li>At the bottom of this panel, click “Show Develop menu in menu bar”</li>
+</ol>
+<p>Open the “Develop” menu and look for your iOS device’s name (mine is “Tim’s iPad”). Select that menu and click the menu option that corresponds to the URL you’d like to remotely inspect. If you have your iOS device closeby and the about-to-be-inspected tab open, you’ll notice the Web page gains a blue tint when you hover over the menu item.</p>
+<p>Select the option (in this example, “timgthomas.com”), and a Web inspection window will appear.</p>
+<h2 id="Get-inspecting"><a href="#Get-inspecting" class="headerlink" title="Get inspecting!"></a>Get inspecting!</h2><p>From here, there are a number of ways you can inspect your remotely-viewed Web page. The center of the screen contains a hierarchical view of the page’s markup, and you can hover over and click various tags to see their properties (and watch them be highlighted on your iOS device).</p>
+<p><img src="/css/images/blog/2012-09-19-02.png" alt="Hover over an element in the Web inspector, and see it highlighted on your iOS device!"></p>
+<p>If you want to avoid digging through a bunch of markup to inspect an element, simply click the “hand” icon and, on your device, tap an element to target it in the inspector.</p>
+<p><img src="/css/images/blog/2012-09-19-03.png" alt="The &quot;hand&quot; icon."></p>
+<p>You can even remotely-debug JavaScript! Expand the “Scripts” folder and choose a script file to debug. Then, click the line number margin to set a breakpoint, and cause the break by performing the corresponding action on the device. Don’t forget that you can also debug Web sites running on a Web server local to your Mac!</p>
+<p>I’ve already used this tool to diagnose and fix some iPad layout issues on this site. I hope you find iOS 6’s remote Web inspector just as invaluable!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/09/inspect-mobile-web-sites-with-a-mac-and-ios-6/",
+    "headline": "Inspect Mobile Web Sites with a Mac and iOS 6",
+    "datePublished": "Wed Sep 19 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/">A Quick-Start of ASP.NET MVC 4&#39;s Bundling</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/09/building-a-mobile-html5-app-going-non-native/">Building a Non-Native Mobile HTML5 App, Part I: A Business Case</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Inspect Mobile Web Sites with a Mac and iOS 6';
+      this.page.url = 'http://timgthomas.com/2012/09/inspect-mobile-web-sites-with-a-mac-and-ios-6/';
+      this.page.identifier = '2012/09/inspect-mobile-web-sites-with-a-mac-and-ios-6/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

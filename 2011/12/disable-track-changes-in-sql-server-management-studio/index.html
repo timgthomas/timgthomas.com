@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Disable &#34;Track Changes&#34; in SQL Server Management Studio · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Disable &#34;Track Changes&#34; in SQL Server Management Studio</h1>
+      <p>30 December 2011</p>
+    </header>
+    <p>For whatever reason, I get very little use out of the “track changes” feature in<br>both Visual Studio and SQL Server Management Studio, which is designed to<br>highlight lines that changed since the last save:</p>
+<p><img src="/css/images/blog/2011-12-30-01.png" alt="Management Studio with Track Changes &#39;enabled&#39;"></p>
+<p>Visual Studio has an option to disable it entirely (<code>Tools &gt; Options &gt; Text Editor &gt; Track changes</code>), but Management Studio lacks this feature. As a<br>workaround, you can set the “Item background” color for these two items to<br>“Automatic” (available via <code>Tools &gt; Options &gt; Environment &gt; Fonts and Colors</code>):</p>
+<ul>
+<li>Track Changes after save</li>
+<li>Track Changes before save</li>
+</ul>
+<p>Changing these settings results in a pleasant absence of the “track changes” bar:</p>
+<p><img src="/css/images/blog/2011-12-30-02.png" alt="Management Studio with Track Changes &#39;disabled&#39;"></p>
+<p>It’s worth noting that Visual Studio’s behavior is slightly different. Setting the<br>colors of these two options to “Automatic” maintains the original green and yellow<br>colors instead of making them mimic the background color, as in Management Studio.</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2011/12/disable-track-changes-in-sql-server-management-studio/",
+    "headline": "Disable &#34;Track Changes&#34; in SQL Server Management Studio",
+    "datePublished": "Fri Dec 30 2011 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2011/10/recreating-the-ctxna-button-style-in-pure-css/">Recreating the CTXNA Button Style in Pure CSS</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/02/using-html5s-data-attributes-with-asp-net-mvcs-input-helpers/">Using HTML5&#39;s &#34;data&#34; Attributes with ASP.NET MVC&#39;s Input Helpers</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Disable &#34;Track Changes&#34; in SQL Server Management Studio';
+      this.page.url = 'http://timgthomas.com/2011/12/disable-track-changes-in-sql-server-management-studio/';
+      this.page.identifier = '2011/12/disable-track-changes-in-sql-server-management-studio/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

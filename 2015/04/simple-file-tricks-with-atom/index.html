@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Simple File Tricks with Atom · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Simple File Tricks with Atom</h1>
+      <p>28 April 2015</p>
+    </header>
+    <p>I’m a huge fan of <a target="_blank" rel="noopener" href="https://atom.io/">Atom</a>, <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>’s <a target="_blank" rel="noopener" href="https://github.com/atom/atom">open source</a> text editor. The more time I can spend in it (instead of switching contexts between different applications), the better. In this post, I’d like to share with you a few simple file operations you can perform inside Atom instead of ⌘+Tab-ing elsewhere:</p>
+<h2 id="Moving-Files"><a href="#Moving-Files" class="headerlink" title="Moving Files"></a>Moving Files</h2><p>You may have used Atom’s “rename” feature a time or two, but did you know you can also use it to move files, as well? When you open the “rename” palette, Atom displays the file’s full path (relative to the project root). Want to relocate the file? Simply change the path and hit return:</p>
+<p><img src="/2015/04/simple-file-tricks-with-atom/moving-files.gif" alt="Using Atom to move a file"></p>
+<h2 id="Copying-Pasting-Files"><a href="#Copying-Pasting-Files" class="headerlink" title="Copying/Pasting Files"></a>Copying/Pasting Files</h2><p>The next time you need to copy and paste a file, why not use Atom instead of your OS’s file explorer? Right-click a file, select “Duplicate”, and Atom prompts you for the file’s new name. Much like moving a file, just change the path to wherever you’d like to copy the new file, hit return, and presto!</p>
+<h2 id="Creating-New-Files"><a href="#Creating-New-Files" class="headerlink" title="Creating New Files"></a>Creating New Files</h2><p>Sure, new files are only a couple of mouse clicks away, but why should you even have to take your hands off your keyboard? Spoiler alert: you don’t have to! Atom includes a command to do just that, but it’s not bound to a keyboard shortcut…yet. Here’s how to make that happen:</p>
+<ol>
+<li>Open your Atom keymap (Mac: “Atom” &gt; “Open Your Keymap”; Windows: “File” &gt; “Open Your Keymap”).</li>
+<li>Add the following text, replacing the keystroke with one of your preference (I took mine from a <a target="_blank" rel="noopener" href="https://github.com/skuroda/Sublime-AdvancedNewFile">Sublime plugin</a>):<figure class="highlight cson"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;body&#x27;</span>:</span><br><span class="line">  <span class="string">&#x27;cmd-alt-n&#x27;</span>: <span class="string">&#x27;tree-view:add-file&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>Save your keymap file.</li>
+</ol>
+<p>Now, just hit ⌥⌘N (or whatever you specified your shortcut to be) and Atom presents you with the “new file” palette. Enter a path for the new file (again, relative to the project root) and hit return/enter. Your shiny new file will present itself instantly.</p>
+<p>Have you used Atom’s features to do things otherwise thought the domain of other apps? Share them in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/04/simple-file-tricks-with-atom/",
+    "headline": "Simple File Tricks with Atom",
+    "datePublished": "Tue Apr 28 2015 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/03/tame-your-illustrator-layers-with-isolation-mode/">Tame Your Illustrator Layers with Isolation Mode</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/06/ndc-oslo-2015/">NDC Oslo 2015</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Simple File Tricks with Atom';
+      this.page.url = 'http://timgthomas.com/2015/04/simple-file-tricks-with-atom/';
+      this.page.identifier = '2015/04/simple-file-tricks-with-atom/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

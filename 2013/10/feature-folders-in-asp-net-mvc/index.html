@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Feature Folders in ASP.NET MVC · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Feature Folders in ASP.NET MVC</h1>
+      <p>3 October 2013</p>
+    </header>
+    <p>If you’ve worked with ASP.NET MVC, you’re no doubt familiar with the default folder structure, which looks something like this:</p>
+<pre><code>- App
+  + Content
+  + Controllers
+  + Models
+  + Views
+</code></pre>
+<p>…and if you’re <a target="_blank" rel="noopener" href="http://lostechies.com/jimmybogard/2012/08/30/evolutionary-project-structure/">evolving your project structure</a>, it may even look like this:</p>
+<pre><code>- App
+  + Content
+  + Controllers
+  + Handlers
+  + Models
+  + Queries
+  + ViewModels
+  + Validators
+  + Views
+</code></pre>
+<p>Problem is, this structure gets out of hand really quickly. You either have a ton of similarly-named folders in each top-level folder for the main features in your application, or a lot of very verbosely-named classes directly in each folder.</p>
+<p>Wouldn’t it be awesome if all of these horizontally-sliced files were instead grouped by <em>feature</em>?</p>
+<p>In our current project, <a target="_blank" rel="noopener" href="http://lostechies.com/jimmybogard/author/jimmybogard/">Jimmy Bogard</a> and I decided to switch to a model of “feature folders”, where each vertical slice of the project existed—as much as possible—in a single folder. Take a look:</p>
+<pre><code>- App
+  - Features
+    - User
+        Index.cshtml
+        Index.js
+        IndexValidator.cs
+        IndexViewModel.cs
+</code></pre>
+<p>This is a <em>whole lot</em> cleaner to look at. For us, the Solution Explorer was practically useless as we’d need to scroll through dozens and dozens of files only related by role within the system. In this new structure, all files are related by function, and some consistent naming (in our case, by the name of the view) ensures they’re sorted together. Here’s how it works.</p>
+<h2 id="Stuff-that-“just-works”"><a href="#Stuff-that-“just-works”" class="headerlink" title="Stuff that “just works”"></a>Stuff that “just works”</h2><p>Most of our files work with this pattern automatically. <a target="_blank" rel="noopener" href="http://docs.structuremap.net/">StructureMap</a> does an impeccable job of finding dependencies regardless of where they’re located, and many other files (commands and queries, à la Matt Hinze’s <a target="_blank" rel="noopener" href="https://github.com/mhinze/ShortBus">Short Bus</a>) are referenced directly.</p>
+<h2 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h2><p>The first work we’ll need to do is for the views. We really only want to tell MVC to look for views in a different place than normal, which can be accomplished easily with an extension of the default <code>RazorViewEngine</code>:</p>
+<pre><code>public class FeatureViewLocationRazorViewEngine : RazorViewEngine
+&#123;
+  public FeatureViewLocationRazorViewEngine()
+  &#123;
+    var featureFolderViewLocationFormats = new[]
+      &#123;
+        &quot;~/Features/&#123;1&#125;/&#123;0&#125;.cshtml&quot;,
+        &quot;~/Features/&#123;1&#125;/&#123;0&#125;.vbhtml&quot;,
+        &quot;~/Features/Shared/&#123;0&#125;.cshtml&quot;,
+        &quot;~/Features/Shared/&#123;0&#125;.vbhtml&quot;,
+      &#125;;
+
+    ViewLocationFormats = featureFolderViewLocationFormats;
+    MasterLocationFormats = featureFolderViewLocationFormats;
+    PartialViewLocationFormats = featureFolderViewLocationFormats;
+  &#125;
+&#125;
+</code></pre>
+<p><em>Note: If you’re a <a target="_blank" rel="noopener" href="http://www.jetbrains.com/resharper/">ReSharper</a> user, it won’t find the views unless you explicitly assign the array of view locations to each property. The project still builds otherwise, but your controllers will have errors next to every call to <code>View()</code> and <code>PartialView()</code>. See <a target="_blank" rel="noopener" href="https://gist.github.com/jbogard/6812184">this gist by Jimmy</a> for more details.</em></p>
+<p>Next, tell MVC to use this—and only this—view engine:</p>
+<pre><code>ViewEngines.Engines.Clear();
+ViewEngines.Engines.Add(new FeatureViewLocationRazorViewEngine());
+</code></pre>
+<p>…and you’re done! You can now move your Razor views into feature folders alongside your commands, queries, handlers, and validators!</p>
+<p>As it stands, we’re keeping our controllers separate, but we’re looking into ways to put those in feature folders, too.</p>
+<p>In the next post, I’ll explain how to use the same process to organize your JavaScript files. The process is a little trickier—though still quite straightforward—and may even help clean up your client code in other ways, too! Stay tuned!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2013/10/feature-folders-in-asp-net-mvc/",
+    "headline": "Feature Folders in ASP.NET MVC",
+    "datePublished": "Thu Oct 03 2013 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2013/09/simplify-client-side-validation-by-adding-a-server/">Simplify Client-side Validation…by Adding a Server</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2013/10/feature-folders-and-javascript/">Feature Folders and JavaScript</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Feature Folders in ASP.NET MVC';
+      this.page.url = 'http://timgthomas.com/2013/10/feature-folders-in-asp-net-mvc/';
+      this.page.identifier = '2013/10/feature-folders-in-asp-net-mvc/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

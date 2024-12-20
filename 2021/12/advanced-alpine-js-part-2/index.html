@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Advanced Alpine.js, Part II: Moving Beyond HTML · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Advanced Alpine.js, Part II: Moving Beyond HTML</h1>
+      <p>14 December 2021</p>
+    </header>
+    <h2 id="Posts-in-This-Series"><a href="#Posts-in-This-Series" class="headerlink" title="Posts in This Series"></a>Posts in This Series</h2><dl>
+  <dt><a href="/2021/12/advanced-alpine-js-part-1/">Part I: The Story So Far</a></dt>
+  <dd>In which we review some basics about Alpine.js</dd>
+  <dt>Part II: Moving Beyond HTML (This post)</dt>
+  <dd>In which we refactor our app and add filtering</dd>
+  <dt>Part III</dt>
+  <dd>Coming soon!</dd>
+  <dt>Part IV</dt>
+  <dd>Coming soon!</dd>
+  <dt>Part V</dt>
+  <dd>Coming soon!</dd>
+</dl>
+
+<p>In this series, we’ve been building a music playlist app using some modern workflows and Alpine.js features. Today, we’ll add a quality-of-life improvement for our users and get to know some of Alpine’s more advanced features. We’ll start by moving and refactoring our inline code into a separate JavaScript file, then add filtering so users can more easily navigate through the 250+ playlists. Let’s get started!</p>
+<h2 id="Moving-Beyond-HTML"><a href="#Moving-Beyond-HTML" class="headerlink" title="Moving Beyond HTML"></a>Moving Beyond HTML</h2><p>Up to this point, we’ve used Alpine’s expressive inline code directives for all the behavior in our app. Though this is a perfectly fine way to continue, reading JavaScript <em>inside</em> HTML attributes gets more and more difficult over time. If you’re working with Alpine’s inline scripts in production, I’d encourage you to frequently revisit whether it’s time to move to a more formal script file. For our playlists app, now is that time!</p>
+<p>Alpine provides a convenient global for injecting our formerly-inline scripts into its runtime, as well as a global <code>document</code> event so we can ensure it’s completely loaded before attempting to do so:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;alpine:init&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// We have access to `window.Alpine` here to add our logic</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>At this point, though, we have a choice of how to proceed: Continuing to use a <a target="_blank" rel="noopener" href="https://alpinejs.dev/globals/alpine-data"><code>data</code></a> object, or upgrading to a <a target="_blank" rel="noopener" href="https://alpinejs.dev/globals/alpine-store"><code>store</code></a>. These two concepts are fairly similar, and use nearly-identical APIs, supporting properties, functions, etc. The main difference is that Stores are globally-accessible in Alpine apps (via the <a target="_blank" rel="noopener" href="https://alpinejs.dev/magics/store"><code>$store</code></a> variable), while Data objects are designed to be more tightly-scoped and flexible.</p>
+<p>Our straightforward app could quite easily rely on either approach, but we’ll take this opportunity to add a Store. In your apps, this is a great opportunity to think about whether you need to reuse these services, and how much of your app they affect. Logic included in specific parts of your app (think widgets, cards, and the like) are well-served by Data objects, while tracking global state like a user’s authentication status and preferences work well with Stores.</p>
+<p>Okay, back to some code! After creating our new script file, let’s create a Store and add some basic functionality. In part one, we used <a target="_blank" rel="noopener" href="https://lodash.com/">Lodash</a> and a <code>window</code> global to group our playlists by a given property. We could continue to use Lodash’s response format (a single object with one key per group), but I think a proper array is more understandable, so we’ll dip into the native <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries()</code></a> function to clean that up, as well:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;alpine:init&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Note the Store&#x27;s name of &quot;app&quot;, which we&#x27;ll reference in the HTML.</span></span><br><span class="line">  Alpine.store(<span class="string">&#x27;app&#x27;</span>, &#123;</span><br><span class="line">    <span class="keyword">get</span> <span class="title">groupedPlaylists</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Object</span></span><br><span class="line">        .entries(_.groupBy(<span class="built_in">window</span>.data, <span class="string">&#x27;group&#x27;</span>))</span><br><span class="line">        .map(<span class="function">(<span class="params">[ groupName, playlists ]</span>) =&gt;</span> (&#123;</span><br><span class="line">          groupName, playlists</span><br><span class="line">        &#125;))</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>We also need to update the HTML directives to reference our nascent Store. Our wrapper <code>&lt;template&gt;</code> tag now looks like this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- `$store.app` is how we reference our Store by name. --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span></span></span><br><span class="line"><span class="tag">  <span class="attr">x-for</span>=<span class="string">&quot;group of $store.app.groupedPlaylists&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:key</span>=<span class="string">&quot;group.groupName&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    References to `groupName` and `playlists` need to be updated to</span></span><br><span class="line"><span class="comment">    use `group.`, as well.</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Hopefully you can already see the benefits of a separate script file: Putting our multi-step conversion from an object literal into an array of objects would be quite confusing to try to read in the middle of an HTML attribute, and that’s even assuming syntax highlighting works!</p>
+<p>Now that we have a great place for more complex logic, let’s add some!</p>
+<h2 id="Our-Feature-Presentation"><a href="#Our-Feature-Presentation" class="headerlink" title="Our Feature Presentation"></a>Our Feature Presentation</h2><p>The first feature we’re going to add to our app is filtering. Our playlists collection comprises over 250 items, which is a lot to scroll through! Adding a quick filter would really help our users narrow down the potential mood playlists they can listen to. The Alpine docs already contain <a target="_blank" rel="noopener" href="https://alpinejs.dev/start-here#building-a-search-input">a tutorial on building a search input</a>, so I won’t go into too much detail on how to build one, but the code is quite clear, regardless.</p>
+<p>There are two behaviors I’d like to highlight, however: One, we’d still like our playlists grouped after they’re filtered, so we’re going to update the <code>groupedPlaylists</code> property to group the <em>filtered</em> list instead of the complete one; and two, since we’re using each playlist’s <code>slug</code>, we need to replace any hyphens with blank spaces in case a user searches a string like “chilling out”. The latter is easily accomplished with a regular expression.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Alpine.store(<span class="string">&#x27;app&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">filter</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// This property will be bound to an HTML &lt;input&gt;</span></span><br><span class="line">  <span class="keyword">get</span> <span class="title">filteredPlaylists</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> filterString = <span class="built_in">this</span>.filter.toLowerCase().trim()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the user hasn&#x27;t entered text, return all playlists</span></span><br><span class="line">    <span class="keyword">if</span> (filterString === <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="built_in">window</span>.data</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Otherwise, perform the basic &quot;search&quot; by playlist name</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.data.filter(<span class="function">(<span class="params">playlist</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> playlistName = playlist.slug.replace(<span class="regexp">/-/g</span>, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> playlistName.includes(filterString)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">get</span> <span class="title">groupedPlaylists</span>() &#123;</span><br><span class="line">    <span class="comment">// This property remains mostly the same, but we&#x27;ll replace</span></span><br><span class="line">    <span class="comment">// `window.data` with `this.filteredPlaylists`.</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>As you might expect with a modern JavaScript library, Alpine handles all the <a target="_blank" rel="noopener" href="https://alpinejs.dev/advanced/reactivity">reactivity</a> for us! Just referencing <code>this.filter</code> and friends automatically re-evaluates each property whenever the upstream values change.</p>
+<p>At this point, we could play around with the <code>filter</code> property to make sure the searching works, but it’s so easy to add the <code>&lt;input&gt;</code> so users can perform the filter that we may as well! We’ll add the search filter input into the page’s <code>&lt;header&gt;</code>; if you’ve been following along with the HTML, you’ll know that only our <code>&lt;ul&gt;</code> is “Alpine-aware” via a <code>x-data</code> attribute, so we can either add <code>x-data</code> to the header element, or the HTML <code>&lt;body&gt;</code> itself. I’ve chosen the latter, since this entire page now is one big app!</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">x-data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;constrained&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Apple Mood Playlists<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- Note the `$store.app` prefix is here, as well. --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">x-model</span>=<span class="string">&quot;$store.app.filter&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>We now have a nice quick filter input that searches playlist names, and thanks to our updates to the <code>groupedPlaylist</code> property, we don’t even have to deal with empty groups! If you’re feeling adventurous, though, a great UX improvement would be to display a “no results” message, but I’ll leave that as an exercise to the reader.</p>
+<p><img src="/2021/12/advanced-alpine-js-part-2/0-filtering.png" alt="The running app with filtering working"></p>
+<h2 id="Until-Next-Time"><a href="#Until-Next-Time" class="headerlink" title="Until Next Time!"></a>Until Next Time!</h2><p>In this post, we refactored Alpine’s inline HTML directives into a separate script file, and added a quick filter so users can easily find playlists. Filtering is a great start to improving our app’s user experience, but we can go further: Allowing users to “favorite” mood playlists is a fantastic way to make our app even more usable! Stop by in our next post when we do just that, and we’ll look at another nifty component of Alpine while we’re at it. Happy listening!</p>
+<h3 id="Resources-in-this-post"><a href="#Resources-in-this-post" class="headerlink" title="Resources in this post"></a>Resources in this post</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/timgthomas/apple-playlists/tree/main/blog/part-2">Source code for Part II (GitHub)</a></li>
+</ul>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2021/12/advanced-alpine-js-part-2/",
+    "headline": "Advanced Alpine.js, Part II: Moving Beyond HTML",
+    "datePublished": "Tue Dec 14 2021 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2021/12/advanced-alpine-js-part-1/">Advanced Alpine.js, Part I: The Story So Far</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2024/01/simplified-wordpress-development-with-docker-compose/">Simplified WordPress Development with Docker Compose</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Advanced Alpine.js, Part II: Moving Beyond HTML';
+      this.page.url = 'http://timgthomas.com/2021/12/advanced-alpine-js-part-2/';
+      this.page.identifier = '2021/12/advanced-alpine-js-part-2/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>The Making of “You Might Not Need JavaScript” · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>The Making of “You Might Not Need JavaScript”</h1>
+      <p>10 September 2015</p>
+    </header>
+    <p>Last week, I had the pleasure of presenting at the <a target="_blank" rel="noopener" href="http://www.meetup.com/javascript-austin/">JavaScript Austin</a> meetup. For this month’s meetup, I gave my “stateful CSS” talk (titled “Form with Function” or “<a target="_blank" rel="noopener" href="http://www.meetup.com/javascript-austin/events/225015546/">You Might Not Need JavaScript</a>“, depending on how trolling I feel at the time). If you haven’t seen it yet, there’s a video of it <a target="_blank" rel="noopener" href="https://vimeo.com/131410261">on Vimeo</a>:</p>
+<span id="more"></span>
+
+<iframe src="https://player.vimeo.com/video/131410261?title=0&amp;color=35aba5" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
+
+<p>There’s a bit of a plot twist at the end of the talk that I get a lot of questions about (watch the video above first if you don’t want spoilers). In this post, we’ll look at how this plot twist was created.</p>
+<h2 id="Spoiler-Alert"><a href="#Spoiler-Alert" class="headerlink" title="Spoiler Alert"></a>Spoiler Alert</h2><p>If you’re reading this, I assume you’ve either watched the above video, or you don’t care about spoilers (you monster). Okay, here’s the big plot twist:</p>
+<blockquote>
+<p>My entire presentation—the slides, the inline CSS editing, everything—was built without a single line of JavaScript.</p>
+</blockquote>
+<p>Let’s take a look at how to pull that off.</p>
+<h2 id="Thinking-without-JavaScript"><a href="#Thinking-without-JavaScript" class="headerlink" title="Thinking without JavaScript"></a>Thinking without JavaScript</h2><p>A slide deck doesn’t have many “features” beyond showing one slide at a time (and having some way to switch between those). As it happens, we have access to an HTML element that <em>also</em> shows one thing at a time: a radio button.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;slide&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">checked</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> &gt;</span><span class="comment">&lt;!-- Slide 1 --&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;slide&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> &gt;</span><span class="comment">&lt;!-- Slide 2 --&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;slide&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> &gt;</span><span class="comment">&lt;!-- Slide 3 --&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, if we could somehow link the “checked” state of a radio button to the visibility of another element, we’d have the beginnings of a slide deck right there. Select the radio buttons in the following <a target="_blank" rel="noopener" href="http://codepen.io/TimGThomas/pen/LppWpY/">pen</a> to see what happens:</p>
+<p data-height="250" data-theme-id="1840" data-slug-hash="LppWpY" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:250px">See the Pen <a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas/pen/LppWpY/'>LppWpY</a> by Tim G. Thomas (<a target="_blank" rel="noopener" href='https://codepen.io/TimGThomas'>@TimGThomas</a>) on <a target="_blank" rel="noopener" href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>So far, we’ve got a passable—albeit boring—slide deck, and all it took was some very basic HTML and a little clever CSS. Turns out styling elements is pretty straightforward thanks to the <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3Achecked"><code>:checked</code></a> pseudo-class and the <code>+</code> (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_selectors">adjacent</a>) selector:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Hide all slides by default. */</span></span><br><span class="line"><span class="selector-class">.slide</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* But show the currently-selected one. */</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[name=<span class="string">&#x27;slide&#x27;</span>]</span><span class="selector-pseudo">:checked</span> + <span class="selector-class">.slide</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="radioButton-hide()" style="text-transform:initial">radioButton.hide()</h2>
+
+<p>You’re more than welcome to stop here, as what we’ve covered so far is <em>technically</em> all you need to make your own JavaScript-less styles, but there’s more we can do.</p>
+<p>Seeing all of those radio buttons sucks, so let’s get rid of them:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[name=<span class="string">&#x27;slide&#x27;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>That’s better, but now we have no way of moving through the slides. Fortunately, this is already (partially) solved for us: browsers will let you switch between radio button values with your keyboard. Try it out below: click on a radio button, then use your arrow keys to select different options. Obviously, this won’t work if you’re on a device without a keyboard, so keep that in mind if your slides’ consumers will be on their phones:</p>
+<p data-height="150" data-theme-id="1840" data-slug-hash="xwwqRK" data-default-tab="result" data-user="TimGThomas" class="codepen" style="height:150px">See the Pen <a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas/pen/xwwqRK/'>xwwqRK</a> by Tim G. Thomas (<a target="_blank" rel="noopener" href='https://codepen.io/TimGThomas'>@TimGThomas</a>) on <a target="_blank" rel="noopener" href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Next, we’ll have to link each slide to its radio button. If we’re hiding the inputs, we need some way of giving them focus so that the browser can work its keyboard magic. This is as easy as either giving each input an ID and changing each slide to be a <code>&lt;label&gt;</code>…</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;slide_1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;slide&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;slide_1&quot;</span>&gt;</span><span class="comment">&lt;!-- ... --&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>…or wrapping each combination in its own <code>&lt;label&gt;</code>:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;slide&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- ... --&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Either technique will make each slide “clickable” to set the focus on the radio buttons, thus enabling keyboard movement.</p>
+<p>Give each slide some CSS that makes it look like a real slide deck, and you’re good!</p>
+<h2 id="Inline-CSS-Editing"><a href="#Inline-CSS-Editing" class="headerlink" title="Inline CSS Editing"></a>Inline CSS Editing</h2><p>My slide deck also included the ability to edit CSS on the fly and see it instantly update. This is actually a very old <a target="_blank" rel="noopener" href="https://css-tricks.com/show-and-edit-style-element/">CSS Trick</a> that works well to this day. Just move your <code>&lt;style&gt;</code> block inside your <code>&lt;body&gt;</code>, set its style to <code>display: block</code>, and give it the <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable"><code>contenteditable</code></a> attribute: browsers will use it for styling and <em>you</em> can use it for CSS demos. The CSS Tricks site has a great <a target="_blank" rel="noopener" href="https://css-tricks.com/examples/ShowCSS/">demo page</a> for playing around with this feature.</p>
+<hr>
+<p>That’s all there is to it! A few lines of HTML per slide, a sprinkling of CSS, and a little <code>&lt;style&gt;</code> block trickery, and you’ve got yourself a modern—and JavaScript free!— slide deck! If you’d like to learn more about (mis-)using CSS for behavior, <a target="_blank" rel="noopener" href="https://www.google.com/search?q=fun+with+stateful+css+site:timgthomas.com">read my blog series on “stateful CSS”</a>, <a target="_blank" rel="noopener" href="https://vimeo.com/131410261">watch the presentation video</a>, and check out the <a target="_blank" rel="noopener" href="https://github.com/TimGThomas/stateful-css-slides/">code for my slides on GitHub</a>.</p>
+<p>If you’ve seen or built any great functionality with little or no CSS, share in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/09/the-making-of-stateful-css/",
+    "headline": "The Making of “You Might Not Need JavaScript”",
+    "datePublished": "Thu Sep 10 2015 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/09/Deploying-Ember-CLI-Apps-to-Parse-Cloud-Code/">Deploying Ember CLI Apps to Parse Cloud Code</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/10/a-more-reactive-build-tool/">A More Reactive Build Tool</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'The Making of “You Might Not Need JavaScript”';
+      this.page.url = 'http://timgthomas.com/2015/09/the-making-of-stateful-css/';
+      this.page.identifier = '2015/09/the-making-of-stateful-css/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Restoring &#34;Show Hidden Windows on Hover&#34; in Visual Studio 2012 · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Restoring &#34;Show Hidden Windows on Hover&#34; in Visual Studio 2012</h1>
+      <p>23 August 2012</p>
+    </header>
+    <p>I like my Visual Studio workspace to be as unobtrusive as possible. Easy-to-learn <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/da5kh0wa.aspx">keyboard shortcuts</a>&mdash;which negate the need for tons of buttons and menus&mdash;and productivity tools like JetBrains’s <a target="_blank" rel="noopener" href="http://www.jetbrains.com/resharper/">ReSharper</a> eliminate most reasons for needing to show tool windows at all.</p>
+<p><img src="/css/images/blog/2012-08-23-01.png" alt="My minimalistic view of the world through Visual Studio 2010"></p>
+<p>In Visual Studio 2010, a tool window could be easily hidden by clicking the “thumbtack” icon in its title, thereby reducing it to a non-intrusive side-tab of only 21 pixels in width: perfect for my minimalistic UI and infrequent use. Abiding by the Windows usability expectations, hovering over this now-reasonably-sized tab expands the window into view, providing for those quick glances. Furthermore, the team saw fit to include a short delay in said opening, so as to not aggrevate users who inadvertently moved their mouse over the tab.</p>
+<p>Visual Studio 2012, unfortunately, decides to disable this particular behavior by default and now requires a click&mdash;<em>a click!</em>&mdash;on the aforementioned side-tab before the window is shown (or hidden, for that matter). Heresy!</p>
+<p>Fear not, for all is not lost. To restore this essential functionality, simply follow these easy-to-remember steps:</p>
+<ol>
+<li>Open the Options window. If your menu is visible, click “Tools”&mdash;I mean, “TOOLS”…this is <strike>Metro</strike> Windows 8 UI style, after all&mdash;followed by “Options”.</li>
+<li>In the Options window’s “Environment” section, select “Tabs and Windows”.</li>
+<li>Enable the bottom-most option, “Show auto-hidden windows on mouse over”.</li>
+<li>Et voil&#0224;!</li>
+</ol>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/08/restoring-show-hidden-windows-on-hover-in-visual-studio-2012/",
+    "headline": "Restoring &#34;Show Hidden Windows on Hover&#34; in Visual Studio 2012",
+    "datePublished": "Thu Aug 23 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/06/austin-code-camp-2012/">Austin Code Camp 2012</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/08/fixing-overscan-on-a-24-viewsonic-vx-led-monitor/">Fixing Overscan on a 24&#34; ViewSonic VX LED Monitor</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Restoring &#34;Show Hidden Windows on Hover&#34; in Visual Studio 2012';
+      this.page.url = 'http://timgthomas.com/2012/08/restoring-show-hidden-windows-on-hover-in-visual-studio-2012/';
+      this.page.identifier = '2012/08/restoring-show-hidden-windows-on-hover-in-visual-studio-2012/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

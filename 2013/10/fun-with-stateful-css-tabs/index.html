@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Fun with Stateful CSS: Tabs · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Fun with Stateful CSS: Tabs</h1>
+      <p>23 October 2013</p>
+    </header>
+    <p>In this series, we’ve covered how to use form inputs and some <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors">clever CSS selectors</a> to <a href="/2013/10/fun-with-stateful-css-a-view-edit-screen/">toggle between states of a form</a> and <a href="/2013/10/fun-with-stateful-css-modals/">show a modal window</a>. Now, let’s apply the same principles to create a simple—and JavaScript-less!—collection of tabs.</p>
+<p>As you may have come to expect, the HTML is fairly straightforward, though a tad more complex than last time:</p>
+<pre><code>  &lt;input type=&quot;radio&quot; id=&quot;panel-1&quot; name=&quot;panels&quot; checked&gt;
+  &lt;input type=&quot;radio&quot; id=&quot;panel-2&quot; name=&quot;panels&quot;&gt;
+  &lt;input type=&quot;radio&quot; id=&quot;panel-3&quot; name=&quot;panels&quot;&gt;
+
+  &lt;ol class=&quot;tabs&quot;&gt;
+    &lt;li&gt;&lt;label class=&quot;button&quot; for=&quot;panel-1&quot;&gt;One&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;label class=&quot;button&quot; for=&quot;panel-2&quot;&gt;Two&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;label class=&quot;button&quot; for=&quot;panel-3&quot;&gt;Three&lt;/label&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+
+  &lt;div class=&quot;panel panel-1&quot;&gt;Panel one contents.&lt;/div&gt;
+  &lt;div class=&quot;panel panel-2&quot;&gt;Panel two contents.&lt;/div&gt;
+  &lt;div class=&quot;panel panel-3&quot;&gt;Panel three contents.&lt;/div&gt;
+</code></pre>
+<p>Instead of a single “yes/no” checkbox, we now have three radio buttons to represent state: one for each “panel” of the collection. Next is an ordered list containing the <code>label</code> elements you might expect (to review, these allow us to “toggle” the state of the <code>input</code> elements), and then three <code>div</code> elements that contain each panel’s contents. As always, we’ll hide the <code>input</code> elements with CSS, but still select based on their “checked” state (with the <code>:checked</code> pseudoselector) to determine what tab to show. We’ll also hide all of the panels by default unless one of the associated radio buttons is selected:</p>
+<pre><code>  /* Hide all panels by default */
+  .panel-1,
+  .panel-2,
+  .panel-3 &#123;
+    display: none;
+  &#125;
+
+  /* Show a panel when its associated radio button is selected */
+  #panel-1:checked ~ .panel-1,
+  #panel-2:checked ~ .panel-2,
+  #panel-3:checked ~ .panel-3 &#123;
+    display: block;
+  &#125;
+
+  /* Also hide all of the radio buttons */
+  input[type=radio] &#123;
+    display: none;
+  &#125;
+</code></pre>
+<p>In this way, we can migrate away from a simple boolean state (with a checkbox) to a potentially infinite number of states with radio buttons.</p>
+<p data-height="268" data-slug-hash="qijKp" data-user="TimGThomas" data-default-tab="result" class='codepen'>See the Pen <a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas/pen/qijKp'>Fun with Stateful CSS: Tabs</a> by Tim G. Thomas (<a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a target="_blank" rel="noopener" href='http://codepen.io'>CodePen</a></p>
+<script src="//codepen.io/assets/embed/ei.js"> </script>
+
+<p>That concludes this round of fun with stateful CSS! Thanks for reading!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2013/10/fun-with-stateful-css-tabs/",
+    "headline": "Fun with Stateful CSS: Tabs",
+    "datePublished": "Wed Oct 23 2013 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2013/10/fun-with-stateful-css-a-view-edit-screen/">Fun with Stateful CSS: A View/Edit Screen</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2013/10/fun-with-stateful-css-modals/">Fun with Stateful CSS: Modals</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Fun with Stateful CSS: Tabs';
+      this.page.url = 'http://timgthomas.com/2013/10/fun-with-stateful-css-tabs/';
+      this.page.identifier = '2013/10/fun-with-stateful-css-tabs/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

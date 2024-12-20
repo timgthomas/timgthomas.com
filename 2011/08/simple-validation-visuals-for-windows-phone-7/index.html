@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Simple Validation Visuals for Windows Phone 7 · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Simple Validation Visuals for Windows Phone 7</h1>
+      <p>5 August 2011</p>
+    </header>
+    <p>In the Windows Phone 7 app I’m working on, I’d like to provide some visual feedback for invalid input fields by outlining each one with the user’s <a target="_blank" rel="noopener" href="http://www.microsoft.com/windowsphone/en-us/howto/wp7/start/change-accent-color-or-background-theme.aspx">selected accent color</a>. Ideally, invalid input boxes would look something like this:</p>
+<p><img src="/css/images/blog/2011-08-05-01.png" alt="The goal."></p>
+<p>Unfortunately, WP7’s template-based styling model makes this difficult, and the <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/4706619/windows-phone-7-borderbrush-can-only-be-set-once">workaround suggestions I’ve found</a> result in significant amounts of markup noise (not to mention adding the necessary XAML for that approach just duplicates Silverlight’s internals).</p>
+<p>One solution I’ve found to work well is to simply “stack” a pre-styled <code>Border</code> control on top of the <code>TextBox</code> you’d like to validate and control its visibility programmatically or with data binding (this example uses the former method). The markup is very straightforward…</p>
+<pre><code>  &lt;Grid&gt;
+     &lt;TextBox x:Name=&quot;FavoriteFood&quot; /&gt;
+     &lt;Border x:Name=&quot;FavoriteFood_Validation&quot; /&gt;
+  &lt;/Grid&gt;
+</code></pre>
+<p>…it’s easy to style to match the Metro UI…</p>
+<pre><code>  &lt;Style x:Name=&quot;ValidationHighlight&quot; TargetType=&quot;Border&quot;&gt;
+     &lt;Setter Property=&quot;BorderThickness&quot; Value=&quot;3&quot; /&gt;
+     &lt;Setter Property=&quot;Margin&quot; Value=&quot;12&quot; /&gt;
+
+     &lt;!-- Match the user&#39;s accent color. --&gt;
+     &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;&#123;StaticResource PhoneAccentColor&#125;&quot; /&gt;
+
+     &lt;!-- Don&#39;t interfere with the TextBox&#39;s tappable area. --&gt;
+     &lt;Setter Property=&quot;IsHitTestVisible&quot; Value=&quot;False&quot; /&gt;
+
+     &lt;!-- Remain invisible until the user tries to submit bad data. --&gt;
+     &lt;Setter Property=&quot;Visibility&quot; Value=&quot;Collapsed&quot; /&gt;
+  &lt;/Style&gt;
+</code></pre>
+<p>…and it’s trivial to show and hide to indicate validity.</p>
+<pre><code>  private void Validate()
+  &#123;
+     // Perform some incredibly complex validation here, like so.
+     bool favoriteFoodIsValid = FavoriteFood.Text.Length &lt;= 32;
+
+     FavoriteFood_Validation.Visibility = favoriteFoodIsValid ?
+        Visibility.Collapsed : Visibility.Visible;
+  &#125;
+</code></pre>
+<p>Note that we’re taking advantage of the <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ff769552%28v=VS.92%29.aspx">built-in Windows Phone 7 style resources</a> so the user gets a customized color for their invalid fields. The <code>Border</code> control’s <code>IsHitTestVisible</code> property is set to <code>False</code> so it doesn’t interfere with users trying to tap in the <code>TextBox</code>, and we’re keeping the <code>Border</code> invisible until the input field is validated.</p>
+<p>The end result looks something like this:</p>
+<p><img src="/css/images/blog/2011-08-05-02.png" alt="The end result."></p>
+<p>Happy validating!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2011/08/simple-validation-visuals-for-windows-phone-7/",
+    "headline": "Simple Validation Visuals for Windows Phone 7",
+    "datePublished": "Fri Aug 05 2011 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2011/07/breaking-your-old-html-habits/">Breaking Your Old HTML Habits</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2011/09/binding-to-a-usercontrols-dependency-property/">Binding to a UserControl&#39;s Dependency Property</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Simple Validation Visuals for Windows Phone 7';
+      this.page.url = 'http://timgthomas.com/2011/08/simple-validation-visuals-for-windows-phone-7/';
+      this.page.identifier = '2011/08/simple-validation-visuals-for-windows-phone-7/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

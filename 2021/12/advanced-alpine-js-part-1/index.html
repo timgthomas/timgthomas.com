@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Advanced Alpine.js, Part I: The Story So Far · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Advanced Alpine.js, Part I: The Story So Far</h1>
+      <p>7 December 2021</p>
+    </header>
+    <h2 id="Posts-in-This-Series"><a href="#Posts-in-This-Series" class="headerlink" title="Posts in This Series"></a>Posts in This Series</h2><dl>
+  <dt>Part I: The Story So Far (This post)</dt>
+  <dd>In which we review some basics about Alpine.js</dd>
+  <dt><a href="/2021/12/advanced-alpine-js-part-2/">Part II: Moving Beyond HTML</a></dt>
+  <dd>In which we refactor our app and add filtering</dd>
+  <dt>Part III</dt>
+  <dd>Coming soon!</dd>
+  <dt>Part IV</dt>
+  <dd>Coming soon!</dd>
+  <dt>Part V</dt>
+  <dd>Coming soon!</dd>
+</dl>
+
+<p>Recently, I’ve been spending a lot of time with <a target="_blank" rel="noopener" href="https://alpinejs.dev/">Alpine.js</a>, a self-proclaimed “rugged, minimal” JavaScript tool that sprinkles behavior on top of rendered HTML. This is the kind of technology I wished for—and <a target="_blank" rel="noopener" href="https://github.com/timgthomas/illustractions">briefly experimented with</a>—in the bygone days of back-end-language-rendered HTML before single-page apps became the norm. Though Alpine isn’t as full-featured as other frameworks, I’ve found it refreshingly easy to work with, and perfect for proof-of-concept apps.</p>
+<p>In this series, we’ll look at some advanced workflows with Alpine by building out a music playlist app. We’ll start by setting up Alpine (a shockingly trivial thing to do), then add some features, a build system, and finally, some testing. The final code is <a target="_blank" rel="noopener" href="https://github.com/timgthomas/apple-playlists/blob/main/blog/part-1/index.html">available on GitHub</a> if you’d like to take a peek before we begin. Let’s dive in!</p>
+<h2 id="What-we’re-building"><a href="#What-we’re-building" class="headerlink" title="What we’re building"></a>What we’re building</h2><p>Like many developers, I love listening to music while I code. Also like many developers, I hate being interrupted while I’m focused…like when I need to find a new album to listen to after the current one ends, for example. Thankfully, playlists have been part of the streaming music streaming since the very beginning, and solve this problem nicely. Recently, <a target="_blank" rel="noopener" href="https://www.apple.com/newsroom/2021/10/apple-introduces-the-apple-music-voice-plan/">Apple announced</a> some curated (and constantly-updated) playlists for “moods”, and I’ve been a huge fan of every one I’ve listened to.</p>
+<p>Unfortunately, as of this writing, Apple hasn’t <em>published</em> this list, and their discoverability is limited to asking Siri to “play the dinner party playlist”. Thankfully, MacStories took the initiative to <a target="_blank" rel="noopener" href="https://www.macstories.net/stories/a-comprehensive-guide-to-250-of-apple-musics-new-mood-and-activity-playlists/">document as many as they could find</a>, but we can do better!</p>
+<p>Our Alpine app will display these playlists, roughly categorized (thanks again to MacStories for the grouping), but also allow us to search for playlists and “favorite” some so we can easily find them later.</p>
+<p><img src="/2021/12/advanced-alpine-js-part-1/0-preview.png" alt="A preview of the finished app from this post"></p>
+<h2 id="An-Alpine-Climb"><a href="#An-Alpine-Climb" class="headerlink" title="An Alpine Climb"></a>An Alpine Climb</h2><p>If you’re brand-new to Alpine, I strongly suggest <a target="_blank" rel="noopener" href="https://alpinejs.dev/start-here">working through their tutorials</a>. It’s quite remarkable how trivial it is to get started with Alpine: A single <code>&lt;script&gt;</code> tag is really all you need!</p>
+<p>For our app, we’ll start with just two files: An HTML page and a JavaScript file containing a static list of the playlists (there are just over 250 of them, so this helps keep our other code clean). Following the conventions of the Alpine docs, our HTML file looks something like this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Our markup will live here... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./data.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">// ...and our behavior, here!</span></span></span><br><span class="line"><span class="javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The data file creates a global variable for the playlists that we can reference from the app. Though global variables aren’t a good practice, this one will work for for the moment, and we’ll fix this issue in a later part of this series.</p>
+<p>For this app, we’ll need two pieces of information to uniquely identify each playlist (an ID and a slug, which I’ve pulled from each playlist’s URL), as well as a group name (again, from the general grouping provided by MacStories):</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.data = [</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="string">&#x27;163ac0d163734b888fb6490db5520094&#x27;</span>,</span><br><span class="line">    <span class="attr">slug</span>: <span class="string">&#x27;spring&#x27;</span>,</span><br><span class="line">    <span class="attr">group</span>: <span class="string">&#x27;Seasons and Weather&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="string">&#x27;9d61a50fbc9c42a9b5eb5df3eb763d0c&#x27;</span>,</span><br><span class="line">    <span class="attr">slug</span>: <span class="string">&#x27;summer&#x27;</span>,</span><br><span class="line">    <span class="attr">group</span>: <span class="string">&#x27;Seasons and Weather&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="string">&#x27;b04a92a765114f8691c08ff96f57ed57&#x27;</span>,</span><br><span class="line">    <span class="attr">slug</span>: <span class="string">&#x27;fall&#x27;</span>,</span><br><span class="line">    <span class="attr">group</span>: <span class="string">&#x27;Seasons and Weather&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="string">&#x27;8b36c21d1ce7493392a2f845c4293408&#x27;</span>,</span><br><span class="line">    <span class="attr">slug</span>: <span class="string">&#x27;winter&#x27;</span>,</span><br><span class="line">    <span class="attr">group</span>: <span class="string">&#x27;Seasons and Weather&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Listing-the-Playlists"><a href="#Listing-the-Playlists" class="headerlink" title="Listing the Playlists"></a>Listing the Playlists</h2><p>We’ll start building the app proper by showing a basic list of each playlist, and adding URLs so they can be clicked to open each playlist in Apple Music. We’ll use a combination of Alpine’s <a target="_blank" rel="noopener" href="https://alpinejs.dev/directives/data"><code>x-data</code></a>, <a target="_blank" rel="noopener" href="https://alpinejs.dev/directives/for"><code>x-for</code></a>, and <a target="_blank" rel="noopener" href="https://alpinejs.dev/directives/text"><code>x-text</code></a> directives to render a list of each playlist’s slug:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">x-data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">x-for</span>=<span class="string">&quot;playlist in window.data&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;playlist.id&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">x-text</span>=<span class="string">&quot;playlist.slug&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Alpine uses <code>x-data</code> to identify which parts of the page require interactivity, so we’ll add that to our <code>&lt;ul&gt;</code>, even though we’re referencing the playlist array directly in the <code>x-for</code> directive. You could also add a proxy variable inside <code>x-data</code> if you choose (i.e. <code>&lt;ul x-data=&quot;&#123; playlists: window.data &#125;&quot;&gt;</code>), which is a testament to Alpine’s flexibility when integrating with existing HTML.</p>
+<p>Just showing playlists’ slugs isn’t very useful, so let’s add links so users can open each playlist. For this, we’ll use the <a target="_blank" rel="noopener" href="https://alpinejs.dev/directives/bind"><code>x-bind</code></a> directive (more accurately, its shorthand of <code>:&lt;attribute&gt;</code>) to populate each playlist’s <code>href</code> attribute. Alpine lets us use plain JavaScript expressions (be sure to <a target="_blank" rel="noopener" href="https://alpinejs.dev/advanced/csp">read up on the security implications</a>), so a string interpolation to translate a playlist’s ID and slug into a correct URL is straightforward:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:href</span>=<span class="string">&quot;`https://music.apple.com/us/playlist/$&#123;playlist.slug&#125;/pl.$&#123;playlist.id&#125;`&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">x-text</span>=<span class="string">&quot;playlist.slug&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Of course, a flat list of 250+ playlist slugs isn’t a great experience, but to improve that, we’re going to need a little help…</p>
+<p><img src="/2021/12/advanced-alpine-js-part-1/1-playlists.png" alt="Our progress: Showing 250+ playlist slugs and links"></p>
+<h2 id="Lo-Dashing-up-the-Mountain"><a href="#Lo-Dashing-up-the-Mountain" class="headerlink" title="(Lo)Dashing up the Mountain"></a>(Lo)Dashing up the Mountain</h2><p>Lodash is a <a target="_blank" rel="noopener" href="https://lodash.com/">fantastic utility library</a> that comprises a large number of useful functions. It’s worthy of its own blog series, but we’re going to use only two of its many helpers: <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.17.15#startCase"><code>startCase()</code></a>, which converts a slug into something more human-readable, and <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.17.15#groupBy"><code>groupBy()</code></a>, which, well, <em>groups</em> the playlists <em>by</em> a given key (in our case, we’re using <code>group</code>).</p>
+<p>Adding Lodash to our app is as simple as inserting another <code>&lt;script&gt;</code> tag into our <code>&lt;head&gt;</code>; we can use the same CDN as Alpine itself:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/lodash@4.x.x/lodash.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>…and humanizing our slugs is nearly as straightforward:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:href</span>=<span class="string">&quot;...&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">x-text</span>=<span class="string">&quot;_.startCase(playlist.slug)&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Grouping the playlists is slightly more complex, but only just. Lodash’s <code>groupBy()</code> function’s return value is an object with the group names as keys; for example, our example data from above would get grouped thusly:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">&#x27;Seasons and Weather&#x27;</span>: [ &#123; ... &#125;, &#123; ... &#125;, &#123; ... &#125;, &#123; ... &#125; ] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Built-in functions like <code>Object.entries()</code> could help us out here by converting this object to an array, but I’ve found Alpine is capable of iterating objects on its own. Be warned, though: I haven’t found any official documentation suggesting this is a supported feature, so it’s possible it will break in future releases, or behave strangely. That said, we can use a similar template as we’ve used above for the groups:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">x-data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span></span></span><br><span class="line"><span class="tag">    <span class="attr">x-for</span>=<span class="string">&quot;(playlists, groupName) of _.groupBy(window.data, &#x27;group&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;groupName&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">x-text</span>=<span class="string">&quot;groupName&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Ah, but now we have a list of 250+ playlists <em>and</em> a list of about twenty groups. So how can we put the two together? Spoiler alert: Quite easily! We can nest the <code>x-for</code> for the playlists (and its associated <code>&lt;template&gt;</code>) <em>inside</em> the one for the grouping:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">x-data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span></span></span><br><span class="line"><span class="tag">    <span class="attr">x-for</span>=<span class="string">&quot;(playlists, groupName) of _.groupBy(window.data, &#x27;group&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;groupName&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">x-text</span>=<span class="string">&quot;groupName&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">x-for</span>=<span class="string">&quot;playlist in playlists&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;playlist.id&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">              <span class="attr">:href</span>=<span class="string">&quot;`https://music.apple.com/us/playlist/$&#123;playlist.slug&#125;/pl.$&#123;playlist.id&#125;`&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">x-text</span>=<span class="string">&quot;_.startCase(playlist.slug)&quot;</span></span></span><br><span class="line"><span class="tag">            &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>We’ve now got a lovely nested list of grouped playlists and the playlists themselves:</p>
+<p><img src="/2021/12/advanced-alpine-js-part-1/2-grouping.png" alt="More progress: Showing groups of playlists"></p>
+<p>Throw in a bit of styling, and we have ourselves a great mini-app for finding our favorite Apple “mood” playlists! If you’ve been following along, you may have noticed something interesting: Excepting the data file and the sprinkling of Alpine code, this app contains zero JavaScript! Everything’s done within Alpine’s directives.</p>
+<p><img src="/2021/12/advanced-alpine-js-part-1/0-preview.png" alt="The finished app from this post"></p>
+<h2 id="Next-Up-More-Features"><a href="#Next-Up-More-Features" class="headerlink" title="Next Up: More Features!"></a>Next Up: More Features!</h2><p>In the next post in the series, we’ll expand our simple app with some quality-of-life features: Filtering the playlists by name, and “favoriting” some so we can easily get back to our most-loved moods. Until next time!</p>
+<h3 id="Resources-in-this-post"><a href="#Resources-in-this-post" class="headerlink" title="Resources in this post"></a>Resources in this post</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://alpinejs.dev/">Alpine.js docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://lodash.com/">Lodash docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/timgthomas/apple-playlists/blob/main/blog/part-1/index.html">Source code for Part I (GitHub)</a></li>
+</ul>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2021/12/advanced-alpine-js-part-1/",
+    "headline": "Advanced Alpine.js, Part I: The Story So Far",
+    "datePublished": "Tue Dec 07 2021 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2019/11/unit-testing-glimmer-components/">Unit-testing Glimmer Components</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2021/12/advanced-alpine-js-part-2/">Advanced Alpine.js, Part II: Moving Beyond HTML</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Advanced Alpine.js, Part I: The Story So Far';
+      this.page.url = 'http://timgthomas.com/2021/12/advanced-alpine-js-part-1/';
+      this.page.identifier = '2021/12/advanced-alpine-js-part-1/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

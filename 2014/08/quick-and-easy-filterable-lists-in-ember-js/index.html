@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Quick and Easy Filterable Lists in Ember.js · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Quick and Easy Filterable Lists in Ember.js</h1>
+      <p>7 August 2014</p>
+    </header>
+    <p>There are many great <a target="_blank" rel="noopener" href="http://demos.telerik.com/kendo-ui/grid/index">filterable grids</a> available for Javascript. Sometimes, though, you just want an easy way to show a subset of items in a small list. In this post, we’ll look at doing just that in your <a target="_blank" rel="noopener" href="http://emberjs.com/">Ember.js</a> applications.</p>
+<p>Let’s start with a small list of books. In this fictional UI, we’ll show each book’s title and author, and let users filter the list of books by genre:</p>
+<p><img src="/css/images/blog/2014-08-01-01.png" alt="A wireframe of what we&#39;re trying to do"></p>
+<p>To begin, we need to polyfill a currently-missing component of Ember: radio buttons. It may seem odd, but these innocuous input fields are the key to this solution: we’ll bind the selected item’s value to an Ember property, which we’ll then use to filter the list. Matthew Anderson <a target="_blank" rel="noopener" href="http://thoughts.z-dev.org/2013/07/04/post/">wrote a great post</a> on adding support for this input type, so we’ll start by adding the code from that post to the Ember app.</p>
+<p>Next, let’s create a <a target="_blank" rel="noopener" href="http://emberjs.com/guides/components/">Component</a> to house our filtering functionality. This step is optional, but helpful if you plan to filter multiple lists in your app, or if your code’s getting a bit messy.</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123;<span class="name">filterable-list</span> <span class="attr">list</span>=listToFilter&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>In our Component, we’ll include a property, <code>filterBy</code>, to store the current filter (defaulted to “all”) from the selected radio button, as instructed by Mr. Anderson’s post. Our Component also needs a “proxy” list property (let’s call it <code>filteredList</code>). We’ll display this collection in the UI, and we can use its property function to perform the filtering. To start, this property will return the whole collection, but we’ll filter it shortly. Don’t forget that this property needs to respond to changes for both the list of objects itself as well as the selected filter:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">App.FilterableListComponent = Ember.Component.extend(&#123;</span><br><span class="line">  <span class="attr">filterBy</span>: <span class="string">&#x27;all&#x27;</span>,</span><br><span class="line">  <span class="attr">filteredList</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.get(<span class="string">&#x27;list&#x27;</span>);</span><br><span class="line">  &#125;.property(<span class="string">&#x27;list&#x27;</span>, <span class="string">&#x27;filterBy&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s write the Handlebars template for this Component. We’ll need to use the new radio button View we added to the app earlier (one for each filter), and loop through the “proxy” list:</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">view</span></span> Ember.RadioButton <span class="attr">name</span>=<span class="string">&#x27;filter&#x27;</span> <span class="attr">id</span>=<span class="string">&#x27;filter_all&#x27;</span></span></span><br><span class="line"><span class="template-variable">      <span class="attr">selectionBinding</span>=<span class="string">&#x27;filterBy&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;all&#x27;</span>&#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;filter_all&quot;</span>&gt;</span>All<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="comment">&lt;!-- other options omitted for brevity --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="comment">&lt;!-- column headers --&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span><span class="template-tag">&#123;&#123;#<span class="name"><span class="builtin-name">each</span></span> filteredList&#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">title</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">author</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Finally, it’s time to hook up our filtering. We’ll use an object with properties that match those of the radio buttons, and values of functions that will perform the filtering. Then, when either the list of objects or the selected filter changes, we’ll perform the filtering by pulling the matching filter function from that object:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">App.FilterableListComponent = Ember.Component.extend(&#123;</span><br><span class="line">  <span class="attr">filterBy</span>: <span class="string">&#x27;all&#x27;</span>,</span><br><span class="line">  <span class="attr">filters</span>: &#123;</span><br><span class="line">    <span class="attr">all</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Show all books.</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fantasy</span>: <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Show only fantasy books.</span></span><br><span class="line">      <span class="keyword">return</span> book.get(<span class="string">&#x27;genre&#x27;</span>) === <span class="string">&#x27;fantasy&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">filteredList</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Get the filter from our `filters` object.</span></span><br><span class="line">    <span class="keyword">var</span> filterFunction = <span class="built_in">this</span>.filters[<span class="built_in">this</span>.get(<span class="string">&#x27;filterBy&#x27;</span>)];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Perform the filtering with an array function.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.get(<span class="string">&#x27;list&#x27;</span>).filter(filterFunction);</span><br><span class="line">  &#125;.property(<span class="string">&#x27;list&#x27;</span>, <span class="string">&#x27;filterBy&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Add in some nice styling, and we’ve got a pretty nice filterable list!</p>
+<p data-height="268" data-theme-id="1840" data-slug-hash="cJwEp" data-default-tab="result" class='codepen'>See the Pen <a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas/pen/cJwEp/'>Filterable Lists in Ember.js</a> by Tim G. Thomas (<a target="_blank" rel="noopener" href='http://codepen.io/TimGThomas'>@TimGThomas</a>) on <a target="_blank" rel="noopener" href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
+
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2014/08/quick-and-easy-filterable-lists-in-ember-js/",
+    "headline": "Quick and Easy Filterable Lists in Ember.js",
+    "datePublished": "Thu Aug 07 2014 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2014/06/norwegian-usability/">Norwegian Usability</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/02/essential-animations-for-the-web/">Essential Animations for the Web</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Quick and Easy Filterable Lists in Ember.js';
+      this.page.url = 'http://timgthomas.com/2014/08/quick-and-easy-filterable-lists-in-ember-js/';
+      this.page.identifier = '2014/08/quick-and-easy-filterable-lists-in-ember-js/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

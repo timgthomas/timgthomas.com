@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Essential Animations for the Web · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Essential Animations for the Web</h1>
+      <p>3 February 2015</p>
+    </header>
+    <p><a target="_blank" rel="noopener" href="http://rachelnabors.com/">Rachel Nabors</a> predicts 2015 will be “a year in motion for the web”, and it’s easy to see why: more and more sites are adding motion to communicate their designs, and the abundance of <a target="_blank" rel="noopener" href="http://julian.com/research/velocity/">animation libraries</a> (not to mention progressively greater support for <a target="_blank" rel="noopener" href="http://caniuse.com/#feat=css-transitions">CSS transitions</a>) makes it easier than ever to bring motion to your apps.</p>
+<p>Like the rounded corner trend of old, however, it’s easy to jump on this particular bandwagon with reckless abandon, adding every conceivable animation without truly understanding <em>why</em>. In this post, we’ll look at a few common web animations, and how they support—rather than supplant—a design’s intent.</p>
+<h2 id="The-Appear"><a href="#The-Appear" class="headerlink" title="The Appear"></a>The Appear</h2><p><img src="/2015/02/essential-animations-for-the-web/1-the-appear.gif" alt="An example of The Appear animation"></p>
+<p>Admittedly, having an element simply <em>appear</em> on a page isn’t truly an “animation”, but I feel it’s important to list for two reasons: much like every app and site has a “design” even if it has no “designer”, instantly showing an element still qualifies as a transition between two states in your app, even if it’s not in motion <em>per se</em>. And, before the days of JavaScript libraries and CSS animations, it was the only “transition” available. Though The Appear may not stand as proudly as its more “motion-ey” cousins, it’s important to remember that we didn’t always have such refined tools at our disposal.</p>
+<h2 id="The-Fade"><a href="#The-Fade" class="headerlink" title="The Fade"></a>The Fade</h2><p>One of the first animations I began using in my designs was the humble Fade. Simply adjusting the opacity of an element over time removes much of the jarring nature of The Appear, and adds an element of subtlety wherever it’s used.</p>
+<p>Unfortunately, using The Fade sometimes requires rearranging elements on the page instantly <em>before</em> a new element can fade in, leading to similarly jarring results as The Appear.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/2-the-fade.gif" alt="An example of The Fade animation"></p>
+<h2 id="The-Unfold"><a href="#The-Unfold" class="headerlink" title="The Unfold"></a>The Unfold</h2><p>The Unfold seems to follow The Fade quite closely in popularity, but, for me, it’s one of the first truly useful transitions I used. While The Fade uses opacity for its transition—an interaction rarely, if ever, seen in the physical realm—The Unfold relies purely on movement, and evokes a sense of opening a door or extracting a letter from an envelope. Revealing content in this way reinforces the sense that the newly-shown information was there all along, just waiting to be freed from its <code>overflow: hidden</code> prison.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/3-the-unfold.gif" alt="An example of The Unfold animation"></p>
+<h2 id="The-Slide"><a href="#The-Slide" class="headerlink" title="The Slide"></a>The Slide</h2><p>While The Appear, The Fade, and The Unfold work well for <em>introducing</em> new content, you’ll sometimes need a way to animate the <em>removal</em> of something. The Slide is my go-to solution, as both provides visual interest and supports “removal” metaphor…in fact, it rather reminds me of sweeping papers off a messy desk.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/4-the-slide.gif" alt="An example of The Slide animation"></p>
+<p>An inelegant follow-up to The Slide is to instantly—and jarringly—delete the space the recently-removed element once occupied, but pair The Slide with The Fold (The Unfold’s helpful cousin), and your users will never be left wondering what happened to their nicely-stacked lists.</p>
+<h2 id="The-Tint"><a href="#The-Tint" class="headerlink" title="The Tint"></a>The Tint</h2><p>Sometimes motion isn’t the best way of expressing change. Maybe a green element changes to red to indicate that a server is down, or a toggle switch changes from light to dark to signify it was just selected. In both cases, we’re not relying on movement to indicate change, but, rather, other appearance characteristics: I call this The Tint.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/5-the-tint.gif" alt="An example of The Tint animation"></p>
+<p>This kind of inline change can be very impactful, especially when numerous items have their statuses updated in real-time, but can even help in very subtle ways, as with a button’s “hover” state.</p>
+<p>Beware, however, that if your transitions are <em>too</em> subtle, many users may not notice them. Even seemingly-obvious changes (like a dramatic color shift) may be meaningless to users with difficulty seeing <a target="_blank" rel="noopener" href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">small changes in contrast</a>.</p>
+<h2 id="Runners-Up"><a href="#Runners-Up" class="headerlink" title="Runners-Up"></a>Runners-Up</h2><p>Two more animations that have gained a great deal of popularity recently are The Flip and The Shake. Though I’m unsure of the exact origin of either of these transitions, I remember first seeing them in native iOS apps.</p>
+<p>I typically find The Flip hanging around <a target="_blank" rel="noopener" href="http://semantic-ui.com/views/card.html">card-based UIs</a> (cards…card <em>flips</em>…makes sense) to hide less frequently–viewed details without having to  break the context of whatever content they were viewing. This animation can be very helpful (or, if you’re building an <a target="_blank" rel="noopener" href="http://neonmob.com/">online trading card game</a>, downright <em>essential</em>), provided it’s obvious enough to people that certain elements can be interacted with in this way.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/6-the-flip.gif" alt="An example of The Flip animation"></p>
+<p>Anyone who fat-fingers their OS X password is undoubtedly familiar with The Shake. One of the most deliciously-simple animations I’ve ever seen, The Shake is the perfect response to incorrectly input data. You needn’t move your eyes to see that something happened (yet it’s obvious something <em>did</em>), and the gesture so closely represents what many of us do when frustrated: give our phones, monitors, or produce a good jiggle.</p>
+<p><img src="/2015/02/essential-animations-for-the-web/7-the-shake.gif" alt="An example of The Flip animation"></p>
+<p>The next time you find yourself about to implement some carefully thought-out animation, think about the humble beginnings of what promises to be the Year in Motion for the Web. We’re just getting started bringing some amazing transitions to a historically-static medium, and the future looks more animated than ever before.</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/02/essential-animations-for-the-web/",
+    "headline": "Essential Animations for the Web",
+    "datePublished": "Tue Feb 03 2015 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2014/08/quick-and-easy-filterable-lists-in-ember-js/">Quick and Easy Filterable Lists in Ember.js</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/02/quick-and-easy-icon-fonts/">Quick and Easy Icon Fonts</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Essential Animations for the Web';
+      this.page.url = 'http://timgthomas.com/2015/02/essential-animations-for-the-web/';
+      this.page.identifier = '2015/02/essential-animations-for-the-web/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

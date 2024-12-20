@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Building a Non-Native Mobile HTML5 App, Part I: A Business Case · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Building a Non-Native Mobile HTML5 App, Part I: A Business Case</h1>
+      <p>27 September 2012</p>
+    </header>
+    <h2 id="Posts-in-This-Series"><a href="#Posts-in-This-Series" class="headerlink" title="Posts in This Series"></a>Posts in This Series</h2><dl><dt>Part I: A Business Case</dt><dd>Why our client chose to build a Web app over a native one.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Part II: Choosing a Technology Stack</a></dt><dd>How we chose our tools and technologies, and what we picked.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-hooking-things-together/">Part III: Hooking Things Together</a></dt><dd>Wire up a client and server with JavaScript and .NET.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-making-it-work-offline/">Part IV: Making It Work Offline</a></dt><dd>Store data locally and synchronize it with a server.</dd><dt><a href="/2012/10/building-a-mobile-html5-app-testing-the-app/">Part V: Testing the App</a></dt><dd>Develop and test for a mobile device.</dd><dt><a href="/2012/11/building-a-mobile-html5-app-making-it-look-native/">Part VI: Making It Look Native</a></dt><dd>Leverage some tricks of Mobile Safari to make a site look like an app.</dd></dl>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Nearly two months ago, my team and I <a target="_blank" rel="noopener" href="http://www.headspring.com/mary/headspring-1st-down-technologies/">delivered a mobile-optimized, HTML5-based Web application</a> that helps youth football coaches find, organize, and utilize on-the-field game strategies, known as “plays”. In many ways, this project is a departure from Headspring’s norm: it’s public-facing, needs to work in a sometimes-connected environment, and, most notably, it’s designed to supplement an existing native iPad app, so it has to look and feel, as much as possible, like a native application. However, accomplishing these tasks didn’t mean we couldn’t leverage our existing experience building Web applications.</p>
+<p>In this series of posts, we’ll look at some the major milestones in our process of building a mobile HTML5 app. We’ll see why we chose to build a Web site instead of developing a native app, what tools and techniques helped us along the way, and how to simulate the native “feel” of an app.</p>
+<p>To start, let’s take a look at how this project got started, and why we ultimately chose the Web as the platform of choice.</p>
+<h2 id="Going-Non-Native"><a href="#Going-Non-Native" class="headerlink" title="Going Non-Native"></a>Going Non-Native</h2><p>When we first met with the client, a local sports technology startup, they had already paid to have a native (iPhone, iPad) app developed. It was working quite well, but they now needed to target a completely different market segment (in other words, they wanted a new, independent application). Instead of simply paying for another native app to be built, however, they took a step back and identified some particularly troubling limitations of their current application:</p>
+<p><em>Few supported devices.</em> The client’s existing app works on iPads and iPhones, but nothing else. Desktop and laptop users, as well as those who opted for Android devices, are out of luck. Also problematic was that, since the app stored its data locally, any user-specific data couldn’t be shared with other devices.</p>
+<p><em>Poor User Analytics.</em> Even with the data Apple provides regarding app purchasers and users, it was difficult for the client to extract purchase and use trends over time.</p>
+<p><em>The App Store.</em> The existing app is subject to Apple’s 30% cut of any and all sales. The client also experienced multiple-day delays in pushing out new versions of the app (waiting for Apple to “approve” the update) and found it difficult to lead users to the in-app store.</p>
+<h2 id="The-Mobile-Web-To-The-Rescue"><a href="#The-Mobile-Web-To-The-Rescue" class="headerlink" title="The Mobile Web To The Rescue"></a>The Mobile Web To The Rescue</h2><p>To address these three issues, we recommended building a Web app. For one, practically all devices—mobile and otherwise—include a Web browser, so building a Web site means access to many non-iOS-device-using users would be unlocked. Secondly, since Web apps aren’t hosted on Apple’s servers, this one could be deployed and redeployed as often as needed with no delays from Apple. Furthermore, we could, thanks to a number of third-party analytics systems that integrate easily with Web sites, log and track almost any data the client wanted. Finally, since the app wouldn’t live within the App Store, we were free to choose another payment processor: one without 30% fees.</p>
+<h2 id="A-Double-Edged-Sword"><a href="#A-Double-Edged-Sword" class="headerlink" title="A Double-Edged Sword"></a>A Double-Edged Sword</h2><p>Switching from a native app to a Web-based one isn’t without its drawbacks, however. The most notable of these is that Web apps can’t leverage the App Store’s searching and discoverability, meaning it’s considerably harder for users to “stumble upon” a Web application. One excellent way to combat this is with targeted advertising; after all, “accidental users” of a specialized app like this one, which targets youth football coaches specifically, aren’t very likely to make in-app purchases.</p>
+<p>Secondly, native apps begin their lives in “offline mode”, only adding server interaction when necessary. By their very nature (being <em>served from</em> an online Web server), Web apps are, instead, mostly-connected, unless special care is taken to facilitate their use in disconnected scenarios. This facilitation, therefore, is considerably more challenging to incorporate into a Web application than into a native one, and extra care must be taken to ensure not a single online request is made while in “offline” mode, or users will experience some unhappy error dialogs.</p>
+<h2 id="A-Path-Forward"><a href="#A-Path-Forward" class="headerlink" title="A Path Forward"></a>A Path Forward</h2><p>Though the downsides of a Web application are far from trivial, they pale in comparison to the benefits we could provide the client by moving to the Web. Ultimately, access to more devices, increased analytics, and a far larger cut of any profits made building the second app on the Web an easy choice.</p>
+<p><a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">In the next post</a>, we’ll review the technical aspects of the app we built, including what client- and server-side tools we chose, and how we came to those decisions. Stay tuned!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/09/building-a-mobile-html5-app-going-non-native/",
+    "headline": "Building a Non-Native Mobile HTML5 App, Part I: A Business Case",
+    "datePublished": "Thu Sep 27 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/09/inspect-mobile-web-sites-with-a-mac-and-ios-6/">Inspect Mobile Web Sites with a Mac and iOS 6</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/10/building-a-mobile-html5-app-choosing-a-technology-stack/">Building a Non-Native Mobile HTML5 App, Part II: Choosing a Technology Stack</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Building a Non-Native Mobile HTML5 App, Part I: A Business Case';
+      this.page.url = 'http://timgthomas.com/2012/09/building-a-mobile-html5-app-going-non-native/';
+      this.page.identifier = '2012/09/building-a-mobile-html5-app-going-non-native/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

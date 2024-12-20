@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Feature Folders and JavaScript · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Feature Folders and JavaScript</h1>
+      <p>8 October 2013</p>
+    </header>
+    <p><a href="/2013/10/feature-folders-in-asp-net-mvc/">In my last post</a>, we looked at how to organize C# files in an ASP.NET MVC project into “feature folders” that contain all the files needed for a vertical slice of an application (view models, commands/queries, and views). Today, we’ll see how we can accomplish the same thing with JavaScript files, and maybe optimize how JavaScript works in an MVC app while we’re at it.</p>
+<h2 id="RequireJS-and-ASP-NET-MVC"><a href="#RequireJS-and-ASP-NET-MVC" class="headerlink" title="RequireJS and ASP.NET MVC"></a>RequireJS and ASP.NET MVC</h2><p>As a system designed primarily for data entry, this project isn’t a single-page application (SPA) so much as it is a collection of SPAs: one per feature. We still have a lot of complex client-side logic, though, that we need to keep maintained. We’ve been using <a target="_blank" rel="noopener" href="http://requirejs.org/">RequireJS</a>, a JavaScript module loader, to great effect so far, which helps us organize our client code into reusable modules and load only the ones we need for a given page.</p>
+<p>All of this project’s client scripts are in one folder inside our MVC project (third-party libraries like <a target="_blank" rel="noopener" href="http://www.jquery.com/">jQuery</a> and <a target="_blank" rel="noopener" href="http://backbonejs.com/">Backbone</a> live in a <code>lib</code> subfolder to keep things clean). We use <a target="_blank" rel="noopener" href="https://gist.github.com/TimGThomas/05ffe58306e360905863">some MVC</a> to determine what “main” file we should load based on the controller and view name (we use the view name instead of the action name since the scripts are paired to specific HTML, not arbitrary action names), which we can pull from a <code>ViewContext</code> instance:</p>
+<pre><code>[ChildActionOnly]
+public string GetRequireJSUrl(ViewContext context)
+&#123;
+  var values = context.RouteData.Values;
+  var controllerName = values[&quot;controller&quot;].ToString();
+  var viewContext = (RazorView)context.View;
+  var viewName = Path.GetFileNameWithoutExtension(viewContext.ViewPath);
+  return &quot;a &lt;script&gt; block containing your Require URL&quot;;
+&#125;
+</code></pre>
+<p>…and call it from our <code>_Layout</code> (we’re using <a target="_blank" rel="noopener" href="http://www.nuget.org/packages/Mvc4Futures/">MVC Futures</a> for the expression-based helper here):</p>
+<pre><code>@&#123; Html.RenderAction&lt;HomeController&gt;(x =&gt; x.GetRequireJSUrl(ViewContext)); &#125;
+</code></pre>
+<p>Until we switched to feature folders, all of these scripts were in the same folder: <code>~/Content/js</code>. We followed the RequireJS convention of prefixing our “entry” scripts with <code>main-</code>, and used the naming structure of:</p>
+<pre><code>~/Content/js/main-&#123;controller&#125;-&#123;view&#125;.js
+</code></pre>
+<p>Unfortunately, this resulted in dozens and dozens of JavaScript files, unrelated in every way save that they all had <code>js</code> as file extensions, in the same folder. Moving to feature folders allows us to relocate all of these files…and simplify the names, to boot:</p>
+<pre><code>~/&#123;feature&#125;/&#123;view&#125;.js
+</code></pre>
+<p>Changing the URL rendered by our child action, above, was the easy part. It took a <em>bit</em> more work to update the Require modules themselves. Let’s see how it’s done.</p>
+<h2 id="Changing-Require’s-modules"><a href="#Changing-Require’s-modules" class="headerlink" title="Changing Require’s modules"></a>Changing Require’s modules</h2><p>RequireJS assumes that the directory within which a JavaScript file lives should be the starting point for locating dependencies. Since our dependencies reside in a single folder (like most projects’, I imagine), we need to start by telling Require where to look:</p>
+<pre><code>require.config(&#123;
+  // Tell Require where to start looking for dependencies.
+  baseUrl: &#39;/Content/js&#39;
+
+  // (The `paths` object and friends live down here.)
+&#125;);
+</code></pre>
+<p><strong>Note:</strong> If you’re using a project path that includes subfolders in the url (e.g. <code>localhost/myapp</code>), watch out: this <code>baseUrl</code> will need to take that into account. Though, if you’re planning to deploy this site to a domain, it might be better to fix your local web server to serve things up directly from <code>localhost</code> and avoid any nasty surprises when you deploy.</p>
+<p>If your Require modules have any path-based dependencies (e.g. they’re referenced by relative path instead of being defined in your <code>require.config()</code> call), Require will try to load those from the <code>baseUrl</code> directory, too, so the modules will need to be changed:</p>
+<pre><code>// Before
+require([&#39;normal-lib&#39;, &#39;./mixin&#39;], /* ... */);
+
+// After
+require([&#39;normal-lib&#39;, &#39;/Features/&#123;feature&#125;/mixin.js&#39;], /* ... */);
+</code></pre>
+<p>I’ll admit: this change is both annoying and very difficult to get <em>just right</em>, but we only have two or three instances of this in the entire project, so I’ll leave its resolution as an exercise to the reader (though I’d be very appreciative if you commented your solution below :).</p>
+<h2 id="“Featured”-Scripts"><a href="#“Featured”-Scripts" class="headerlink" title="“Featured” Scripts"></a>“Featured” Scripts</h2><p>That’s all it takes to relocate your RequireJS scripts! Our MVC child action tells our views where to find the reorganized modules, and adding a simple <code>baseUrl</code> path to the Require configuration ensures most of our dependencies are loaded without incident.</p>
+<p>We’ve had great results with this approach so far. RequireJS allows us to simplify our client-side script loading, and feature folders help us realize a dramatic reduction in context switching (not to mention Visual Studio’s Solution Explorer is useful again!). If you’ve benefitted from switching to feature folders (or found it causes some pain), share your experiences in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2013/10/feature-folders-and-javascript/",
+    "headline": "Feature Folders and JavaScript",
+    "datePublished": "Tue Oct 08 2013 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2013/10/feature-folders-in-asp-net-mvc/">Feature Folders in ASP.NET MVC</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2013/10/fun-with-stateful-css-a-view-edit-screen/">Fun with Stateful CSS: A View/Edit Screen</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Feature Folders and JavaScript';
+      this.page.url = 'http://timgthomas.com/2013/10/feature-folders-and-javascript/';
+      this.page.identifier = '2013/10/feature-folders-and-javascript/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

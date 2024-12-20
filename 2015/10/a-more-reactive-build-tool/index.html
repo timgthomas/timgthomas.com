@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>A More Reactive Build Tool · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>A More Reactive Build Tool</h1>
+      <p>28 October 2015</p>
+    </header>
+    <p>An interesting philosophy I’ve been introduced to while building apps with <a target="_blank" rel="noopener" href="https://facebook.github.io/react/">React</a> is that of avoiding static config files. Even HTML, arguably one of the most venerable “config” languages out there, has been replaced with a superset that can contain JavaScript, <a target="_blank" rel="noopener" href="https://facebook.github.io/jsx/">React’s JSX</a>. Newer trends even recommend <a target="_blank" rel="noopener" href="https://speakerdeck.com/vjeux/react-css-in-js">supplementing <em>CSS</em> with JavaScript</a>, so you can make changes to styles based on application state in near real-time.</p>
+<span id="more"></span>
+
+<p>One of the “complementary tools” to React (and the one recommended by many example apps I’ve encountered) is <a target="_blank" rel="noopener" href="http://webpack.github.io/">Webpack</a>: a self-described “module bundler” that’s also commonly used to compile and process images, CSS, and other soon-to-be-static assets. Though Webpack is often suggested, I encountered several problems that led me to look elsewhere for setting up a build task. In this post, we’ll look at a few of those problems and what I ended up replacing Webpack with to solve them.</p>
+<p><strong>TL;DR:</strong> If you want to jump straight to the good parts, I’ve created an <a target="_blank" rel="noopener" href="https://github.com/TimGThomas/building-react-with-broccoli">example app hosted on GitHub</a> that covers everything in this post.</p>
+<h2 id="A-Web-pack-of-Trouble"><a href="#A-Web-pack-of-Trouble" class="headerlink" title="A (Web)pack of Trouble"></a>A (Web)pack of Trouble</h2><p>When I was first getting started with React, I found the guides to be lacking with regards to setting up and maintaining a local development environment. Admittedly, I’m very spoiled by the <a target="_blank" rel="noopener" href="http://emberjs.com/">Ember</a> ecosystem and <a target="_blank" rel="noopener" href="http://www.ember-cli.com/">Ember CLI</a>, but I eventually happened on “<a target="_blank" rel="noopener" href="https://blog.risingstack.com/the-react-way-getting-started-tutorial/">The React.js Way</a>” blog series, which advocates using Webpack for this purpose. I started using it, but quickly ran into a number of issues:</p>
+<p><strong>Regular expressions.</strong> Web pack uses “<a target="_blank" rel="noopener" href="http://webpack.github.io/docs/using-loaders.html">loaders</a>” to transform files, which rely on regular expressions to select the files to be transformed. Coming from the world of <a target="_blank" rel="noopener" href="http://gruntjs.com/">Grunt</a> and friends, which uses very readable strings like <code>src/**/*.js</code> to represent files, expressions like <code>/src\/.+.js$/</code> make my head hurt, and I’m utterly unable to create new expressions without <a target="_blank" rel="noopener" href="http://www.regular-expressions.info/">a reference guide</a>.</p>
+<p><strong>Magic strings.</strong> Once you’ve managed to select your files using arcane RegEx strings, you’ll need to tell Webpack how to transform them. Webpack implicitly imports these loaders, then relies on string parsing to figure out what to do to the files, and in what order. Here’s an example <a target="_blank" rel="noopener" href="http://webpack.github.io/docs/using-loaders.html#loaders-in-require">from the Webpack documentation</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;!style!css!less!bootstrap/less/bootstrap.less&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Aside from <a target="_blank" rel="noopener" href="https://vimeo.com/97318798">using Bootstrap</a>, there are more insidious issues with this approach: one, it’s very unclear what, exactly, each of these processing steps does (and from which package they’re loaded), and, two, it turns out they’re executed from right to left, thereby guaranteeing I’ll get the execution order backwards <em>every time</em> I write a config file. Even after you decipher this processing instruction, you still need to import your CSS into your JavaScript, of course. <a target="_blank" rel="noopener" href="https://github.com/webpack/css-loader#usage">Wait: <em>what</em>?</a></p>
+<p><strong>Confusing documentation.</strong> Your mileage may vary, but I had a heck of a time deciphering the <a target="_blank" rel="noopener" href="http://webpack.github.io/docs/">official Webpack documentation</a>. I mostly relied on other confused individuals who had divined the secrets of Webpack’s functionality and <a target="_blank" rel="noopener" href="http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup">blogged about it</a>.</p>
+<p>I normally try to stick with new concepts for a while when learning a new language/library/framework; after all, these ideas and tools typically exist for a reason, and it can sometimes take a while to really grok them. With Webpack, though, I kept running into the same issues, with nothing but hacky-feeling workarounds to “solve” them. So, instead, I went back to the drawing board to look for an alternative.</p>
+<h2 id="Eat-Your-Vegetables"><a href="#Eat-Your-Vegetables" class="headerlink" title="Eat Your Vegetables"></a>Eat Your Vegetables</h2><p>If you’ve spent any length of time talking shop with me, you’ve probably heard me mention <a target="_blank" rel="noopener" href="https://github.com/broccolijs/broccoli">Broccoli</a>. If you haven’t, here’s the gist: <a target="_blank" rel="noopener" href="https://speakerdeck.com/timgthomas/chocolate-covered-vegetables-tasty-workflows-with-broccoli">I’m a huge fan</a>. I find it insanely simple to start with, yet solidly scalable when the need arises. Massive build systems have been built from it (read more about the aforementioned Ember CLI if you’re interested), yet even at that level of complexity, it’s pretty straightforward to work with.</p>
+<p>When I finally made the decision to ditch Webpack, I first thought of Broccoli, even though I honestly wasn’t sure if it would solve all of my issues. I wanted, in no particular order, something that would:</p>
+<ul>
+<li>Let me use React and libraries written for it (most of which used calls to <code>require()</code>, meaning I couldn’t just stick more <code>&lt;script&gt;</code> tags on a page);</li>
+<li>Compile any non-standard JavaScript, including JSX for templating and ES2015 for, mostly, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a> and <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">template strings</a>;</li>
+<li>Process any CSS I might need (without making me import it into JavaScript files, naturally); and</li>
+<li>Run all of this stuff in a web server.</li>
+</ul>
+<p>As it happens, Broccoli’s pretty amazing at all of these, even with the JSX compilation (the cause for most of my uncertainty). Let’s see how to set up a simple React app with it.</p>
+<h2 id="Replacing-Webpack-with-Broccoli"><a href="#Replacing-Webpack-with-Broccoli" class="headerlink" title="Replacing Webpack with Broccoli"></a>Replacing Webpack with Broccoli</h2><p>Taking the requirements from the previous section, here’s what we want Broccoli to do:</p>
+<ol>
+<li>Compile any JSX and/or ES2015 in our JavaScript files.</li>
+<li>Bundle the scripts together, respecting any dependencies using <code>require()</code>.</li>
+<li>Process our CSS from, say, <a target="_blank" rel="noopener" href="http://sass-lang.com/">Sass</a>.</li>
+<li>Serve everything from a web server.</li>
+</ol>
+<p>To start with, let’s install Broccoli. It’s an <a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm</a> package, so you’ll probably want to run <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/init"><code>npm init</code></a> and get yourself a <code>package.json</code> file you can save these dependencies to first. After that, install Broccoli:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g broccoli-cli</span><br><span class="line">$ npm install --save-dev broccoli</span><br></pre></td></tr></table></figure>
+
+<p>The first command installs the Broccoli binary, while the second tells our app that it’ll need Broccoli as a dependency. Next, let’s make a simple Broccoli build file, named <code>Brocfile.js</code>. This file is a <a target="_blank" rel="noopener" href="https://nodejs.org/api/modules.html#modules_modules">node module</a>, so we’ll be using calls to <code>require()</code> to bring in dependencies, and expose any outputs with <code>module.exports</code>.</p>
+<p>Broccoli works primarily with directory paths, called “<a target="_blank" rel="noopener" href="https://github.com/broccolijs/broccoli#plugin-api-specification">trees</a>”, that represent files and folders in your app. If we wanted Broccoli to act as a passthrough and not do any real processing, all we’d need in <code>Brocfile.js</code>—assuming our app assets are in an <code>app</code> folder—is:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="string">&#x27;app&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>We need a bit more than this, so let’s continue. First, we’ll need to install React, since our code depends on it. You’ll use a similar method if you want to install other packages on which your runtime code depends. Install it with the following npm command:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save react</span><br></pre></td></tr></table></figure>
+
+<p>Next, we’ll use two Broccoli helper packages to accomplish Objectives #1 and #2 (compiling and bundling our JavaScript), so run these commands to install them. Note that we’re installing these with <code>--save-dev</code>, not just <code>--save</code>, since they’re used for <em>building</em>, and not <em>running</em>, this app.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save-dev broccoli-babel-transpiler</span><br><span class="line">$ npm install --save-dev broccoli-browserify</span><br></pre></td></tr></table></figure>
+
+<p><code>broccoli-babel-transpiler</code> is a Broccoli wrapper around the excellent <a target="_blank" rel="noopener" href="https://babeljs.io/">Babel library</a>. When we use it, the package will convert any ES2015 code we might right into code that runs in the majority of modern browsers (<a target="_blank" rel="noopener" href="https://babeljs.io/docs/faq/">TL;DR: IE9+</a>). As it happens, Babel also features support for <a target="_blank" rel="noopener" href="https://babeljs.io/docs/usage/jsx/">converting JSX templates into JavaScript</a>, as well, so that problem solves itself! We’ll then use <a target="_blank" rel="noopener" href="http://browserify.org/">Browserify</a> to take care of those <code>require()</code> calls. Here’s what our Brocfile looks like now, after we’ve imported and used these two packages:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> browserify = <span class="built_in">require</span>(<span class="string">&#x27;broccoli-browserify&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;broccoli-babel-transpiler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> js = <span class="string">&#x27;app&#x27;</span>;</span><br><span class="line">js = babel(js, &#123;&#125;);</span><br><span class="line">js = browserify(js, &#123;</span><br><span class="line">  <span class="attr">entries</span>: [ <span class="string">&#x27;./app.js&#x27;</span> ],</span><br><span class="line">  <span class="attr">outputFile</span>: <span class="string">&#x27;app.js&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">&#x27;app&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Broccoli lets us pass trees (like <code>app</code> in the above example) through varying processing steps, which will be executed in order (and, if you ask me, with far less confusion than Webpack’s approach).</p>
+<p>Let’s move on to Objective #3: processing CSS. There are a number of CSS preprocessors, and a number of Broccoli plugins for them, but let’s go with one of my favorites, Sass. Install the <a target="_blank" rel="noopener" href="https://github.com/joliss/broccoli-sass"><code>broccoli-sass</code></a> package with <code>npm install --save-dev broccoli-sass</code>, and point it at your CSS directory in <code>Brocfile.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> compileSass = <span class="built_in">require</span>(<span class="string">&#x27;broccoli-sass&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> css = compileSass([ <span class="string">&#x27;app/styles&#x27;</span> ], <span class="string">&#x27;app.scss&#x27;</span>, <span class="string">&#x27;app.css&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>I’ll leave the explanation of this plugin to the <code>broccoli-sass</code> documentation, but, in essence, we grab the uncompiled Sass code from <code>app/styles</code> and transform it, starting with <code>app.scss</code>.</p>
+<p>At this point, we’ve run into a bit of a problem. With <code>module.exports</code>, we can only export a single tree object, but what we want is to “merge” the compiled JavaScript from Objectives #1 and #2 with the compiled CSS from Objective #3. Another Broccoli plugin to the rescue: <a target="_blank" rel="noopener" href="https://github.com/joliss/broccoli-merge-trees"><code>broccoli-merge-trees</code></a>. This package, hopefully unsurprisingly, can merge our two (or more!) trees together. Here’s an example where we also bring in a <code>public</code> directory:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> merge = <span class="built_in">require</span>(<span class="string">&#x27;broccoli-merge-trees&#x27;</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = merge([ <span class="string">&#x27;public&#x27;</span>, js, css ]);</span><br></pre></td></tr></table></figure>
+
+<p>Let’s then create an <code>index.html</code> file that will represent the starting point of our app. We’ll stick this file in the <code>public</code> directory since it doesn’t require any special processing or compilation. You may notice that the build steps we’ve created output two files: <code>app.js</code> and <code>app.css</code>. We’ll want to reference these in this HTML file like so:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;app.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>(Your App)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>What about Objective #4? You’ll be pleased to know Broccoli comes with a simple web server preinstalled! To start it, run:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ broccoli serve</span><br></pre></td></tr></table></figure>
+
+<p>Then visit <code>http://localhost:4200/</code> in your favorite web browser (I don’t know where the port number comes from, but I like to think it’s inspired by the late <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Douglas_Adams">Douglas Adams</a>). If all goes well, you should see your React app in all its compiled and bundled glory!</p>
+<hr>
+
+<p>If you’ve been fighting with Webpack for building your React apps—or if you, too, struggle with setting up a React dev environment—why not give Broccoli a try? Alternatively, if you’re a die-hard Webpacker, or if you’ve found another build tool to solve Webpack’s issues, I’d love to hear what’s keeping your React apps built!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/10/a-more-reactive-build-tool/",
+    "headline": "A More Reactive Build Tool",
+    "datePublished": "Wed Oct 28 2015 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/09/the-making-of-stateful-css/">The Making of “You Might Not Need JavaScript”</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2018/01/new-year-new-monospace/">New Year, New Monospace</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'A More Reactive Build Tool';
+      this.page.url = 'http://timgthomas.com/2015/10/a-more-reactive-build-tool/';
+      this.page.identifier = '2015/10/a-more-reactive-build-tool/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Recreating the CTXNA Button Style in Pure CSS · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Recreating the CTXNA Button Style in Pure CSS</h1>
+      <p>2 October 2011</p>
+    </header>
+    <p>Although the design of the <a target="_blank" rel="noopener" href="http://ctxna.org/">CTXNA Web site</a> makes extensive use of images (for browser compatability), I became curious how difficult the style would be to reproduce in nothing but CSS and threw together a demo using JSFiddle:</p>
+<iframe src="https://jsfiddle.net/TimGThomas/GyxaD/embedded/result,css,html"></iframe>
+
+<p>The complete sample requires a browser that supports CSS gradients and the <code>border-radius</code>, <code>box-shadow</code>, and <code>text-shadow</code> properties; however, older browser users will still be able to recogize the button even if it’s not <em>quite</em> so pretty. :)</p>
+<p>Switching your graphics from using images to CSS has some great advantages:</p>
+<ul>
+<li><em>More flexibility.</em> Modern design techniques typically involve a number of iterations, each one of which can involve a major rework of graphical elements. If your images have already been sliced and placed into your HTML, it can be a chore to re-export them from your graphics tool of choice. Using CSS instead means you can make iterative changes without starting over.</li>
+<li><em>Fewer requests.</em> Instead of loading a CSS file <em>and</em> several image files, browsers simply load a simple file, cutting down on slow loading times caused by network latency.</li>
+<li><em>Smaller file sizes.</em> Though our example above is relatively complex, many images can be replaced with CSS with a significant reduction in file size (being text, CSS rules take up less space on disk than graphics). Given the average number of images on Web sites, this can lead to some serious page load time improvements!</li>
+</ul>
+<p>Have you encountered sites with good use of CSS in lieu of images? Share in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2011/10/recreating-the-ctxna-button-style-in-pure-css/",
+    "headline": "Recreating the CTXNA Button Style in Pure CSS",
+    "datePublished": "Sun Oct 02 2011 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2011/09/binding-to-a-usercontrols-dependency-property/">Binding to a UserControl&#39;s Dependency Property</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2011/12/disable-track-changes-in-sql-server-management-studio/">Disable &#34;Track Changes&#34; in SQL Server Management Studio</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Recreating the CTXNA Button Style in Pure CSS';
+      this.page.url = 'http://timgthomas.com/2011/10/recreating-the-ctxna-button-style-in-pure-css/';
+      this.page.identifier = '2011/10/recreating-the-ctxna-button-style-in-pure-css/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

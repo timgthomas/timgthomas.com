@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>A Bumbling Bundler: Fixing IncludeDirectory() · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>A Bumbling Bundler: Fixing IncludeDirectory()</h1>
+      <p>16 December 2013</p>
+    </header>
+    <p><a href="/2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/">In my post on getting started with ASP.NET MVC’s Bundler</a>, we looked at a couple of methods that allow you to include files and directories to include as part of a bundle. Unfortunately, there’s a serious gotcha with <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/jj646468(v=vs.110).aspx"><code>IncludeDirectory()</code></a> that we’ll see—and correct!—in this post.</p>
+<h2 id="You-keep-using-that-word…"><a href="#You-keep-using-that-word…" class="headerlink" title="You keep using that word…"></a>You keep using that word…</h2><p>Let’s say we have a directory structure like this (in this example, files for an <a target="_blank" rel="noopener" href="http://emberjs.com/">Ember</a> application):</p>
+<pre><code>- app
+  - controllers
+    - account
+        create.js
+        login.js
+    +
+  + routes
+</code></pre>
+<p>Logically, we’d want to include both of the “account” controllers. This can be easily done with a call to <code>IncludeDirectory()</code>, specifying the full (relative) path and a search filter:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">bundles.Add(<span class="keyword">new</span> ScriptBundle(<span class="string">&quot;~/bundles/app&quot;</span>)</span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/account&quot;</span>, <span class="string">&quot;*.js&quot;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>This approach is fine for smaller apps with only a few of these “<a href="/2013/10/feature-folders-and-javascript/">feature</a>“ subfolders, but quickly becomes unmanageable with a more complex system:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">bundles.Add(<span class="keyword">new</span> ScriptBundle(<span class="string">&quot;~/bundles/app&quot;</span>)</span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/account&quot;</span>, <span class="string">&quot;*.js&quot;</span>)</span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/authors&quot;</span>, <span class="string">&quot;*.js&quot;</span>)</span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/books&quot;</span>, <span class="string">&quot;*.js&quot;</span>)</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/search&quot;</span>, <span class="string">&quot;*.js&quot;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>One option, and the one we’ll discuss here, is to bundle all of the files in all of the folders under <code>~/app/controllers</code> together. If you poke around the <code>Bundle</code> class’s methods, you may notice that the <code>IncludeDirectory()</code> method has a <code>searchSubdirectories</code> parameter on an overload that sounds like it would do exactly that.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">bundles.Add(<span class="keyword">new</span> ScriptBundle(<span class="string">&quot;~/bundles/app&quot;</span>)</span><br><span class="line">  .IncludeDirectory(<span class="string">&quot;~/app/controllers/&quot;</span>, <span class="string">&quot;*.js&quot;</span>, <span class="literal">true</span>)</span><br><span class="line">  <span class="comment">//                                               ↑</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>Unfortunately, what’s output isn’t really all that helpful:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/app/controllers/create.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/app/controllers/login.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Can you spot the problem? While all of the path’s subdirectories are searched, the subfolder structure isn’t respected when the bundler compiles the paths to output to the page. Our <code>create</code> and <code>login</code> controllers aren’t children of the <code>controllers</code> folder, but rather its subfolders, so the above references will return a 404 (“not found”) error. (Frankly, I can’t think of a reason why this parameter exists, but if you’ve used it, let me know in the comments!)</p>
+<h2 id="Building-a-better-recursor"><a href="#Building-a-better-recursor" class="headerlink" title="Building a better recursor"></a>Building a better recursor</h2><p>One potential solution is to build our own directory recursor using <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/s7xk2b58(v=vs.110).aspx"><code>DirectoryInfo</code></a>. Keep in mind that MVC’s bundler uses application-relative URLs (that begin with <code>~/</code>), and <code>DirectoryInfo</code> needs absolute, file path URLs (e.g. <code>C:\dev\...</code>). In this implementation, we’re using <code>Server.MapPath()</code> and a simple string replacement to swap between the two:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">BundleExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bundle <span class="title">IncludeSubdirectoriesOf</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">this</span> Bundle bundle,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="built_in">string</span> path, <span class="built_in">string</span> searchPattern</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Get the current and root paths for `DirectoryInfo`.</span></span><br><span class="line">    <span class="keyword">var</span> absolutePath = HttpContext.Current.Server.MapPath(path);</span><br><span class="line">    <span class="keyword">var</span> rootPath = HttpContext.Current.Server.MapPath(<span class="string">&quot;~/&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> directoryInfo = <span class="keyword">new</span> DirectoryInfo(absolutePath);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> directory <span class="keyword">in</span> directoryInfo.GetDirectories())</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Swap out the absolute path format for a URL.</span></span><br><span class="line">      <span class="keyword">var</span> directoryPath = directory.FullName;</span><br><span class="line">      directoryPath = directoryPath</span><br><span class="line">        .Replace(rootPath, <span class="string">&quot;~/&quot;</span>)</span><br><span class="line">        .Replace(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">      bundle.IncludeDirectory(directoryPath, searchPattern);</span><br><span class="line">      bundle.IncludeSubdirectoriesOf(directoryPath, searchPattern);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> bundle;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Once we incorporate our new directory searching function (implemented as an extension method so we don’t break the option for method chaining), we can organize our files however we’d like, and they come out just fine:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/app/controllers/account/create.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/app/controllers/account/login.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If you’ve used other ways of including subdirectories in a bundle, or if you have intimate knowledge of why the <code>searchSubdirectories</code> parameter even exists, let me know in the comments! Happy bundling!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2013/12/a-bumbling-bundler-fixing-includedirectory/",
+    "headline": "A Bumbling Bundler: Fixing IncludeDirectory()",
+    "datePublished": "Mon Dec 16 2013 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2013/10/fun-with-stateful-css-modals/">Fun with Stateful CSS: Modals</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2014/06/norwegian-usability/">Norwegian Usability</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'A Bumbling Bundler: Fixing IncludeDirectory()';
+      this.page.url = 'http://timgthomas.com/2013/12/a-bumbling-bundler-fixing-includedirectory/';
+      this.page.identifier = '2013/12/a-bumbling-bundler-fixing-includedirectory/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

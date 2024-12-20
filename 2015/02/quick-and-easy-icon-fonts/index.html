@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Quick and Easy Icon Fonts · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Quick and Easy Icon Fonts</h1>
+      <p>5 February 2015</p>
+    </header>
+    <p>Creating icon fonts is one of my favorite things to do these days. With all the great browser design and development tools available, I’m using my pure design skills less and less; creating icons is one of the few times when I can sit down and do some solid vector-pushing.</p>
+<p>If you’re unfamiliar with the concept, icon fonts are a way of symbols in your web apps without requiring images. They’re contained in a single typeface file (which means they only cost a single HTTP request), vector (so they’re infinitely scalable), and, since it’s still technically text, can be styled with CSS. A wide variety of icon fonts are available for use (many of them free), but some designs need a custom touch. In this post, you’ll see just how easy it is to make your own icons with some great tools.</p>
+<h2 id="What-you’ll-need"><a href="#What-you’ll-need" class="headerlink" title="What you’ll need"></a>What you’ll need</h2><p>The only hard requirements you’ll need for this exercise are a) a vector graphics editor that can export to SVG (I’ll be using <a target="_blank" rel="noopener" href="https://www.adobe.com/products/illustrator.html">Adobe Illustrator</a>) and b) and internet connection (one of the tools is online). Naturally, it helps to have some experience with the graphics editor you choose, but if you know how to draw lines and basic shapes, you’ll be just fine.</p>
+<h2 id="Making-the-icons"><a href="#Making-the-icons" class="headerlink" title="Making the icons"></a>Making the icons</h2><p>To start, we’ll create a new document in Illustrator. Illustrator supports multiple <a target="_blank" rel="noopener" href="https://helpx.adobe.com/illustrator/how-to/work-with-artboards.html">“artboards”</a> in one document, so we can make each one the exact size of our finished icons and keep them all in one file. For this example, we’ll use icons that are 16 pixels square, but you could choose any size that fits your design (though I generally stick to sizes in multiples of 8 pixels since they’re easier for me to design).</p>
+<p><img src="/2015/02/quick-and-easy-icon-fonts/new-document.png" alt="Adobe Illustrator&#39;s &quot;New Document&quot; dialog"></p>
+<p>Next, create the icon. Illustrator has a <a target="_blank" rel="noopener" href="https://helpx.adobe.com/illustrator/using/drawing-pen-pencil-or-flare.html">myriad of tools</a> available for this, but I find myself using the Pen and Line Segment tools most often. The most important thing to keep in mind at this point is to stick to whole values for sizes and positions; putting a half-pixel-thick line in-between pixels is a one-way ticket to Blursville. In Illustrator, you can check the potential blurriness of an icon by turning on Pixel Preview (View &gt; Pixel Preview) and zooming in. I generally use a one-pixel grid while designing to make sure everything lines up <em>just so</em>, and check with Pixel Preview frequently.</p>
+<p>For this example, we’ll create a simple “delete” icon. I used perpendicular lines to form an ‘x’, and made each one two pixels thick. Rounded caps may not add much visual interest for some screens, but if any of your users have high-density displays, they’ll appreciate the extra level of detail. (Note: in this image, I’ve reduced the opacity of the lines so you can see how the anchor points align perfectly with the pixel grid.)</p>
+<p><img src="/2015/02/quick-and-easy-icon-fonts/construction-lines.png" alt="Our in-progress icon"></p>
+<p>As I mentioned, I generally work with lines when making icons, but feel free to experiment with any of the vector tools at your disposal. Remember, though, that only <em>vector</em> shapes can be used for icon fonts, so any raster images (drop shadows are a common example) won’t come across in the final icon.</p>
+<p>There’s one last thing we need to do before moving on: while lines are great to work with while constructing icons, icon fonts require filled shapes instead. To do this, “expand” the lines into shapes with the “Expand…” (Object &gt; Expand…) command. Next, I typically merge the two now-shapes together to make a single path with the <a target="_blank" rel="noopener" href="https://helpx.adobe.com/illustrator/using/combining-objects.html">“Union” command</a> of the “Pathfinder” palette (Window &gt; Pathfinder).</p>
+<p><img src="/2015/02/quick-and-easy-icon-fonts/line-construction.gif" alt="Line construction"></p>
+<h2 id="Exporting-the-icons"><a href="#Exporting-the-icons" class="headerlink" title="Exporting the icons"></a>Exporting the icons</h2><p>Now that we’ve created our icon, we’re ready to export it to SVG. Illustrator makes this process incredibly easy, as you can save a document directly to that format. Here’s how:</p>
+<ol>
+<li>Choose File &gt; “Save a Copy…”. The “Save As…” command also works, but changes your open document to the saved copy, meaning you have to close it and re-open your original Illustrator file. “Save a Copy…” doesn’t do this.</li>
+<li>From the “Format” selector, choose “SVG (svg)”, and click “Use Artboards” below it. If you so choose, you can also specify a certain range of artboards to export, but I typically export all of them at once so the output SVGs are never out of sync with my Illustrator file. If you have more than one or two icons in this file, you may want to save the SVGs in a separate folder: each artboard will become a separate file.</li>
+<li>Next, you’ll select some options for the output SVG. I follow Adobe’s recommendations for the web from <a target="_blank" rel="noopener" href="http://www.adobe.com/inspire/2013/09/exporting-svg-illustrator.html">“Exporting SVG for the web with Adobe Illustrator CC”</a>; scroll to the “Best export options for the web” section. When you click “OK”, your artboards will be turned into SVGs!</li>
+<li>(Optional.) I find Illustrator does a passable job of exporting concise SVG markup, but, if you’d like to take another pass at it for some extra saved bytes, I recommend the <a target="_blank" rel="noopener" href="https://github.com/svg/svgo-gui">SVGO</a> app. You could also edit out any extra line breaks and decimal places by hand if you’re so inclined.</li>
+</ol>
+<h2 id="Creating-the-icon-font"><a href="#Creating-the-icon-font" class="headerlink" title="Creating the icon font"></a>Creating the icon font</h2><p>At this point, you should have a number of SVGs that are all exactly 16 pixels square (or whatever your base size is) and nicely contained into their own files. There are a couple of options for you at this point: you could simply use the SVGs in your sites directly (SVG support in browsers is <a target="_blank" rel="noopener" href="http://caniuse.com/#feat=svg">quite nice</a>, as it happens), but that’s a different post. Instead, we’re going to create an icon font out of our SVGs using the awesome IcoMoon app.</p>
+<p>To get started, <a target="_blank" rel="noopener" href="https://icomoon.io/app">fire up the IcoMoon app</a>. There are some great sets included with IcoMoon by default, but we’re creating our own, so feel free to ignore those.</p>
+<p>Click “Import Icons” and navigate to your icon folder. Select any of the icons you’d like included in this font and click “Open”. If all goes well, you should instantly see your newly-crafted icons. If, instead, you see blank boxes, check that you converted your lines to shapes (in “Making the icons” above). By default, none of the icons we’ve uploaded are included in this icon font, so make sure the “select” tool (the first icon with the mouse cursor) is active, and click your uploaded icons. Each selected icon is outlined.</p>
+<p><img src="/2015/02/quick-and-easy-icon-fonts/selected-icon.png" alt="A selected icon"></p>
+<p>At this point, you <em>technically</em> already have an icon font. If you want, you can stop here, click “Generate Font” at the bottom of the app window, followed by “Download”, and use this font in your app; however, there are some optimizations we can perform at this point to make our lives as web designers easier.</p>
+<p>First, I like to turn on “Quick Usage” (available in the “Generate Font” screen). This feature provides us with a <code>&lt;link&gt;</code> tag directly to this icon font, hosted by IcoMoon, that we can drop in to any web app and start using immediately. <a target="_blank" rel="noopener" href="https://icomoon.io/#premium">Upgraded plans</a> feature permanently-available links, while the free version keeps them alive for 24 hours.</p>
+<p>Next, I give names to each icon. IcoMoon uses the SVG file names to prepopulate names for each icon, so you’ll often end up with values like “iconcopy_delete”, which isn’t very clear (you’ll be forced to use this verbose name in your HTML, too). Just select the text and replace it with something better, like “delete”. IcoMoon updates your values automatically.</p>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>At this point, you’re ready to start using this icon font! If you hover over one of the glyphs in IcoMoon’s “Generate Font” screen, you’ll see a “Get Code” link, which opens a modal describing exactly how to consume your newly-minted font. You can either use the <code>&lt;link&gt;</code> from Quick Usage, or download the font files and set it up yourself.</p>
+<p>If you’d like to learn more about icon fonts, CSS Tricks has an <a target="_blank" rel="noopener" href="http://css-tricks.com/examples/IconFont/">excellent article</a> on their use. If you’ve made your own icon font that you’d like to show off, or if you have any suggestions for improving this workflow, let me know in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/02/quick-and-easy-icon-fonts/",
+    "headline": "Quick and Easy Icon Fonts",
+    "datePublished": "Thu Feb 05 2015 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/02/essential-animations-for-the-web/">Essential Animations for the Web</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/02/Controllerless-Actions-in-Ember-js/">Controllerless Actions in Ember.js</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Quick and Easy Icon Fonts';
+      this.page.url = 'http://timgthomas.com/2015/02/quick-and-easy-icon-fonts/';
+      this.page.identifier = '2015/02/quick-and-easy-icon-fonts/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

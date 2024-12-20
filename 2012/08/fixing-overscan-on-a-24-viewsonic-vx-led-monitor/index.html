@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Fixing Overscan on a 24&#34; ViewSonic VX LED Monitor · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Fixing Overscan on a 24&#34; ViewSonic VX LED Monitor</h1>
+      <p>30 August 2012</p>
+    </header>
+    <p>To free up some monitors with DVI ports for our Dell-using developers at Headspring, I was recently upgraded to a pair of <a target="_blank" rel="noopener" href="http://www.viewsonic.com/products/desktop-monitors/lcd/x-series/vx2453mhled.htm">ViewSonic VX2453mh</a> monitors. Overall, I’m very impressed with these screens: the colors are vibrant, the response times are excellent, and the input ports are conveniently-located. However, after hooking them up to my MacBook Pro, I almost immediately noticed a chunk of my screen was missing around the edges, a problem known as <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Overscan">overscan</a> (and similar to one about which I <a href="/2012/04/correct-hdmi-display-scaling-in-windows-on-a-radeon-equipped-macbook-pro/">blogged in April</a>). Overscan also tends to stretch the screen image, causing things to appear a bit fuzzy.</p>
+<p>As it happens, these monitors default to a display mode that has a considerable amount of overscan, apparently for the purpose of working with non-computer A/V inputs. In my case, however, video comes straight from the DisplayPorts on my Mac, so I want to display “1080p” as a full 1920x1080 resolution.</p>
+<p>Fortunately, correcting this issue is very straightforward:</p>
+<ol>
+<li>Open the “on-screen display” (OSD) of the monitor you’d like to correct by pressing the “1” button on the side of the monitor.</li>
+<li>Select the “Input Select” option with the “2” button.</li>
+<li>Use the up/down buttons to select “PC” next to either “HDMI1” or “HDMI2”, depending on which input you’re using. In this screen, “AV” is the “overscan” mode we’d like to avoid.</li>
+<li>Press “2” again to select this mode. The screen will blink briefly while the change takes effect…and you’re done!</li>
+</ol>
+<p><img src="/css/images/blog/2012-08-30-01.jpg" alt="The VS2453mh&#39;s on-screen display."></p>
+<p>Though I’ve used this method on a VX2453mh specifically, I imagine it applies to other monitors of the same family, as well. If you’ve succeeded&mdash;or failed!&mdash;on another ViewSonic monitor, let me know in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/08/fixing-overscan-on-a-24-viewsonic-vx-led-monitor/",
+    "headline": "Fixing Overscan on a 24&#34; ViewSonic VX LED Monitor",
+    "datePublished": "Thu Aug 30 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/08/restoring-show-hidden-windows-on-hover-in-visual-studio-2012/">Restoring &#34;Show Hidden Windows on Hover&#34; in Visual Studio 2012</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/09/a-quick-start-of-asp-net-mvc-4s-bundling/">A Quick-Start of ASP.NET MVC 4&#39;s Bundling</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Fixing Overscan on a 24&#34; ViewSonic VX LED Monitor';
+      this.page.url = 'http://timgthomas.com/2012/08/fixing-overscan-on-a-24-viewsonic-vx-led-monitor/';
+      this.page.identifier = '2012/08/fixing-overscan-on-a-24-viewsonic-vx-led-monitor/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

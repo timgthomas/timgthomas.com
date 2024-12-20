@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Upstaging Upsetting Upstreams · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Upstaging Upsetting Upstreams</h1>
+      <p>9 July 2019</p>
+    </header>
+    <p>Many browser requests communicate directly with one server: the client needs to grab or update data, or perhaps perform an action like logging in. Sometimes, though, you need to chat with sources upstream of even your own resource: passing an API token to a third party service, for example. In these situations, response status codes can quickly get out of hand. Do you return the upstream status code? Your own? A combination of the two?</p>
+<p>One option is to simply pass along the upstream status code to the client: if your server can’t login to another server, for instance, return the second box’s <code>4XX</code>.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HTTP 401 Not Authorized</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;response&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Your credentials were invalid&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Unfortunately, this introduces some confusion to the consuming code: did <em>your</em> server reject the request, or did the upstream one do so?</p>
+<p>The solution that has worked well for us is to wrap the upstream request before sending it to the client. In other words, <em>your</em> server should return its own status code, but <em>contain</em> the upstream one. Philosophically, if the request to <em>your</em> server succeeds, still consider the request “successful” (with a <code>200</code>) even if the upstream errors (a <code>404</code>, for example).</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HTTP 200 OK</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;upstreamResponse&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;statusCode&quot;</span>: <span class="number">401</span>,</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Your credentials were invalid&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This allows us to both represent <em>our</em> system’s status (where a <code>401</code> may represent that a user isn’t logged in for us) and the <em>upstream’s</em> status (where a <code>401</code> may be completely unrelated to our own authentication system). It’s helpful to include both for user experience purposes, as you can easily differentiate to users whether it’s your code or someone else’s that threw an exception.</p>
+<p>This behavior is nuanced, but we’ve found it effectively represents disparate servers’ statuses. Have you had similar results? Is there a solution that works better for you? Weigh in in the comments!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2019/07/upstaging-upsetting-upstreams/",
+    "headline": "Upstaging Upsetting Upstreams",
+    "datePublished": "Tue Jul 09 2019 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2018/01/new-year-new-monospace/">New Year, New Monospace</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2019/11/unit-testing-glimmer-components/">Unit-testing Glimmer Components</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Upstaging Upsetting Upstreams';
+      this.page.url = 'http://timgthomas.com/2019/07/upstaging-upsetting-upstreams/';
+      this.page.identifier = '2019/07/upstaging-upsetting-upstreams/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Installing Ember CLI on Windows · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Installing Ember CLI on Windows</h1>
+      <p>20 July 2015</p>
+    </header>
+    <p>Yesterday, I made a huge mistake: I decided to install <a target="_blank" rel="noopener" href="http://www.ember-cli.com/">Ember CLI</a> on a brand-new Windows installation. Over <em>two hours</em> later, I was finally able to build and run an Ember CLI project. I’d like to share some of that process with you, and perhaps save you some of the headaches I encountered.</p>
+<span id="more"></span>
+
+<h2 id="Installing-Ember-CLI"><a href="#Installing-Ember-CLI" class="headerlink" title="Installing Ember CLI"></a>Installing Ember CLI</h2><p>Before I begin, some bad news: when I began this arduous journey, I didn’t realize how difficult it would become, so I neglected to document most of the error messages I received. If I’m feeling masochistic and ever try this again, I’ll update this post with more detailed errors.</p>
+<p>Also, I based this post on my experiences, so your mileage may vary (and I certainly hope it does). For reference, I’m using Windows 7 Ultimate, 64-bit. Let’s get started:</p>
+<ol>
+<li><strong>npm.</strong> On Windows, nested packages in <code>node_modules</code> often <a target="_blank" rel="noopener" href="https://github.com/joyent/node/issues/6960">overflow Windows’s file path length limitations</a>. To bypass this restriction, the npm 3 (beta) <a target="_blank" rel="noopener" href="http://www.infoq.com/news/2015/06/npm">stores modules in a flat structure</a>. I didn’t install this at first, and soon ran into issues. To get npm 3, install <a target="_blank" rel="noopener" href="https://nodejs.org/">Node</a>, then use the <a target="_blank" rel="noopener" href="https://github.com/felixrieseberg/npm-windows-upgrade"><code>npm-windows-upgrade</code></a> package to upgrade it. One caveat: the package’s README <em>implies</em> you should <a target="_blank" rel="noopener" href="https://github.com/felixrieseberg/npm-windows-upgrade#usage">run the upgrade in an Administrator console</a>, but this later caused several permissions errors. Everything worked as expected when I ran the command in a non-Admin window.</li>
+<li><strong>Python.</strong> One of Ember CLI’s dependencies, <code>node-gyp</code>, requires <a target="_blank" rel="noopener" href="https://www.python.org/">Python</a>. If you’re unfamiliar with the Python ecosystem, there are two major, and <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/Python2orPython3">somewhat-incompatible</a>, versions. The package doesn’t state which version it needs, but it will complain if you’ve installed the wrong one. You’ll want some flavor of 2.x (I used the newest as of this writing, <a target="_blank" rel="noopener" href="https://www.python.org/downloads/">2.7.10</a>).</li>
+<li><strong>Visual Studio.</strong> Yep, you read that right: you need <em>Visual Freaking Studio</em> to build Ember apps on Windows. <code>node-gyp</code> only <a target="_blank" rel="noopener" href="https://github.com/TooTallNate/node-gyp#installation">requires some of VS’s C++ compilers</a>, but a full install is the reliable way to get those. A free version is available (I used the recommended “<a target="_blank" rel="noopener" href="https://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx">Visual Studio 2013 Express for Windows Desktop</a>”), but set aside at least an hour to find, download, and install it. Oh, and say “goodbye” to a clean “Programs and Features” screen after you’re done:<br><img src="/2015/07/installing-ember-cli-on-windows/programs-and-features.png" alt="Installing Visual Studio adds a few apps"></li>
+<li><strong>Bower.</strong> You’ll also need <a target="_blank" rel="noopener" href="http://bower.io/">Bower</a> for browser-side package management, but this was a painless installation for me. Just <code>npm install bower -g</code> and you should be good to go.</li>
+</ol>
+<h2 id="Building-an-Ember-CLI-Project"><a href="#Building-an-Ember-CLI-Project" class="headerlink" title="Building an Ember CLI Project"></a>Building an Ember CLI Project</h2><p>At this point, I was about 90 minutes into the process…but I wasn’t done yet. After installing Ember CLI, you’ll need to install a project’s npm and Bower dependencies (with <code>npm install</code> and <code>bower install</code>, respectively). The Bower packages installed fine, but npm’s were another story:</p>
+<ol>
+<li><strong>Folder permissions.</strong> I encountered several npm <code>EACCES</code> errors when installing a project’s dependencies, stating that I didn’t have permissions for <code>C:\Program Files\nodejs</code>. This is an <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo">easy fix</a> on OSes that have <code>chown</code>, but I had to use Windows’s infamous “Security” UI instead. Though my user account is a member of the “Administrators” group, which has access to that folder, that’s not enough: I needed to give my user account full access to the <code>nodejs</code> folder and its children. The permissions errors disappeared after that.</li>
+<li><strong>Disconnections.</strong> Once the permissions errors cleared up, I started receiving <code>ECONNRESET</code> errors a few seconds into downloading npm packages. Re-running <code>npm install</code> sometimes worked, but <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/18419144/npm-not-working-read-econnreset">changing the npm registry to a non-HTTPS version</a> solved the issue.</li>
+</ol>
+<p>Finally, two hours after I began, I was able to build and run an Ember CLI app. Unfortunately, I then discovered Windows is abysmally slow at <em>compiling</em> the Ember CLI stuff. There’s <a target="_blank" rel="noopener" href="https://github.com/felixrieseberg/ember-cli-windows">an npm package to help</a>, but it was still pretty painful for me after that…but at least it was working.</p>
+<p>I’m still trying to remember exactly <em>why</em> I embarked on this near-Sisyphean experience—I had a MacBook Pro within arm’s reach on which I develop most of my Ember apps—but I hope documenting my painful journey will help yours be less so. Happy Embering!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/07/installing-ember-cli-on-windows/",
+    "headline": "Installing Ember CLI on Windows",
+    "datePublished": "Mon Jul 20 2015 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/06/ndc-oslo-2015/">NDC Oslo 2015</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/09/Deploying-Ember-CLI-Apps-to-Parse-Cloud-Code/">Deploying Ember CLI Apps to Parse Cloud Code</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Installing Ember CLI on Windows';
+      this.page.url = 'http://timgthomas.com/2015/07/installing-ember-cli-on-windows/';
+      this.page.identifier = '2015/07/installing-ember-cli-on-windows/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

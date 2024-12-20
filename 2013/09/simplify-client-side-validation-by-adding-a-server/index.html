@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Simplify Client-side Validation…by Adding a Server · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Simplify Client-side Validation…by Adding a Server</h1>
+      <p>27 September 2013</p>
+    </header>
+    <p>Traditional web validation techniques typically involve a mix of client-side validation (with a JavaScript library), followed by another round of validation on the server. By necessity, server-side validation needs to be a superset of client-side code to prevent erroneous—or sometimes malicious—data from getting into the system.</p>
+<p>Unfortunately, this approach has some flaws. For one, it relies on developers remembering to duplicate validation features on both the client and server , which they often don’t. Even if you use a system that “automatically” applies validation logic in both places, there are cases where a page can’t be validated without checking with the server (validating the uniqueness of a user name comes to mind).</p>
+<p>The approach on which we decided for the project I’m currently on leverages the ubiquity of server-side validation with much of the high level of responsiveness of client-side solutions.</p>
+<p>Here’s the gist: when we detect that a form is about to be submitted, intercept the request with JavaScript, serialize the form, and send it up to the server. The server performs its validation normally, and either allows the request through, or responds with a serialized object describing exactly why the validation failed.</p>
+<p><em>UPDATE: I’ve built a <a target="_blank" rel="noopener" href="http://validation-sample.apphb.com/">simple example application</a> (<a target="_blank" rel="noopener" href="https://github.com/TimGThomas/validation-sample">source code</a>) demonstrating this technique.</em></p>
+<h2 id="Keep-the-client-code-clean"><a href="#Keep-the-client-code-clean" class="headerlink" title="Keep the client code clean"></a>Keep the client code clean</h2><p>Say we’re building a sign-up form. We’ll need a “user name” field that we want to make sure unique within the system. Our HTML probably looks something like this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;userName&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>We <em>could</em> perform this validation with a custom AJAX request (using jQuery, in this example):</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;#userName&#x27;</span>).on(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> attemptedUserName = $(<span class="built_in">this</span>).val();</span><br><span class="line">  $.ajax(<span class="comment">/* ... */</span>)</span><br><span class="line">    .success(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* All good! */</span> &#125;)</span><br><span class="line">    .error(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* Nope; it&#x27;s a duplicate. */</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>…but now we’ve introduced another server endpoint that needs to handle these requests, as well as some JavaScript that’s really only good for verifying user name uniqueness. This code could be optimized to reduce duplication, but it’s still not very extensible. Instead, what if we serialized the entire form and validated it all at once?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;form&#x27;</span>).on(<span class="string">&#x27;submit&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> attemptedFormData = $(<span class="built_in">this</span>).serialize();</span><br><span class="line">  $.ajax(<span class="comment">/* ... */</span>)</span><br><span class="line">    .success(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* The whole form&#x27;s good! */</span> &#125;)</span><br><span class="line">    .error(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* Something went wrong. */</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Now we can check not only the “user name” field’s value, but all of the values of the form at once. The server’s response (which we’ll see how to build in the next section), could look something like this:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;userName&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;errors&quot;</span>: [ <span class="string">&quot;This user name has already been taken.&quot;</span> ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Instead of a simple “yes/no” validation response, we have a rich model representing <em>exactly</em> what’s wrong with the entire form, and with no additional markup (or even client-side code, beyond our single form hijacking call). We can even use the keys in this return object (which correspond to the <code>name</code> values of form inputs) to highlight the erroneous fields:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fields = <span class="built_in">Object</span>.keys(result);</span><br><span class="line">fields.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">field</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (result[field].errors) &#123;</span><br><span class="line">    $(<span class="string">&#x27;[name=&#x27;</span> + field + <span class="string">&#x27;]&#x27;</span>).addClass(<span class="string">&#x27;invalid&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Add-the-server-component"><a href="#Add-the-server-component" class="headerlink" title="Add the server component"></a>Add the server component</h2><p>In this project, built on ASP.NET MVC, we use the <a target="_blank" rel="noopener" href="http://fluentvalidation.codeplex.com/">Fluent Validation library</a> for validating data sent up from the client, though this approach hardly requires .NET. To get started, we’ll need a model class to store this form’s data:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SignUpViewModel</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">string</span> UserName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We’ll also add a custom validator, using the Fluent Validation syntax. This example is relatively sparse, but the <a target="_blank" rel="noopener" href="http://fluentvalidation.codeplex.com/wikipage?title=Validators&referringTitle=Documentation">Fluent Validation API</a> is quite flexible.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SignUpViewModelValidator</span> :</span><br><span class="line">  <span class="title">AbstractValidator</span>&lt;<span class="title">SignUpViewModel</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">SignUpViewModelValidator</span>(<span class="params"></span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    RuleFor(x =&gt; x.UserName).Must((model, userName) =&gt; &#123;</span><br><span class="line">      <span class="comment">// Determine whether &#x27;userName&#x27; is unique.</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ASP.NET MVC already has a built-in server-side validation concept, called “Model State”, that Fluent Validation bolts onto. A <code>ModelState</code> object contains a .NET object–based representation of exactly the server result we want, so all we need to do is respond to invalid requests with it. Another MVC extensibility point, “Action Filters”, gives us this ability:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ValidatorActionFilter</span> : <span class="title">IActionFilter</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnActionExecuting</span>(<span class="params">ActionExecutingContext filterContext</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Continue normally if the model is valid.</span></span><br><span class="line">    <span class="keyword">if</span> (filterContext.Controller.ViewData.ModelState.IsValid) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> serializationSettings = <span class="keyword">new</span> JsonSerializerSettings</span><br><span class="line">      &#123;</span><br><span class="line">        ReferenceLoopHandling = ReferenceLoopHandling.Ignore</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> serializedModelState = JsonConvert.SerializeObject(</span><br><span class="line">      filterContext.Controller.ViewData.ModelState,</span><br><span class="line">      serializationSettings);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> ContentResult</span><br><span class="line">      &#123;</span><br><span class="line">        Content = serializedModelState,</span><br><span class="line">        ContentType = <span class="string">&quot;application/json&quot;</span></span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">    filterContext.HttpContext.Response.StatusCode = <span class="number">400</span>;</span><br><span class="line">    filterContext.Result = result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In short, this filter serializes the <code>ModelState</code> object and sends it down to the client as JSON with a “400” status code (“Bad Request”). .NET provides a <code>JsonResult</code> object, but the default serializer misbehaves frequently with all but the simplest of objects to serialize. As a result, we’ve opted to use the <a target="_blank" rel="noopener" href="https://github.com/JamesNK/Newtonsoft.Json">Newtonsoft JSON library</a> instead.</p>
+<p>You’ll need to attach this filter to your MVC application—if that’s your server-side framework of choice. We’re using it as a <a target="_blank" rel="noopener" href="http://weblogs.asp.net/gunnarpeipman/archive/2010/08/15/asp-net-mvc-3-global-action-filters.aspx">global action filter</a>.</p>
+<h2 id="Happy-validating"><a href="#Happy-validating" class="headerlink" title="Happy validating!"></a>Happy validating!</h2><p>Now that we’ve built a client that’s aware of potential form errors reported in a certain structure, and instructed the server to send down a meaningful model on invalid form submissions, all that’s left is to sit back and enjoy never having to write a client-side form validator again!</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2013/09/simplify-client-side-validation-by-adding-a-server/",
+    "headline": "Simplify Client-side Validation…by Adding a Server",
+    "datePublished": "Fri Sep 27 2013 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2013/06/ndc-oslo-videos/">NDC Oslo Videos</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2013/10/feature-folders-in-asp-net-mvc/">Feature Folders in ASP.NET MVC</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Simplify Client-side Validation…by Adding a Server';
+      this.page.url = 'http://timgthomas.com/2013/09/simplify-client-side-validation-by-adding-a-server/';
+      this.page.identifier = '2013/09/simplify-client-side-validation-by-adding-a-server/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

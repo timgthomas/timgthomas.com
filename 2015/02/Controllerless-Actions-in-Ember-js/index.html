@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Controllerless Actions in Ember.js · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Controllerless Actions in Ember.js</h1>
+      <p>17 February 2015</p>
+    </header>
+    <p>Ember.js includes a robust eventing system for sending <a target="_blank" rel="noopener" href="http://emberjs.com/guides/templates/actions/">actions</a> from user-facing components deeper into your application (often into a <a target="_blank" rel="noopener" href="http://emberjs.com/guides/controllers/">Controller</a>):</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;&#123;#<span class="name"><span class="builtin-name">each</span></span> post in posts&#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">a</span> </span></span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">action</span></span> <span class="string">&#x27;markAsRead&#x27;</span> post&#125;&#125;</span><span class="xml"><span class="tag">&gt;</span>Mark as Read<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>While Controllers are the perfect place for logic used on a single view, you may find that, over time, that behavior becomes duplicated in multiple places. Creating <a target="_blank" rel="noopener" href="http://emberjs.com/api/classes/Ember.Mixin.html">Mixins</a> is one way of <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>-ing up your code (and is the preferred solution for interaction logic), but, in this post, we’ll look at another method that’s more <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Business_logic">domain logic</a>–friendly.</p>
+<p>To begin with, let’s take a look at a simple Controller that contains both interaction and domain logic:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ember.Controller.extend(&#123;</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="attr">readMoreLess</span>: <span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">      post.set(<span class="string">&#x27;expanded&#x27;</span>, !post.get(<span class="string">&#x27;expanded&#x27;</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">markAsRead</span>: <span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">      post.set(<span class="string">&#x27;read&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Expanding and collapsing a blog post’s content is clearly an interaction concern (in other words, not something you’ll likely want to persist to a database), but marking a post as “read” is probably something more meaningful to your application. If we move this functionality to a <a target="_blank" rel="noopener" href="http://emberjs.com/guides/models/">Model</a> object, our action handler may end up looking something like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ember.Controller.extend(&#123;</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="attr">readMoreLess</span>: <span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">    <span class="attr">markAsRead</span>: <span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">      post.markAsRead();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>At this point, there’s not much use for having an action on our Controller that does nothing but delegate out to the Model for this behavior. Fortunately, we can hook into Handlebars for a solution:</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;&#123;#<span class="name"><span class="builtin-name">each</span></span> post in posts&#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">a</span> </span></span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">action</span></span> <span class="string">&#x27;markAsRead&#x27;</span> <span class="attr">target</span>=post&#125;&#125;</span><span class="xml"><span class="tag">&gt;</span>Mark as Read<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>By telling Handlebars what the <a target="_blank" rel="noopener" href="http://emberjs.com/guides/templates/actions/#toc_specifying-a-target">target of this action</a> should be (in this case, the post object itself), we can bypass an explicit action handler on a Controller entirely (and it’s entirely possible you may be able to completely remove a Controller in some cases) and call a function directly on that Model. Note, however, that the function names must match <em>exactly</em> between your templates and your model objects (much like a Controller’s action’s name must match the template):</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">BlogPost.reopen(&#123;</span><br><span class="line">  <span class="attr">markAsRead</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>This approach won’t work in all cases, and you’ll want to keep an eye on your behavior to make sure you’re only including domain logic in Model objects (remember: interaction logic duplication should be kept in check with Mixins), but hopefully you’ll find your Controllers are cleaner and more expressive as a result.</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2015/02/Controllerless-Actions-in-Ember-js/",
+    "headline": "Controllerless Actions in Ember.js",
+    "datePublished": "Tue Feb 17 2015 00:00:00 GMT-0600",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2015/02/quick-and-easy-icon-fonts/">Quick and Easy Icon Fonts</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2015/03/prairie-dev-con-2015/">Prairie Dev Con 2015</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Controllerless Actions in Ember.js';
+      this.page.url = 'http://timgthomas.com/2015/02/Controllerless-Actions-in-Ember-js/';
+      this.page.identifier = '2015/02/Controllerless-Actions-in-Ember-js/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>

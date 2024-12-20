@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>Mute Your Asynchronous UIs with Stateful CSS · Tim G. Thomas</title>
+  <link rel="alternate" href="http://feeds.feedburner.com/timgthomas" title="Tim G. Thomas" type="application/rss+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono">
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
+      <input id="toggle-nav" type="checkbox">
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/speaking">Speaking</a>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="container">
+      <p>I apply holistic design principles to make experiences both usable and beautiful.</p>
+      <p class="social">
+        <a class="social-github" href="https://github.com/timgthomas" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-codepen" href="https://codepen.io/TimGThomas" target="_blank" rel="noopener">CodePen</a>
+        <a class="social-dribbble" href="https://dribbble.com/timgthomas" target="_blank" rel="noopener">Dribbble</a>
+      </p>
+    </div>
+  </aside>
+  <div role="main">
+  <article>
+    <header>
+      <h1>Mute Your Asynchronous UIs with Stateful CSS</h1>
+      <p>24 May 2012</p>
+    </header>
+    <p>Asynchronous operations are very common in today’s highly-interactive Web sites. Often, these operations are communicated to users by “muting” or “greying-out” the page, thus preventing user interactions. This is both a convenient way of setting user expectations (so they don’t frantically click on other parts of your page expecting something to happen) and helps to prevent circumstances wherein you have multiple, potentially conflicting, operations in progress.</p>
+<p>While there are a number of ways to accomplish this, in this post, I’ll demonstrate one of my favorites (and my “go-to” solution)…using CSS. I prefer this method for a number of reasons: it keeps my JavaScript free of presentational concerns (like showing and hiding elements on the page), is easy to apply to multiple pages on a site (or multiple parts of the same page), and can be modified quickly to match other site style changes.</p>
+<h2 id="Stateful-CSS…in-Theory"><a href="#Stateful-CSS…in-Theory" class="headerlink" title="Stateful CSS…in Theory"></a>Stateful CSS…in Theory</h2><p>The principle driving the examples below is something I like to call “stateful CSS”. While CSS is well-known for its ability to add visual styling to your site (like background colors, rounded corners, and text sizes), it is often overlooked as a way to visually represent the state of a Web page. A page can be in a particular state, for example, simply by having a particular CSS class applied to it. Let’s look at an example.</p>
+<iframe src="https://jsfiddle.net/TimGThomas/t6rL6/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0">.</iframe>
+
+<p>In this sample, a simple “view/edit” scenario, we have two “screens”: one that contains the “read-only” version of the object, and one that allows the user to edit its details. The behavior we’re looking for is to display the “view” screen by default, and replace it with the “edit” version when the user clicks the “Edit” button. Likewise, when a user is editing the object and clicks “Cancel”, we’d like to hide the “edit” screen and display the “view” version. The HTML for this example is very straightforward and contains only a single container and elements for each screen:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- The &quot;view&quot; screen --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span>&gt;</span>Edit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- The &quot;edit&quot; screen --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The moving parts of this sample, therefore, are in the CSS, which we’ll implement with a CSS class to represent the “I’m in edit mode” state of the container (let’s call it editing). Remember, we’d like the “view” screen to be the only one shown by default:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Defaults */</span></span><br><span class="line"><span class="selector-class">.view</span> &#123; <span class="attribute">display</span>: block; &#125;</span><br><span class="line"><span class="selector-class">.edit</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* The &quot;edit&quot; state */</span></span><br><span class="line"><span class="selector-class">.editing</span> <span class="selector-class">.view</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br><span class="line"><span class="selector-class">.editing</span> <span class="selector-class">.edit</span> &#123; <span class="attribute">display</span>: block; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Given these styles, we can trivially switch between the “view” and “edit” screens by adding and removing the <code>editing</code> class from the container element. Assuming that our container has the ID of <code>details</code>, this can be implemented with jQuery like so:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&#x27;.toggle&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;#details&#x27;</span>).toggleClass(<span class="string">&#x27;editing&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Combining these three components gives us a clean way to allow users to switch between states with a minimum of fuss.</p>
+<h2 id="Stateful-CSS-in-Action"><a href="#Stateful-CSS-in-Action" class="headerlink" title="Stateful CSS in Action!"></a>Stateful CSS in Action!</h2><p>Now that we’ve outlined the use of CSS to control the state of your application, let’s apply these principles to our problem. Remember, we have the need to “disable” or “pause” several independent parts of our page during asynchronous requests, so let’s add some stateful CSS!</p>
+<p>Let’s start with some mostly-real HTML. In this markup, the elements marked with the class “pausable” should be disabled during an AJAX request. Note that they’re spread around the structure of the page:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;pausable&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;start&quot;</span>&gt;</span>Start<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;pausable&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;pausable&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>To programmatically disable these elements, we’ll start by adding some style to each “pausable” element. The only requirement is that we relatively-position these containers, which will allow us to add a semitransparent overlay to each element to “mute” the content. The other CSS rules make things a tad less dull.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">   <span class="comment">/* Required */</span></span><br><span class="line">   <span class="attribute">position</span>: relative;</span><br><span class="line">   <span class="comment">/* Optional: */</span></span><br><span class="line">   <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#999</span>;</span><br><span class="line">   <span class="attribute">margin</span>: <span class="number">0</span> auto <span class="number">10px</span>;</span><br><span class="line">   <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">   <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now to add our overlay to disable the containers. By default, we’ll hide these overlays and show them when our page is in the “wait” state: this is where our stateful CSS comes in. To minimize the amount of extra markup we’ll need, I like to use the “after” pseudoselector; if your needs include compatibility with IE7, however, you can simply add some extra HTML.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span>:after &#123;</span><br><span class="line">   content: <span class="string">&quot; &quot;</span>;</span><br><span class="line">   <span class="attribute">display</span>: none; <span class="comment">/* Hide by default */</span></span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">   <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>);</span><br><span class="line">   <span class="attribute">filter</span>: <span class="built_in">alpha</span>(opacity=<span class="number">50</span>);</span><br><span class="line">   <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">   <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">   <span class="attribute">position</span>: absolute;</span><br><span class="line">   <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">   <span class="attribute">left</span>: <span class="number">0px</span>;</span><br><span class="line">   <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span><span class="selector-class">.paused</span> <span class="selector-class">.container</span>:after &#123;</span><br><span class="line">   display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now that the CSS states have been defined, let’s hook everything together with some JavaScript. The <code>&lt;button&gt;</code> element defined earlier will kick everything off:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   $(<span class="string">&#x27;#start&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="string">&#x27;body&#x27;</span>).addClass(<span class="string">&#x27;paused&#x27;</span>);</span><br><span class="line">      <span class="comment">// Do something that takes a long time.</span></span><br><span class="line">      $(<span class="string">&#x27;body&#x27;</span>).removeClass(<span class="string">&#x27;paused&#x27;</span>);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>From this point, the process is simple: first, add the “paused” class to the <code>&lt;body&gt;</code> element. The CSS styles we defined earlier will take effect and show our overlays. Next, perform whatever asynchronous or long-running operation you intend. Finally, remove the “paused” class from <code>&lt;body&gt;</code> to hide the overlays. The following JSFiddle demonstrates this functionality:</p>
+<iframe src="https://jsfiddle.net/TimGThomas/76pD8/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0">.</iframe>
+
+<p>Using CSS, we now have the ability to create a clean, maintainable method of “muting” UI elements during asynchronous operations. Not only does this method reduce the amount of presentational logic in your JavaScript, it’s also easy to read and understand and leverages the infrequently-touted stateful features of CSS.</p>
+
+    <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "/2012/05/mute-your-asynchronous-uis-with-stateful-css/",
+    "headline": "Mute Your Asynchronous UIs with Stateful CSS",
+    "datePublished": "Thu May 24 2012 00:00:00 GMT-0500",
+    "image": "http://timgthomas.com/images/headshot.png"
+  }
+</script>
+
+  </article>
+  <nav>
+    <span class="post-nav-next">
+      
+        <a href="/2012/05/creating-conical-gradients-in-illustrator-cs6/">Creating Conical Gradients in Illustrator CS6</a>
+      
+    </span>
+    <span class="post-nav-prev">
+      
+        <a href="/2012/06/austin-code-camp-2012/">Austin Code Camp 2012</a>
+      
+    </span>
+  </nav>
+  
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.title = 'Mute Your Asynchronous UIs with Stateful CSS';
+      this.page.url = 'http://timgthomas.com/2012/05/mute-your-asynchronous-uis-with-stateful-css/';
+      this.page.identifier = '2012/05/mute-your-asynchronous-uis-with-stateful-css/index.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://timgthomas.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+
+</div>
+
+  <p id="copyright">&copy; Tim G. Thomas</p>
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49175000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+
+  
+</body>
+</html>
