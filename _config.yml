@@ -89,10 +89,3 @@ disqus_shortname: timgthomas
 ## underscores.
 theme: tria-2019
 exclude_generator:
-
-# Deployment
-## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: git@github.com:timgthomas/timgthomas.com.git
-  branch: gh-pages
