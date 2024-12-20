@@ -8,7 +8,7 @@
   tags: ['web', 'svelte']
 
 - id: dragon-dice
-  title: Dragon Dice
+  title: Dice Commander
   description: The official reference guide for the Dragon Dice game to track your armies' statistics and capabilities.
   featured: true
   links:

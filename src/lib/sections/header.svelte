@@ -11,16 +11,17 @@
 <style lang="scss">
   header {
     align-items: last baseline;
+    background-color: hsla(0, 0%, 10%, 0.9);
+    backdrop-filter: blur(5px);
     border-radius: var(--corners);
     color: var(--color-foreground-elevated);
     display: flex;
     inset: var(--space) var(--space) auto;
+    margin-inline: auto;
+    max-width: calc(var(--measure) - 2 * var(--space));
     padding: var(--space);
     position: fixed;
     z-index: var(--elevation-menu);
-
-    backdrop-filter: blur(5px);
-    background: #000;
   }
 
   h1 {
@@ -30,7 +31,16 @@
     text-transform: uppercase;
   }
 
+  nav {
+    display: flex;
+  }
+
   a {
     color: currentColor;
+    font-family: 'Fira Sans';
+    font-size: 1.4rem;
+    padding-inline: 0.5em;
+    text-decoration: none;
+    text-transform: uppercase;
   }
 </style>

@@ -3,6 +3,7 @@ import type { Link } from '$lib/server/models/link'
 
 export default class Project {
   title: string
+  caption?: string
   description: string
   featured: boolean
   links: Link[]

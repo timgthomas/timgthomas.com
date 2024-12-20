@@ -27,6 +27,8 @@ body {
 :root {
   --base: 1.6rem;
 
+  --measure: 80rem;
+
   --space: var(--base);
   --space-narrow: calc(var(--space) / 2);
   --space-wide: calc(var(--space) * 2);
@@ -38,4 +40,38 @@ body {
   // This color was interpreted from specs
   --color-foreground: hsl(0, 0%, 60%);
   --color-foreground-elevated: hsl(0, 0%, 100%);
+}
+
+// TODO: Organize
+
+.h1 {
+  color: var(--color-foreground-elevated);
+  font-family: 'Fira Sans Condensed';
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.h2 {
+  color: var(--color-foreground-elevated);
+  font-family: 'Fira Sans Condensed';
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.header {
+  border-block-end: 2px solid #9f358e;
+  margin-block-end: var(--space);
+  padding-block-end: var(--space);
+}
+
+.p {
+  font-family: 'Fira Sans';
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
 }

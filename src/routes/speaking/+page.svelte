@@ -7,21 +7,25 @@
 </script>
 
 {#snippet talkSummary(talk: Talk)}
-  <h2>{talk.title}</h2>
-  <p>Presented at {talk.conference}</p>
-  <p>{talk.description}</p>
+  <h2 class="h2">{talk.title}</h2>
+  <p class="p">Presented at {talk.conference}</p>
+  <p class="desc p">{talk.description}</p>
   <ul>
-    {#each talk.links as { link: href }}
-      <li>
-        <Link {href} />
-      </li>
+    {#each talk.links as link}
+      <li><Link {link} /></li>
     {/each}
   </ul>
 {/snippet}
 
-<h1>Speaking</h1>
+<h1 class="h1 header">Speaking</h1>
 <ul>
   {#each data.talks as talk}
     <li>{@render talkSummary(talk)}</li>
   {/each}
 </ul>
+
+<style>
+  .desc {
+    padding-inline-start: var(--space);
+  }
+</style>

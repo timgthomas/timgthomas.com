@@ -22,8 +22,8 @@
 <style>
   main {
     margin-inline: auto;
-    max-width: 80rem;
-    padding: var(--space);
+    max-width: var(--measure);
+    padding: var(--space-wide);
 
     color: var(--color-foreground);
     mix-blend-mode: plus-lighter;
