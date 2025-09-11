@@ -4,7 +4,7 @@ title: Simple Validation Visuals for Windows Phone 7
 
 In the Windows Phone 7 app I'm working on, I'd like to provide some visual feedback for invalid input fields by outlining each one with the user's [selected accent color][1]. Ideally, invalid input boxes would look something like this:
 
-![The goal.][a]
+![The goal.](./2011-08-05-01.png)
 
 Unfortunately, WP7's template-based styling model makes this difficult, and the [workaround suggestions I've found][2] result in significant amounts of markup noise (not to mention adding the necessary XAML for that approach just duplicates Silverlight's internals).
 
@@ -46,13 +46,10 @@ Note that we're taking advantage of the [built-in Windows Phone 7 style resource
 
 The end result looks something like this:
 
-![The end result.][b]
+![The end result.](./2011-08-05-02.png)
 
 Happy validating!
 
 [1]: http://www.microsoft.com/windowsphone/en-us/howto/wp7/start/change-accent-color-or-background-theme.aspx
 [2]: http://stackoverflow.com/questions/4706619/windows-phone-7-borderbrush-can-only-be-set-once
 [3]: http://msdn.microsoft.com/en-us/library/ff769552%28v=VS.92%29.aspx
-
-[a]: /css/images/blog/2011-08-05-01.png
-[b]: /css/images/blog/2011-08-05-02.png

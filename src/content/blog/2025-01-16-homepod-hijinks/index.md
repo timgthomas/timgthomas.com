@@ -10,7 +10,7 @@ Keen-eyed HomeKit users have likely seen these sensors in their Home apps, but w
 
 Apple's [Shortcuts app](https://support.apple.com/guide/shortcuts/welcome/ios) is a surprisingly powerful tool for automation, but it’s also a bridge between Apple’s oft-locked-down ecosystem and some of our own custom workflows. Let's create a simple Shortcut that reads a HomePod's temperature:
 
-![Our simple Shortcut. The nodes included—Get State and Stop and Output—are described below.](./0-shortcut2.png)
+![Our simple Shortcut. The nodes included—Get State and Stop and Output—are described below.](./shortcut.png)
 
 We need but two Shortcut actions here:
 * **Get State**. This node will read the value of our HomePod sensor, which you'll see exposed as "Temperature Sensor" unless you've renamed it (which isn't a bad idea!).

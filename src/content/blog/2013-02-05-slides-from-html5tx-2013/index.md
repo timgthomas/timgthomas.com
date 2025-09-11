@@ -12,4 +12,4 @@ Thanks to everyone who attended the conference (especially those who suffered th
 [2]: https://speakerdeck.com/timgthomas/web-usability-on-a-budget-1
 [3]: http://speakerrate.com/talks/19641-web-usability-on-a-budget
 
-[a]: /css/images/blog/2013-02-05-01.jpg
+[a]: ./2013-02-05-01.jpg

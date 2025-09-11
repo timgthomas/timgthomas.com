@@ -29,4 +29,4 @@ As always, listening to presentations and reading blog posts only goes so far: t
 [4]: https://twitter.com/brad_frost
 [5]: http://styletil.es/
 
-[a]: /css/images/blog/2013-05-16-01.png
+[a]: ./2013-05-16-01.png

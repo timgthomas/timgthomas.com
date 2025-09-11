@@ -44,6 +44,6 @@ I've already used this tool to diagnose and fix some iPad layout issues on this 
 
 [1]: http://www.apple.com/ios/
 
-[a]: /css/images/blog/2012-09-19-01.png
-[b]: /css/images/blog/2012-09-19-02.png
-[c]: /css/images/blog/2012-09-19-03.png
+[a]: ./2012-09-19-01.png
+[b]: ./2012-09-19-02.png
+[c]: ./2012-09-19-03.png

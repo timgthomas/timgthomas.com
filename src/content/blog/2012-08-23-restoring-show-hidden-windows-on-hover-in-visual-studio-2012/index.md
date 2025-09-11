@@ -20,4 +20,4 @@ Fear not, for all is not lost. To restore this essential functionality, simply f
 [1]: http://msdn.microsoft.com/en-us/library/da5kh0wa.aspx
 [2]: http://www.jetbrains.com/resharper/
 
-[a]: /css/images/blog/2012-08-23-01.png
+[a]: ./2012-08-23-01.png

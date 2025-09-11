@@ -6,7 +6,7 @@ There are many great [filterable grids](http://demos.telerik.com/kendo-ui/grid/i
 
 Let's start with a small list of books. In this fictional UI, we'll show each book's title and author, and let users filter the list of books by genre:
 
-![A wireframe of what we're trying to do][a]
+![A wireframe of what we're trying to do](./wireframe.png)
 
 To begin, we need to polyfill a currently-missing component of Ember: radio buttons. It may seem odd, but these innocuous input fields are the key to this solution: we'll bind the selected item's value to an Ember property, which we'll then use to filter the list. Matthew Anderson [wrote a great post][0] on adding support for this input type, so we'll start by adding the code from that post to the Ember app.
 
@@ -83,5 +83,3 @@ Add in some nice styling, and we've got a pretty nice filterable list!
 <script async src="//codepen.io/assets/embed/ei.js"></script>
 
 [0]: http://thoughts.z-dev.org/2013/07/04/post/
-
-[a]: /css/images/blog/2014-08-01-01.png
