@@ -625,6 +625,7 @@ footer img,
 [role='main'] iframe,
 footer iframe {
   display: block;
+  height: auto;
   margin: 1.2rem auto;
   max-width: min(480px, 90vw);
 }
