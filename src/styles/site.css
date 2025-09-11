@@ -136,7 +136,7 @@ body {
   display: inline-block;
   margin-left: 16px;
   padding-left: 52px;
-  background-image: url('../images/logo.png');
+  background-image: url('/images/logo.png');
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 38px 44px;
