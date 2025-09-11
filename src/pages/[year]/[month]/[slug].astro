@@ -1,0 +1,31 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import Layout from '../../../components/layout.astro'
+import { formatDate } from '../../../lib/utils/datetime'
+
+type Props = CollectionEntry<'blog'>
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('blog')
+  return posts.map((post) => {
+    const [, year, month, , slug] = post.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/) ?? []
+    return { params: { year, month, slug }, props: { post } }
+  })
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+---
+
+<Layout>
+  <div role="main">
+    <article>
+      <header>
+        <h1>{post.data.title}</h1>
+        <p>{formatDate(post.data.date)}</p>
+      </header>
+      <Content />
+    </article>
+  </div>
+</Layout>

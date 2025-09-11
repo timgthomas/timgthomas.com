@@ -1,0 +1,56 @@
+---
+import Layout from '../components/layout.astro'
+// import StructuredData from "@/components/StructuredData.astro";
+// import Comments from "@/components/Comments.astro";
+import { getCollection } from 'astro:content'
+import { formatDate } from '../lib/utils/datetime'
+
+const posts = (await getCollection('blog'))
+  .map((entry) => {
+    const match = entry.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/)
+    if (!match) throw new Error(`Bad filename: ${entry.id}`)
+
+    const [, year, month, day, slug] = match
+    return {
+      ...entry,
+      date: new Date(`${year}-${month}-${day}`),
+      slug,
+      year,
+      month,
+    }
+  })
+  .sort((a, b) => b.date.valueOf() - a.date.valueOf())
+
+const firstpost = posts[0]
+const nextpost = posts[1]
+
+const { Content } = await firstpost.render()
+
+const hrefFor = (post) => `/${post.year}/${post.month}/${post.slug}`
+---
+
+<Layout>
+  <div role="main">
+    <article>
+      <header>
+        <h1>{firstpost.data.title}</h1>
+        <p>{formatDate(firstpost.date)}</p>
+      </header>
+
+      <Content />
+
+      {/* Structured data (pass whatever props your component expects) */}
+      <!-- <StructuredData post={firstpost} /> -->
+    </article>
+
+    <nav>
+      <span class="post-nav-prev"></span>
+      <span class="post-nav-next">
+        {nextpost && <a href={hrefFor(nextpost)}>{nextpost.data.title}</a>}
+      </span>
+    </nav>
+
+    {/* Comments (adapt to your system) */}
+    <!-- <Comments page={firstpost} /> -->
+  </div>
+</Layout>
