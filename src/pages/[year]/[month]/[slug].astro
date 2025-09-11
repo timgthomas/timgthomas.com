@@ -9,17 +9,25 @@ type Props = CollectionEntry<'blog'>
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getCollection('blog')
   return posts.flatMap((post) => {
-    const m = post.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\/index\.md(x?)$/)
+    // NOTE: For some reason, the pattern `{post}/index.md` resolves to
+    // `{post.md}` instead
+    const m = post.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+).md(x?)$/)
+
     if (!m) {
       console.warn(`Skipped unmatched post id: ${post.id}`)
       return []
     }
-    const [, year, month, , slug] = m
+
+    const [, year, month, day, slug] = m
+
+    post.date = new Date(`${year}-${month}-${day}`)
+
     return { params: { year, month, slug }, props: { post } }
   })
 }
 
 const { post } = Astro.props
+
 const { Content } = await render(post)
 ---
 
@@ -28,8 +36,9 @@ const { Content } = await render(post)
     <article>
       <header>
         <h1>{post.data.title}</h1>
-        <p>{formatDate(post.data.date)}</p>
+        <p>{formatDate(post.date)}</p>
       </header>
+      <!-- <pre>{JSON.stringify(post, null, 2)}</pre> -->
       <Content />
     </article>
   </div>

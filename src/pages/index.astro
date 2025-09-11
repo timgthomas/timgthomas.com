@@ -29,7 +29,7 @@ const { Content } = await firstpost.render()
 const hrefFor = (post) => `/${post.year}/${post.month}/${post.slug}`
 ---
 
-<Layout>
+<Layout title={firstpost.data.title}>
   <div role="main">
     <article>
       <header>

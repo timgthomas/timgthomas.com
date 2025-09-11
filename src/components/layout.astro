@@ -1,7 +1,7 @@
 ---
 import '../styles/site.css'
 
-const { frontmatter } = Astro.props
+const { /* frontmatter, */ title } = Astro.props
 ---
 
 <!doctype html>
@@ -12,7 +12,7 @@ const { frontmatter } = Astro.props
       name="viewport"
       content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"
     />
-    <title>{frontmatter?.title ?? 'whee'}</title>
+    <title>{title ?? 'whee'} • Tim G Thomas</title>
     <link
       rel="alternate"
       href="http://feeds.feedburner.com/timgthomas"
