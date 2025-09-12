@@ -701,7 +701,7 @@ footer {
 
 [role='main'] nav a {
   display: block;
-  background-image: url('../images/nav.png');
+  background-image: url('/images/nav.png');
   background-repeat: no-repeat;
   background-size: 15px 21px;
 }

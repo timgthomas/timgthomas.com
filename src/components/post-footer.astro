@@ -3,12 +3,13 @@ const { post } = Astro.props
 ---
 
 <nav>
+  <!-- TODO: These names are inverted with the new sorting, I think -->
   <span class="post-nav-next">
     <!-- <a href="/2025/01/homepod-hijinks/">Homepod Hijinks: Reading Temperatures with Shortcuts and the Command Line</a> -->
-    {post.nextPost && <a href={post.nextPost.url}>{post.nextPost.data.title}</a>}
+    {post.prevPost && <a href={post.prevPost.url}>{post.prevPost.data.title}</a>}
   </span>
   <span class="post-nav-prev">
     <!-- <a href="/2021/12/advanced-alpine-js-part-2/">Advanced Alpine.js, Part II: Moving Beyond HTML</a> -->
-    {post.prevPost && <a href={post.prevPost.url}>{post.prevPost.data.title}</a>}
+    {post.nextPost && <a href={post.nextPost.url}>{post.nextPost.data.title}</a>}
   </span>
 </nav>

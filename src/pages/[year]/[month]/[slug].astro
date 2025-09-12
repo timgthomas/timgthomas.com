@@ -10,7 +10,9 @@ type Props = CollectionEntry<'blog'>
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return (await getPosts()).map((post) => {
-    const { year, month, slug } = post
+    const { year, month } = post
+    // TODO: How can I get rid of all these suffixes at once?!
+    const slug = post.slug.replace(/\/index$/, '')
     return { params: { year, month, slug }, props: { post } }
   })
 }
@@ -27,7 +29,6 @@ const { Content } = await render(post)
         <h1>{post.data.title}</h1>
         <p>{formatDate(post.date)}</p>
       </header>
-      <p>{post.nextPost.id}</p>
       <!-- <pre>{JSON.stringify(post, null, 2)}</pre> -->
       <Content />
       <PostFooter {post} />
