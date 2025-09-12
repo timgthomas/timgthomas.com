@@ -33,7 +33,7 @@ Unfortunately, as of this writing, Apple hasn't _published_ this list, and their
 
 Our Alpine app will display these playlists, roughly categorized (thanks again to MacStories for the grouping), but also allow us to search for playlists and "favorite" some so we can easily find them later.
 
-![A preview of the finished app from this post](/2021/12/advanced-alpine-js-part-1/0-preview.png)
+![A preview of the finished app from this post](./0-preview.png)
 
 [apple-press-release]: https://www.apple.com/newsroom/2021/10/apple-introduces-the-apple-music-voice-plan/
 [macstories]: https://www.macstories.net/stories/a-comprehensive-guide-to-250-of-apple-musics-new-mood-and-activity-playlists/
@@ -119,7 +119,7 @@ Just showing playlists' slugs isn't very useful, so let's add links so users can
 
 Of course, a flat list of 250+ playlist slugs isn't a great experience, but to improve that, we're going to need a little help...
 
-![Our progress: Showing 250+ playlist slugs and links](/2021/12/advanced-alpine-js-part-1/1-playlists.png)
+![Our progress: Showing 250+ playlist slugs and links](./1-playlists.png)
 
 [alpine-csp]: https://alpinejs.dev/advanced/csp
 [alpine-x-bind]: https://alpinejs.dev/directives/bind
@@ -194,11 +194,11 @@ Ah, but now we have a list of 250+ playlists _and_ a list of about twenty groups
 
 We've now got a lovely nested list of grouped playlists and the playlists themselves:
 
-![More progress: Showing groups of playlists](/2021/12/advanced-alpine-js-part-1/2-grouping.png)
+![More progress: Showing groups of playlists](./2-grouping.png)
 
 Throw in a bit of styling, and we have ourselves a great mini-app for finding our favorite Apple "mood" playlists! If you've been following along, you may have noticed something interesting: Excepting the data file and the sprinkling of Alpine code, this app contains zero JavaScript! Everything's done within Alpine's directives.
 
-![The finished app from this post](/2021/12/advanced-alpine-js-part-1/0-preview.png)
+![The finished app from this post](./0-preview.png)
 
 [lodash]: https://lodash.com
 [lodash-groupby]: https://lodash.com/docs/4.17.15#groupBy
