@@ -20,6 +20,9 @@ importers:
       astro:
         specifier: ^5.13.7
         version: 5.13.7(@types/node@24.3.1)(rollup@4.50.1)(typescript@5.9.2)
+      astro-robots:
+        specifier: ^2.3.1
+        version: 2.3.1(astro@5.13.7(@types/node@24.3.1)(rollup@4.50.1)(typescript@5.9.2))
       sharp:
         specifier: ^0.34.3
         version: 0.34.3
@@ -593,6 +596,11 @@ packages:
   astring@1.9.0:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
+
+  astro-robots@2.3.1:
+    resolution: {integrity: sha512-ocYIVPBVRBp0zeIVQ9o8PiQThkTmccZWlPKJXtgfC6dsrPwNtKOwbLtH+X4COoJhliwVEO2uzQy6bAFSSSwzcA==}
+    peerDependencies:
+      astro: '>= 4.0.0'
 
   astro@5.13.7:
     resolution: {integrity: sha512-Of2tST7ErbE4y1dVb4aWDXaQSIRBAfraJ4jDqaA3PzPRJOn6Ina36+tQ+8BezjYqiWwRRJdOEE07PRAJXnsddw==}
@@ -2159,6 +2167,10 @@ snapshots:
   array-iterate@2.0.1: {}
 
   astring@1.9.0: {}
+
+  astro-robots@2.3.1(astro@5.13.7(@types/node@24.3.1)(rollup@4.50.1)(typescript@5.9.2)):
+    dependencies:
+      astro: 5.13.7(@types/node@24.3.1)(rollup@4.50.1)(typescript@5.9.2)
 
   astro@5.13.7(@types/node@24.3.1)(rollup@4.50.1)(typescript@5.9.2):
     dependencies:
