@@ -1,7 +1,34 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../../components/layout.astro'
+
+const projects = await getCollection('projects')
 ---
 
 <Layout title="Projects">
-  <p>Whee!</p>
+  <div role="main">
+    <header>
+      <h1>{{page.title}}</h1>
+    </header>
+    <ol class="talk-list project-list">
+      {projects.map((project) =>(
+        <li>
+          <figure>
+            <div style="background-image: url('/images/project-{{this.id}}.jpg')">
+              <!-- <img src="/images/talks/{{this.thumbnail}}"> -->
+            </div>
+            <figcaption>
+              <h2>{{this.name}}</h2>
+              <p>{{this.description}}</p>
+              <ul>
+                {{#each this.links}}
+                  <li><a href={{this.link}} target='_blank' rel='noopener'>{{this.type}}</a></li>
+                {{/each}}
+              </ul>
+            </figcaption>
+          </figure>
+        </li>
+        ))}
+    </ol>
+  </div>
 </Layout>

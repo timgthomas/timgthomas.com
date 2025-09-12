@@ -936,6 +936,31 @@ pre .value {
   color: #f88e29;
 }
 
+/* Site footer */
+
+body > footer {
+  &::before {
+    aspect-ratio: 1;
+    background: var(--color-body);
+    content: '';
+    display: block;
+    opacity: 0.35;
+    width: 3.2rem;
+    mask-image: url('/images/logo-footer.png');
+    mask-size: contain;
+  }
+
+  align-items: center;
+  color: var(--color-body);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  gap: 1.8rem;
+  opacity: 0.35;
+  padding-block-end: 3.2rem;
+  text-align: center;
+}
+
 @keyframes hues {
   0% {
     color: #b4b5b1;
