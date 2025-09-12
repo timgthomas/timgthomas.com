@@ -51,7 +51,7 @@
   description: My personal web site, featuring personal projects and blog posts on a variety of topics.
   links:
     - type: web
-      link: http://timgthomas.com
+      link: https://timgthomas.com
     - type: github
       link: https://github.com/timgthomas/timgthomas.com
   tags: ['web', 'hexo']
