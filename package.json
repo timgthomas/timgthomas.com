@@ -1,6 +1,6 @@
 {
   "name": "timgthomas.com",
-  "version": "0.0.1",
+  "version": "10.0.0-beta",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
