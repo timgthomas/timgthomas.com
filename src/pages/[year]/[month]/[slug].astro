@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import Layout from '../../../components/layout.astro'
+import { formatDate } from '../../../lib/utils/datetime'
+import { getPosts } from '../../../lib/models/post'
+import PostFooter from '../../../components/post-footer.astro'
+
+type Props = CollectionEntry<'blog'>
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return (await getPosts()).map((post) => {
+    const { year, month } = post
+    // TODO: How can I get rid of all these suffixes at once?!
+    const slug = post.slug.replace(/\/index$/, '')
+    return { params: { year, month, slug }, props: { post } }
+  })
+}
+
+const { post } = Astro.props
+
+const { Content } = await render(post)
+---
+
+<Layout title={post.data.title}>
+  <div role="main">
+    <article>
+      <header>
+        <h1>{post.data.title}</h1>
+        <p>{formatDate(post.date)}</p>
+      </header>
+      <!-- <pre>{JSON.stringify(post, null, 2)}</pre> -->
+      <Content />
+      <PostFooter {post} />
+    </article>
+  </div>
+</Layout>

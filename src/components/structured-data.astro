@@ -1,0 +1,14 @@
+---
+const { post } = Astro.props
+
+const structuredData = {
+  '@context': 'http://schema.org',
+  '@type': 'BlogPosting',
+  '@id': post.url,
+  datePublished: post.date,
+  headline: post.title,
+  image: 'http://timgthomas.com/images/headshot.png',
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

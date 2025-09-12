@@ -1,0 +1,52 @@
+---
+import { getPosts } from '../../lib/models/post'
+import { formatDate } from '../../lib/utils/datetime'
+
+import Layout from '../../components/layout.astro'
+
+const posts = await getPosts()
+
+const byYear = posts.reduce((acc, post) => {
+  const year = String(post.date.getFullYear())
+  acc[year] ??= []
+  acc[year].push(post)
+  return acc
+}, {})
+
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a))
+
+// Helper to build URLs. If your routes are `/blog/[slug].astro`, update basePath.
+const basePath = '/blog/'
+const hrefFor = (post: (typeof posts)[number]) =>
+  // If you already have a `url` field in frontmatter, prefer that.
+  post.data.url ?? `${basePath}${post.slug}/`
+---
+
+<Layout title="Archives">
+  <div role="main">
+    <header>
+      <h1>Blog Archives</h1>
+    </header>
+    {
+      years.map((year) => (
+        <>
+          <h2>{year}</h2>
+          <dl>
+            {byYear[year].map((post) => {
+              return (
+                <>
+                  <dt>
+                    <a href={post.url}>{post.data.title}</a>
+                  </dt>
+                  <dd>
+                    <time datetime={post.date.toISOString()}>{formatDate(post.date)}</time>
+                  </dd>
+                </>
+              )
+            })}
+          </dl>
+        </>
+      ))
+    }
+  </div>
+</Layout>
