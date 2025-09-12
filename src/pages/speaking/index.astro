@@ -2,27 +2,29 @@
 import { getCollection } from 'astro:content'
 import Layout from '../../components/layout.astro'
 
-const [{ data: projects }] = await getCollection('projects')
+const [{ data: talks }] = await getCollection('talks')
 ---
 
-<Layout title="Projects">
+<Layout title="Speaking">
   <div role="main">
     <header>
-      <h1>Projects</h1>
+      <h1>Speaking</h1>
     </header>
-    <ol class="talk-list project-list">
+    <p>
+      Interested in having me speak at your next event?{' '}
+      <a href="mailto:speaking@timgthomas.com">Get in touch!</a>
+    </p>
+    <ol class="talk-list">
       {
-        projects.map((project) => (
+        talks.map((talk) => (
           <li>
             <figure>
-              <div style={{ backgroundImage: `url('/images/project-${project.id}.jpg')` }}>
-                {/* <img src={`/images/talks/${project.thumbnail}`} /> */}
-              </div>
+              <img src={`/images/talks/${talk.thumbnail}`} alt={talk.name} />
               <figcaption>
-                <h2>{project.name}</h2>
-                <p>{project.description}</p>
+                <h2>{talk.name}</h2>
+                <p>{talk.conference}</p>
                 <ul>
-                  {project.links.map((link) => (
+                  {talk.links.map((link) => (
                     <li>
                       <a href={link.link} target="_blank" rel="noopener">
                         {link.type}

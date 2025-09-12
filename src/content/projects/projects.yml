@@ -5,16 +5,16 @@
   links:
     - type: web
       link: https://schedule.sherwoodforestfaire.com
-  tags: ["web", "svelte"]
+  tags: ['web', 'svelte']
 
-- id: dragon-dice
-  name: Dragon Dice
+- id: dice-commander
+  name: Dice Commander
   description: The official reference guide for the Dragon Dice game to track your armies' statistics and capabilities.
   featured: true
   links:
     - type: web
       link: https://commander.dragondice.com/
-  tags: ["web", "svelte"]
+  tags: ['web', 'svelte']
 
 - id: faire-day
   name: Faire Day
@@ -25,7 +25,7 @@
       link: https://apps.apple.com/us/app/faire-day/id1450462432
     - type: facebook
       link: https://www.facebook.com/faireday
-  tags: ["mobile", "swift", "swiftui"]
+  tags: ['mobile', 'swift', 'swiftui']
 
 - id: active-syntax
   name: Active Syntax
@@ -44,7 +44,7 @@
       link: https://itunes.apple.com/us/app/heart-points/id1092311753
     - type: facebook
       link: https://www.facebook.com/heartpointsapp/
-  tags: ["mobile", "react"]
+  tags: ['mobile', 'react']
 
 - id: personal-site
   name: Personal Site
@@ -54,4 +54,4 @@
       link: http://timgthomas.com
     - type: github
       link: https://github.com/timgthomas/timgthomas.com
-  tags: ["web", "hexo"]
+  tags: ['web', 'hexo']
