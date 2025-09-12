@@ -1,7 +1,6 @@
 ---
 import Layout from '../components/layout.astro'
-// import StructuredData from "@/components/StructuredData.astro";
-// import Comments from "@/components/Comments.astro";
+import StructuredData from '../components/structured-data.astro'
 import { formatDate } from '../lib/utils/datetime'
 import { getPosts } from '../lib/models/post'
 
@@ -10,8 +9,6 @@ const posts = await getPosts()
 const [firstpost, nextpost] = posts
 
 const { Content } = await firstpost.render()
-
-const hrefFor = (post) => `/${post.year}/${post.month}/${post.slug}`
 ---
 
 <Layout title={firstpost.data.title}>
@@ -23,19 +20,14 @@ const hrefFor = (post) => `/${post.year}/${post.month}/${post.slug}`
       </header>
 
       <Content />
-
-      {/* Structured data (pass whatever props your component expects) */}
-      <!-- <StructuredData post={firstpost} /> -->
+      <StructuredData post={firstpost} />
     </article>
 
     <nav>
       <span class="post-nav-prev"></span>
       <span class="post-nav-next">
-        {nextpost && <a href={hrefFor(nextpost)}>{nextpost.data.title}</a>}
+        {nextpost && <a href={nextpost.url}>{nextpost.data.title}</a>}
       </span>
     </nav>
-
-    {/* Comments (adapt to your system) */}
-    <!-- <Comments page={firstpost} /> -->
   </div>
 </Layout>
