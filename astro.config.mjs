@@ -6,4 +6,7 @@ import robots from 'astro-robots'
 export default defineConfig({
   site: 'https://timgthomas.com',
   integrations: [mdx(), robots(), sitemap()],
+  markdown: {
+    syntaxHighlight: 'prism',
+  },
 })
