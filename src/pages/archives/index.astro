@@ -1,11 +1,9 @@
 ---
+import Layout from '../../components/layout.astro'
 import { getPosts } from '../../lib/models/post'
 import { formatDate } from '../../lib/utils/datetime'
 
-import Layout from '../../components/layout.astro'
-
 const posts = await getPosts()
-
 const byYear = posts.reduce((acc, post) => {
   const year = String(post.date.getFullYear())
   acc[year] ??= []
@@ -14,12 +12,6 @@ const byYear = posts.reduce((acc, post) => {
 }, {})
 
 const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a))
-
-// Helper to build URLs. If your routes are `/blog/[slug].astro`, update basePath.
-const basePath = '/blog/'
-const hrefFor = (post: (typeof posts)[number]) =>
-  // If you already have a `url` field in frontmatter, prefer that.
-  post.data.url ?? `${basePath}${post.slug}/`
 ---
 
 <Layout title="Archives">
