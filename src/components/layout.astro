@@ -1,6 +1,8 @@
 ---
 import '../styles/site.css'
 
+import Analytics from './analytics.astro'
+
 const { /* frontmatter, */ title } = Astro.props
 ---
 
@@ -12,7 +14,7 @@ const { /* frontmatter, */ title } = Astro.props
       name="viewport"
       content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"
     />
-    <title>{title ?? 'whee'} • Tim G Thomas</title>
+    <title>{title} • Tim G Thomas</title>
     <link
       rel="alternate"
       href="http://feeds.feedburner.com/timgthomas"
@@ -25,7 +27,7 @@ const { /* frontmatter, */ title } = Astro.props
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono"
     />
-    <script defer data-domain="timgthomas.com" src="https://plausible.io/js/plausible.js"></script>
+    <Analytics />
   </head>
   <body>
     <header role="banner">
