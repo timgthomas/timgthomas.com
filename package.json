@@ -8,11 +8,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.5",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.5.1",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
-    "astro": "^5.13.7",
+    "astro": "^5.16.6",
     "astro-robots": "^2.3.1",
     "sharp": "^0.34.3"
   }

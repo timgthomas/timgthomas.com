@@ -17,6 +17,8 @@ import Layout from '../components/layout.astro'
     </p>
   </div>
   <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => window.plausible?.('404'))
+    document.addEventListener('DOMContentLoaded', function () {
+      plausible('404')
+    })
   </script>
 </Layout>
