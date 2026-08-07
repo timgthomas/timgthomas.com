@@ -5,6 +5,7 @@ import Layout from '../../../components/layout.astro'
 import { formatDate } from '../../../lib/utils/datetime'
 import { getPosts } from '../../../lib/models/post'
 import PostFooter from '../../../components/post-footer.astro'
+import StructuredData from '../../../components/structured-data.astro'
 
 type Props = CollectionEntry<'blog'>
 
@@ -20,9 +21,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { post } = Astro.props
 
 const { Content } = await render(post)
+const description = `Read “${post.data.title},” a post by Tim G Thomas.`
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} {description} type="article">
   <div role="main">
     <article>
       <header>
@@ -31,6 +33,7 @@ const { Content } = await render(post)
       </header>
       <!-- <pre>{JSON.stringify(post, null, 2)}</pre> -->
       <Content />
+      <StructuredData {post} {description} />
       <PostFooter {post} />
     </article>
   </div>

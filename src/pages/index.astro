@@ -6,9 +6,10 @@ import { formatDate } from '../lib/utils/datetime'
 
 const [post, nextPost] = await getPosts()
 const { Content: RenderedPost } = await post.render()
+const description = `Read “${post.data.title},” a post by Tim G Thomas.`
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} {description} type="article">
   <div role="main">
     <article>
       <header>
@@ -16,7 +17,7 @@ const { Content: RenderedPost } = await post.render()
         <p>{formatDate(post.date)}</p>
       </header>
       <RenderedPost />
-      <StructuredData post={post} />
+      <StructuredData {post} {description} />
     </article>
     <nav>
       <span class="post-nav-prev"></span>
