@@ -4,7 +4,9 @@ import { getPosts } from '../../lib/models/post'
 import { formatDate } from '../../lib/utils/datetime'
 
 const posts = await getPosts()
-const byYear = posts.reduce((acc, post) => {
+type Post = (typeof posts)[number]
+
+const byYear = posts.reduce<Record<string, Post[]>>((acc, post) => {
   const year = String(post.date.getFullYear())
   acc[year] ??= []
   acc[year].push(post)
