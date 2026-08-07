@@ -299,7 +299,7 @@ body {
 }
 
 [role='banner'] #toggle-nav:checked ~ nav {
-  height: 176px;
+  height: 132px;
   transition: height 350ms;
   visibility: visible;
 }
@@ -320,10 +320,6 @@ body {
 
 [role='banner'] #toggle-nav:checked ~ nav a:nth-of-type(3) {
   transition-delay: 300ms;
-}
-
-[role='banner'] #toggle-nav:checked ~ nav a:nth-of-type(4) {
-  transition-delay: 400ms;
 }
 
 .visually-hidden {
@@ -738,13 +734,6 @@ footer {
   line-height: 21px;
 }
 
-[role='main'] nav .post-nav-label {
-  color: var(--color-body);
-  display: block;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-}
 
 .all-posts {
   font-size: 1.4rem !important;

@@ -7,7 +7,7 @@ const { post } = Astro.props
     {
       post.nextPost && (
         <a href={post.nextPost.url}>
-          <span class="post-nav-label">Newer post</span>
+          <span class="visually-hidden">Newer post: </span>
           {post.nextPost.data.title}
         </a>
       )
@@ -17,7 +17,7 @@ const { post } = Astro.props
     {
       post.prevPost && (
         <a href={post.prevPost.url}>
-          <span class="post-nav-label">Older post</span>
+          <span class="visually-hidden">Older post: </span>
           {post.prevPost.data.title}
         </a>
       )

@@ -25,7 +25,7 @@ const description = `Read “${post.data.title},” a post by Tim G Thomas.`
         {
           nextPost && (
             <a href={nextPost.url}>
-              <span class="post-nav-label">Older post</span>
+              <span class="visually-hidden">Older post: </span>
               {nextPost.data.title}
             </a>
           )
