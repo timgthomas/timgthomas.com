@@ -2,14 +2,25 @@
 const { post } = Astro.props
 ---
 
-<nav>
-  <!-- TODO: These names are inverted with the new sorting, I think -->
-  <span class="post-nav-next">
-    <!-- <a href="/2025/01/homepod-hijinks/">Homepod Hijinks: Reading Temperatures with Shortcuts and the Command Line</a> -->
-    {post.prevPost && <a href={post.prevPost.url}>{post.prevPost.data.title}</a>}
-  </span>
+<nav aria-label="Post navigation">
   <span class="post-nav-prev">
-    <!-- <a href="/2021/12/advanced-alpine-js-part-2/">Advanced Alpine.js, Part II: Moving Beyond HTML</a> -->
-    {post.nextPost && <a href={post.nextPost.url}>{post.nextPost.data.title}</a>}
+    {
+      post.nextPost && (
+        <a href={post.nextPost.url}>
+          <span class="post-nav-label">Newer post</span>
+          {post.nextPost.data.title}
+        </a>
+      )
+    }
+  </span>
+  <span class="post-nav-next">
+    {
+      post.prevPost && (
+        <a href={post.prevPost.url}>
+          <span class="post-nav-label">Older post</span>
+          {post.prevPost.data.title}
+        </a>
+      )
+    }
   </span>
 </nav>

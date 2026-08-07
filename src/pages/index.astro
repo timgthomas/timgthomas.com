@@ -19,11 +19,19 @@ const description = `Read “${post.data.title},” a post by Tim G Thomas.`
       <RenderedPost />
       <StructuredData {post} {description} />
     </article>
-    <nav>
+    <nav aria-label="Post navigation">
       <span class="post-nav-prev"></span>
       <span class="post-nav-next">
-        {nextPost && <a href={nextPost.url}>{nextPost.data.title}</a>}
+        {
+          nextPost && (
+            <a href={nextPost.url}>
+              <span class="post-nav-label">Older post</span>
+              {nextPost.data.title}
+            </a>
+          )
+        }
       </span>
     </nav>
+    <p class="all-posts"><a href="/archives">Browse all posts</a></p>
   </div>
 </Layout>

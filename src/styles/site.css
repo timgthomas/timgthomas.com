@@ -529,7 +529,7 @@ footer h3 {
 
 [role='main'] p,
 footer p {
-  text-align: justify;
+  text-align: left;
   text-rendering: optimizeLegibility;
 }
 
@@ -701,6 +701,19 @@ footer {
   margin-bottom: 1.6rem;
   font-size: 1.4rem;
   line-height: 21px;
+}
+
+[role='main'] nav .post-nav-label {
+  color: var(--color-body);
+  display: block;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.all-posts {
+  font-size: 1.4rem !important;
+  text-align: center !important;
 }
 
 [role='main'] nav .post-nav-prev a {
