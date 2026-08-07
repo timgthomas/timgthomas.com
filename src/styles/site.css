@@ -1,7 +1,6 @@
 * {
   box-sizing: inherit;
   margin: 0;
-  outline: none;
   padding: 0;
   line-height: inherit;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -163,6 +162,24 @@ body {
   animation: hues 30s infinite linear;
 }
 
+:focus-visible {
+  outline: 3px solid #b6519a;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [role='banner'] em {
+    animation: none;
+  }
+
+  [role='banner'] nav,
+  [role='banner'] nav a,
+  [role='banner'] #toggle-nav:checked ~ nav,
+  [role='banner'] #toggle-nav:checked ~ nav a {
+    transition: none;
+  }
+}
+
 [role='banner'] .hire {
   padding: 8px 0;
   background-color: #b6519a;
@@ -199,7 +216,10 @@ body {
   letter-spacing: 0.1rem;
   overflow: hidden;
   text-transform: uppercase;
-  transition: height 350ms;
+  transition:
+    height 350ms,
+    visibility 0s linear 350ms;
+  visibility: hidden;
   width: 100%;
 }
 
@@ -207,6 +227,8 @@ body {
   [role='banner'] nav {
     flex-direction: row;
     height: auto;
+    transition: none;
+    visibility: visible;
     width: auto;
   }
 
@@ -239,9 +261,17 @@ body {
 }
 
 [role='banner'] #toggle-nav {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+[role='banner'] #toggle-nav + label {
   background-color: transparent;
   background-image: url('/images/nav-switch.png');
   background-position: top left;
@@ -252,36 +282,55 @@ body {
   width: 55px;
 }
 
+[role='banner'] #toggle-nav:focus-visible + label {
+  outline: 3px solid #b6519a;
+  outline-offset: 3px;
+}
+
 @media screen and (min-width: 667px) {
-  [role='banner'] #toggle-nav {
+  [role='banner'] #toggle-nav,
+  [role='banner'] #toggle-nav + label {
     display: none;
   }
 }
 
-[role='banner'] #toggle-nav:checked {
+[role='banner'] #toggle-nav:checked + label {
   background-position: bottom left;
 }
 
-[role='banner'] #toggle-nav:checked + nav {
+[role='banner'] #toggle-nav:checked ~ nav {
   height: 132px;
+  transition: height 350ms;
+  visibility: visible;
 }
 
-[role='banner'] #toggle-nav:checked + nav a {
+[role='banner'] #toggle-nav:checked ~ nav a {
   opacity: 1;
   transform: translateX(0);
   transition-duration: 350ms;
 }
 
-[role='banner'] #toggle-nav:checked + nav a:nth-of-type(1) {
+[role='banner'] #toggle-nav:checked ~ nav a:nth-of-type(1) {
   transition-delay: 100ms;
 }
 
-[role='banner'] #toggle-nav:checked + nav a:nth-of-type(2) {
+[role='banner'] #toggle-nav:checked ~ nav a:nth-of-type(2) {
   transition-delay: 200ms;
 }
 
-[role='banner'] #toggle-nav:checked + nav a:nth-of-type(3) {
+[role='banner'] #toggle-nav:checked ~ nav a:nth-of-type(3) {
   transition-delay: 300ms;
+}
+
+.visually-hidden {
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 aside {
@@ -511,7 +560,7 @@ footer h3 {
 
 [role='main'] p,
 footer p {
-  text-align: justify;
+  text-align: left;
   text-rendering: optimizeLegibility;
 }
 
@@ -683,6 +732,12 @@ footer {
   margin-bottom: 1.6rem;
   font-size: 1.4rem;
   line-height: 21px;
+}
+
+
+.all-posts {
+  font-size: 1.4rem !important;
+  text-align: center !important;
 }
 
 [role='main'] nav .post-nav-prev a {

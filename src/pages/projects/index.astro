@@ -2,10 +2,17 @@
 import { getCollection } from 'astro:content'
 import Layout from '../../components/layout.astro'
 
-const [{ data: projects }] = await getCollection('projects')
+type Project = {
+  id: string
+  name: string
+  description: string
+  links: { type: string; link: string }[]
+}
+
+const [{ data: projects }] = (await getCollection('projects')) as [{ data: Project[] }]
 ---
 
-<Layout title="Projects">
+<Layout title="Projects" description="Selected design and development projects by Tim G Thomas.">
   <div role="main">
     <header>
       <h1>Projects</h1>

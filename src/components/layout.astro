@@ -3,18 +3,37 @@ import '../styles/site.css'
 
 import Analytics from './analytics.astro'
 
-const { /* frontmatter, */ title } = Astro.props
+const {
+  title,
+  description = 'Tim G Thomas writes about design, development, and making usable, beautiful experiences.',
+  image = '/images/headshot.png',
+  type = 'website',
+} = Astro.props
+
+const site = Astro.site ?? new URL('https://timgthomas.com')
+const canonicalUrl = new URL(Astro.url.pathname, site).href
+const imageUrl = new URL(image, site).href
+const pageTitle = title ? `${title} • Tim G Thomas` : 'Tim G Thomas'
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"
-    />
-    <title>{title} • Tim G Thomas</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content="Tim G Thomas" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <link
       rel="alternate"
       href="http://feeds.feedburner.com/timgthomas"
@@ -25,7 +44,7 @@ const { /* frontmatter, */ title } = Astro.props
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic|Fira+Mono"
     />
     <Analytics />
   </head>
@@ -33,8 +52,9 @@ const { /* frontmatter, */ title } = Astro.props
     <header role="banner">
       <div class="container">
         <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
-        <input id="toggle-nav" type="checkbox" />
-        <nav>
+        <input id="toggle-nav" type="checkbox" aria-controls="primary-navigation" />
+        <label for="toggle-nav"><span class="visually-hidden">Toggle navigation</span></label>
+        <nav id="primary-navigation" aria-label="Primary navigation">
           <a href="/">Blog</a>
           <a href="/projects">Projects</a>
           <a href="/speaking">Speaking</a>

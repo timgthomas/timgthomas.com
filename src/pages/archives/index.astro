@@ -4,7 +4,9 @@ import { getPosts } from '../../lib/models/post'
 import { formatDate } from '../../lib/utils/datetime'
 
 const posts = await getPosts()
-const byYear = posts.reduce((acc, post) => {
+type Post = (typeof posts)[number]
+
+const byYear = posts.reduce<Record<string, Post[]>>((acc, post) => {
   const year = String(post.date.getFullYear())
   acc[year] ??= []
   acc[year].push(post)
@@ -14,7 +16,7 @@ const byYear = posts.reduce((acc, post) => {
 const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a))
 ---
 
-<Layout title="Archives">
+<Layout title="Archives" description="Browse the complete archive of posts by Tim G Thomas.">
   <div role="main">
     <header>
       <h1>Blog Archives</h1>

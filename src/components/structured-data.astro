@@ -1,13 +1,32 @@
 ---
-const { post } = Astro.props
+const { post, description } = Astro.props
+const site = Astro.site ?? new URL('https://timgthomas.com')
+const url = new URL(post.url, site).href
+const image = new URL('/images/headshot.png', site).href
 
 const structuredData = {
-  '@context': 'http://schema.org',
+  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  '@id': post.url,
-  datePublished: post.date,
-  headline: post.title,
-  image: 'http://timgthomas.com/images/headshot.png',
+  '@id': url,
+  url,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url,
+  },
+  headline: post.data.title,
+  description,
+  datePublished: post.date.toISOString(),
+  image,
+  author: {
+    '@type': 'Person',
+    name: 'Tim G Thomas',
+    url: site.href,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Tim G Thomas',
+    url: site.href,
+  },
 }
 ---
 
