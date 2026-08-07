@@ -52,12 +52,8 @@ const pageTitle = title ? `${title} • Tim G Thomas` : 'Tim G Thomas'
     <header role="banner">
       <div class="container">
         <h1><a href="/">Tim <em>G</em> Thomas</a></h1>
-        <button
-          id="toggle-nav"
-          type="button"
-          aria-controls="primary-navigation"
-          aria-expanded="false"
-          aria-label="Toggle navigation"></button>
+        <input id="toggle-nav" type="checkbox" aria-controls="primary-navigation" />
+        <label for="toggle-nav"><span class="visually-hidden">Toggle navigation</span></label>
         <nav id="primary-navigation" aria-label="Primary navigation">
           <a href="/">Blog</a>
           <a href="/archives">Archives</a>
@@ -93,13 +89,5 @@ const pageTitle = title ? `${title} • Tim G Thomas` : 'Tim G Thomas'
     </aside>
     <slot />
     <footer>&copy; Tim G Thomas</footer>
-    <script>
-      const toggleNav = document.querySelector<HTMLButtonElement>('#toggle-nav')
-
-      toggleNav?.addEventListener('click', () => {
-        const isExpanded = toggleNav.getAttribute('aria-expanded') === 'true'
-        toggleNav.setAttribute('aria-expanded', String(!isExpanded))
-      })
-    </script>
   </body>
 </html>
