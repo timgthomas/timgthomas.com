@@ -350,6 +350,8 @@ aside .social {
 }
 
 aside .social a {
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: contain;
   font: 0/0 a;
   height: 44px;
@@ -381,6 +383,10 @@ aside .social-github {
 
 aside .social-codepen {
   background-image: url('/images/social-codepen.png');
+}
+
+aside .social-kofi {
+  background-image: url('/images/social-kofi.png');
 }
 
 aside .social-dribbble {
