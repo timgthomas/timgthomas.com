@@ -137,4 +137,4 @@ In this post, we refactored Alpine's inline HTML directives into a separate scri
 
 * [Source code for Part II (GitHub)][github]
 
-[github]: https://github.com/timgthomas/apple-playlists/tree/main/blog/part-2
+[github]: https://github.com/kelzcoded/apple-playlists/tree/main/blog/part-2

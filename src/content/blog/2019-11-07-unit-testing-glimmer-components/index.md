@@ -104,7 +104,7 @@ test('should calculate the value', async function(assert) {
 });
 ```
 
-I've published a [sample Ember Octane app on GitHub](https://github.com/timgthomas/unit-testing-glimmer-components) if you'd like to play around with real code.
+I've published a [sample Ember Octane app on GitHub](https://github.com/kelzcoded/unit-testing-glimmer-components) if you'd like to play around with real code.
 
 ## A Disclaimer
 

@@ -22,8 +22,8 @@ Recently, I’ve been spending a lot of time with [Alpine.js][alpine], a self-pr
 In this series, we’ll look at some advanced workflows with Alpine by building out a music playlist app. We’ll start by setting up Alpine (a shockingly trivial thing to do), then add some features, a build system, and finally, some testing. The final code is [available on GitHub][github] if you'd like to take a peek before we begin. Let’s dive in!
 
 [alpine]: https://alpinejs.dev
-[illustractions]: https://github.com/timgthomas/illustractions
-[github]: https://github.com/timgthomas/apple-playlists/blob/main/blog/part-1/index.html
+[illustractions]: https://github.com/kelzcoded/illustractions
+[github]: https://github.com/kelzcoded/apple-playlists/blob/main/blog/part-1/index.html
 
 ## What we're building
 

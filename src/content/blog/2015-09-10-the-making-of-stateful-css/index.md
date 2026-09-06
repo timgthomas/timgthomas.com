@@ -95,6 +95,6 @@ My slide deck also included the ability to edit CSS on the fly and see it instan
 
 ---
 
-That's all there is to it! A few lines of HTML per slide, a sprinkling of CSS, and a little `<style>` block trickery, and you've got yourself a modern—and JavaScript free!— slide deck! If you'd like to learn more about (mis-)using CSS for behavior, [read my blog series on "stateful CSS"](https://www.google.com/search?q=fun+with+stateful+css+site%3Atimgthomas.com), [watch the presentation video](https://vimeo.com/131410261), and check out the [code for my slides on GitHub](https://github.com/TimGThomas/stateful-css-slides/).
+That's all there is to it! A few lines of HTML per slide, a sprinkling of CSS, and a little `<style>` block trickery, and you've got yourself a modern—and JavaScript free!— slide deck! If you'd like to learn more about (mis-)using CSS for behavior, [read my blog series on "stateful CSS"](https://www.google.com/search?q=fun+with+stateful+css+site%3Atimgthomas.com), [watch the presentation video](https://vimeo.com/131410261), and check out the [code for my slides on GitHub](https://github.com/kelzcoded/stateful-css-slides/).
 
 If you've seen or built any great functionality with little or no CSS, share in the comments!

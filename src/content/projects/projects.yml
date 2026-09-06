@@ -34,7 +34,7 @@
     - type: web
       link: https://atom.io/themes/active-syntax
     - type: github
-      link: https://github.com/timgthomas/active-syntax
+      link: https://github.com/kelzcoded/active-syntax
 
 - id: heart-points
   name: Heart Points
@@ -53,5 +53,5 @@
     - type: web
       link: https://timgthomas.com
     - type: github
-      link: https://github.com/timgthomas/timgthomas.com
+      link: https://github.com/kelzcoded/timgthomas.com
   tags: ['web', 'hexo']

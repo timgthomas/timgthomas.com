@@ -67,5 +67,5 @@ We've had great results with this approach so far. RequireJS allows us to simpli
 [1]: http://requirejs.org/
 [2]: http://www.jquery.com/
 [3]: http://backbonejs.com/
-[4]: https://gist.github.com/TimGThomas/05ffe58306e360905863
+[4]: https://gist.github.com/kelzcoded/05ffe58306e360905863
 [5]: http://www.nuget.org/packages/Mvc4Futures/

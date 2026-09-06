@@ -133,4 +133,4 @@ Now that we've built a client that's aware of potential form errors reported in 
 [2]: https://github.com/JamesNK/Newtonsoft.Json
 [3]: http://weblogs.asp.net/gunnarpeipman/archive/2010/08/15/asp-net-mvc-3-global-action-filters.aspx
 [4]: http://validation-sample.apphb.com/
-[5]: https://github.com/TimGThomas/validation-sample
+[5]: https://github.com/kelzcoded/validation-sample

@@ -4,7 +4,7 @@ title: NDC Oslo 2015
 
 Earlier this month I had the pleasure of returning to Oslo, Norway, for another fantastic [Norwegian Developers Conference](http://www.ndcoslo.com/). As usual, the conference featured amazing speakers providing invaluable content, and I’m honored to have been asked to join them for a third year.
 
-This year, I gave a talk on adding interactions to your web apps using only CSS, a topic on which I’ve frequently blogged in the past. A full recording of my talk is [on Vimeo](https://vimeo.com/131410261), and embedded below. The talk’s slides—written entirely with HTML and CSS—[can be viewed online](http://timgthomas.github.io/stateful-css-slides/) and are [on GitHub](https://github.com/TimGThomas/stateful-css-slides), as well.
+This year, I gave a talk on adding interactions to your web apps using only CSS, a topic on which I’ve frequently blogged in the past. A full recording of my talk is [on Vimeo](https://vimeo.com/131410261), and embedded below. The talk’s slides—written entirely with HTML and CSS—[can be viewed online](http://kelzcoded.github.io/stateful-css-slides/) and are [on GitHub](https://github.com/kelzcoded/stateful-css-slides), as well.
 
 <iframe src="https://player.vimeo.com/video/131410261?title=0&amp;color=35aba5" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"> </iframe>
 

@@ -109,7 +109,7 @@ Once the containers are running again, take a peek at your instance's plugins pa
 
 Though we've just demonstrated plugin development in this post, the same procedure applies for themes, as well: Just map your theme to `/var/www/html/wp-content/themes/<theme>`. Don't forget to activate it!
 
-If you'd like a jumping-off point, [the code for this post is available on GitHub](https://github.com/timgthomas/blog-wordpress-docker-compose). Happy coding with WordPress!
+If you'd like a jumping-off point, [the code for this post is available on GitHub](https://github.com/kelzcoded/blog-wordpress-docker-compose). Happy coding with WordPress!
 
 [image-wp]: https://hub.docker.com/_/wordpress/
 [image-mysql]: https://hub.docker.com/_/mysql/
